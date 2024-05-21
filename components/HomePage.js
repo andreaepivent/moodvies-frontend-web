@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const HomePage = () => {
   return (
@@ -26,14 +34,27 @@ const HomePage = () => {
             <div className="flex flex-row content-start">
               <div className="basis-1/4 grow text-center"></div>
               <div className="basis-1/4 grow text-right mr-5">
-                <button
+                {/* <button
                   class="box-border p-[6px] px-[8px] gap-[8px] w-[170px] h-[50px] rounded-[8px] bg-[blue]"
                   onClick={() =>
                     document.getElementById("my_modal_login").showModal()
                   }
                 >
                   Login
-                </button>
+                </button> */}
+                <Dialog>
+                  <DialogTrigger>Open</DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you absolutely sure?</DialogTitle>
+                      <DialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               </div>
               <div className="basis-1/4 grow text-left ml-5">
                 <button
@@ -128,7 +149,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center basis-1/4 grow text-center border-2 border-red mt-44">
+        <div className="flex justify-center basis-1/4 grow text-center mt-44">
           <img
             class="w-8/12 h-2/6 "
             src="phone.png"
@@ -155,96 +176,101 @@ const HomePage = () => {
         </div>
 
         <div className="basis-1/4 grow text-center">
+          <footer class="bg-zinc-900 text-white py-8 mt-auto">
+            <div class="flex flex-nowrap row-auto justify-between mx-auto px-4">
+              <div class="mb-8 ml-11 w-72">
+                <img
+                  class="flex place-self-start mt-0 mb-2 w-20 h-21 "
+                  src="logo-moodvie-letter.png"
+                  alt="logo-moodvie-letter"
+                />
 
-          <footer class="bg-zinc-900 text-white py-4 mt-auto">
-              <div class="flex flex-nowrap row-auto justify-between border-2 border-red">
-                <div class="mb-8 w-40 border-2 border-red">
-                  <img
-                    class="flex place-self-start mt-2 w-20 h-21 "
-                    src="logo-moodvie-letter.png"
-                    alt="logo-moodvie-letter"
-                  />
-
-                  <p class="mb-2 ml-4 text-left text-sm font-thin ">
-                    {" "}
-                    Lorem ipsum dolor sit amet, consecteturlabore et dolore
-                    magna aliqua.Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.{" "}
-                  </p>
+                <p class="mb-2 ml-4 text-left text-sm font-thin ">
+                  {" "}
+                  Lorem ipsum dolor sit amet, consecteturlabore et dolore magna
+                  aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.{" "}
+                </p>
+              </div>
+              <div class="mb-8 text-left">
+                <h3 class="font-bold">Compagny</h3>
+                <h4 class="mt-1 text-base font-semibold">Moodvies</h4>
+                <ul>
+                  <li class="mt-2 text-sm font-thin">Paris, France</li>
+                  <li class="mt-2 text-sm font-thin">06 06 06 06 06</li>
+                  <li class="mt-2 text-sm font-thin">contact@moodvies.com</li>
+                </ul>
+              </div>
+              <div class="mb-8 text-sm text-left ">
+                <h3 class="text-base font-bold mb-1">Quick links</h3>
+                <ul>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      About us
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      FAQ
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Sign up
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Log in
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mb-8 text-sm text-left">
+                <h3 class="text-base font-bold mb-1">Social Media</h3>
+                <ul>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Facebook
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Twitter
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Youtube
+                    </a>
+                  </li>
+                  <li class="mt-2 font-thin">
+                    <a href="#" class="hover:underline">
+                      Instagram
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mb-8 mr-10">
+                <h3 class="text-base font-bold mb-4">Suivez-nous</h3>
+                <div className="flex w-full max-w-sm items-center space-x-2">
+                  <input type="email" placeholder="Email" />
+                  <button
+                    variant="gradientGrey"
+                    class=" bg-fuchsia-900"
+                    type="submit"
+                  >
+                    Subscribe
+                  </button>
                 </div>
-
-
-                <div class="mb-8 text-left border-2 border-red">
-                  <h3 class="font-bold">Compagny</h3>
-                  <h4 class="text-base font-semibold">Moodvies</h4>
-                  <ul>
-                    <li class="text-sm font-thin">Paris, France</li>
-                    <li class="text-sm font-thin">06 06 06 06 06</li>
-                    <li class="text-sm font-thin">contact@moodvies.com</li>
-                  </ul>
-                </div>
-
-                <div class="mb-8 text-sm text-left">
-                  <h3 class="text-base font-bold mb-1">Liens utiles</h3>
-                  <ul>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        About us
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        FAQ
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Sign up
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Log in 
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="mb-8 text-sm text-left">
-                  <h3 class="text-base font-bold mb-1">Social Media</h3>
-                  <ul>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                         Facebook
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Twitter
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Youtube
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Instagram 
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-
-                <div class="mb-8">
-                  <h3 class="text-base font-bold mb-4">Suivez-nous</h3>
-                  
-                </div>
-
-
-
+              </div>
+              w
+              {/*  <footer class="flex items-stretch">
+                  <div class="self-end border">
+                    <p>Copyright © 2024 Moodvies. All rights reserved.</p>
+                  </div>
+                </footer> */}
             </div>
           </footer>
         </div>
