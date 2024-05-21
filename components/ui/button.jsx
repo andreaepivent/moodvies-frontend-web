@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -21,6 +21,7 @@ const buttonVariants = cva(
         gradientPurple:
           "bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:bg-gradient-to-l",
         facebook: "bg-blue-700 hover:bg-blue-600",
+        subscribe: "bg-gradient-to-r from-slate-100 to-gray-900",
       },
       size: {
         default: "h-10 px-4 py-2",
