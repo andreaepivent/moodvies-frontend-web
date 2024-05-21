@@ -1,5 +1,13 @@
-import "@/styles/globals.css";
+import React from 'react';
+import HomePage from '../components/HomePage';
+import '../styles/globals.css'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function App() {
+  return (
+    <div className="App">
+      <HomePage />
+    </div>
+  );
 }
+
+export default App;
