@@ -74,6 +74,16 @@
       --ring: 212.7 26.8% 83.9%;
     }
   }
+}
+
+@layer components{
+  video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+}
 
   @layer base {
     * {
