@@ -1,10 +1,30 @@
 import React from "react";
+import Footer from "../common/Footer";
+import { Button } from "../ui/button";
 
-const HomePage = () => {
+import { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Signup from "./Signup";
+
+const Home = () => {
+  const [signin, setSignin] = useState(false);
+  const [signup, setSignup] = useState(false);
+
   return (
     <div class="w-screen bg-[black]">
       <div class="">
-        <video class="" autoPlay loop muted>
+        <video class="blur-xl" autoPlay loop muted>
           <source src="MATRIX4.mp4" />
         </video>
 
@@ -23,7 +43,8 @@ const HomePage = () => {
               </h1>
             </div>
 
-            <div className="flex flex-row content-start">
+            {/* EX MODAL */}
+            {/* <div className="flex flex-row content-start">
               <div className="basis-1/4 grow text-center"></div>
               <div className="basis-1/4 grow text-right mr-5">
                 <button
@@ -46,7 +67,28 @@ const HomePage = () => {
                 </button>
               </div>
               <div className="basis-1/4 grow text-center"></div>
-            </div>
+            </div> */}
+
+            <Dialog className="">
+              <DialogTrigger asChild>
+                <Button variant="outline">Sign-in</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Edit profile</DialogTitle>
+                  <DialogDescription>
+                    <Signup />
+                  </DialogDescription>
+                </DialogHeader>
+
+                <DialogFooter>
+                  <Button type="submit">Save changes</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button className="w-20" onClick={() => setSignup(true)}>
+              Sign-up
+            </Button>
           </div>
         </div>
       </div>
@@ -153,101 +195,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
-        <div className="basis-1/4 grow text-center">
-
-          <footer class="bg-zinc-900 text-white py-4 mt-auto">
-              <div class="flex flex-nowrap row-auto justify-between border-2 border-red">
-                <div class="mb-8 w-40 border-2 border-red">
-                  <img
-                    class="flex place-self-start mt-2 w-20 h-21 "
-                    src="logo-moodvie-letter.png"
-                    alt="logo-moodvie-letter"
-                  />
-
-                  <p class="mb-2 ml-4 text-left text-sm font-thin ">
-                    {" "}
-                    Lorem ipsum dolor sit amet, consecteturlabore et dolore
-                    magna aliqua.Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.{" "}
-                  </p>
-                </div>
-
-
-                <div class="mb-8 text-left border-2 border-red">
-                  <h3 class="font-bold">Compagny</h3>
-                  <h4 class="text-base font-semibold">Moodvies</h4>
-                  <ul>
-                    <li class="text-sm font-thin">Paris, France</li>
-                    <li class="text-sm font-thin">06 06 06 06 06</li>
-                    <li class="text-sm font-thin">contact@moodvies.com</li>
-                  </ul>
-                </div>
-
-                <div class="mb-8 text-sm text-left">
-                  <h3 class="text-base font-bold mb-1">Liens utiles</h3>
-                  <ul>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        About us
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        FAQ
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Sign up
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Log in 
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="mb-8 text-sm text-left">
-                  <h3 class="text-base font-bold mb-1">Social Media</h3>
-                  <ul>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                         Facebook
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Twitter
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Youtube
-                      </a>
-                    </li>
-                    <li class="font-thin">
-                      <a href="#" class="hover:underline">
-                        Instagram 
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-
-                <div class="mb-8">
-                  <h3 class="text-base font-bold mb-4">Suivez-nous</h3>
-                  
-                </div>
-
-
-
-            </div>
-          </footer>
-        </div>
+        <Footer />
       </div>
 
       <dialog id="my_modal_login" className="modal">
@@ -310,4 +258,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;

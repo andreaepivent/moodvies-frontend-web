@@ -1,8 +1,5 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Footer from "@/components/common/Footer";
-import MoodPage from "@/components/home/MoodPage";
+import Home from "@/components/home/Home";
 
-export default function Home() {
-  return <Signup></Signup>;
+export default function () {
+  return <Home></Home>;
 }
