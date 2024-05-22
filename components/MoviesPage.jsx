@@ -16,19 +16,22 @@ export default function MoviesPage() {
 
   return (
     <>
-      <div
-        className="w-screen flex flex-col bg-top pl-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(/movie/gladiator.jpg)",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-        }}
-      >
+      <div className="relative w-screen flex flex-col bg-top ">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
+          style={{
+            backgroundImage: "url(/movie/gladiator.jpg)",
+            zIndex: 1,
+          }}
+        ></div>
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
+          style={{ zIndex: 2 }}
+        ></div>
+
         <Navbar />
 
-        <div className="my-auto text-center text-slate-100 mx-auto mt-72">
+        <div className="my-auto text-center text-slate-100 mx-auto mt-72 z-10">
           <h2 className="text-7xl font-bold">{movie.title}</h2>
           <p className="text-1xl font-semibold mt-2">
             Directed by {movie.director}. {movie.duration} minutes. {movie.year}
@@ -38,9 +41,8 @@ export default function MoviesPage() {
               {movie.synopsis}
             </p>
           </div>
-          <div className="mt-12 ">
+          <div className="mt-12">
             <YouTubeEmbed videoid={movie.trailer} height={400} />
-
             <Button variant="ghost" className="mr-6 border">
               View on Netflix
             </Button>

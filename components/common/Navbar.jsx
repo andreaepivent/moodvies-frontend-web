@@ -4,7 +4,7 @@ import { faShieldCat } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   return (
-    <div className="flex items-center justify-between pt-4">
+    <div className="flex items-center justify-between pt-4 z-10 px-6">
       <div className="flex flex-col justify-center items-center">
         <img
           src="/logo-moodvie-letter.svg"
