@@ -22,17 +22,6 @@ import {
 
 export default function Signup() {
   return (
-    <div className="relative min-h-screen bg-gray-900">
-      <video
-        className="w-screen h-screen object-cover absolute blur"
-        autoPlay
-        muted
-        loop
-      >
-        <source src="/video/homeVideo.mp4" type="video/mp4" />
-      </video>
-
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
         <Card className="w-[350px] dark absolute">
           <img src="/Logo-moodvie-letter.svg" className="size-10 m-2" />
           <CardHeader>
@@ -101,7 +90,6 @@ export default function Signup() {
             </Button>
           </CardFooter>
         </Card>
-      </div>
-    </div>
+   
   );
 }
