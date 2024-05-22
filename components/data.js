@@ -1,0 +1,31 @@
+const moods = [
+  "Admiration",
+  "Amusement",
+  "Anger",
+  "Annoyance",
+  "Approval ",
+  "Caring ",
+  "Confusion",
+  "Curiosity ",
+  "Desire ",
+  "Disappointment",
+  "Disapproval",
+  "Disgust",
+  "Embarrassment",
+  "Excitement",
+  "Fear",
+  "Gratitude",
+  "Grief",
+  "Joy",
+  "Love",
+  "Nervousness",
+  "Optimism",
+  "Pride",
+  "Realization",
+  "Relief",
+  "Remorse",
+  "Sadness",
+  "Surprise"
+]
+
+export default moods;
