@@ -1,6 +1,6 @@
-import { Button } from "../ui/button";
+import { Button } from "../components/ui/button";
 import CarrousselMood from "./CarrousselMood";
-import Navbar from "./navbarMovie/navbar";
+import Navbar from "./common/Navbar";
 import { YouTubeEmbed } from "@next/third-parties/google";
 
 export default function MoviesPage() {

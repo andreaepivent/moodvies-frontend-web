@@ -1,15 +1,14 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../ui/carousel";
-import Footer from "../common/Footer";
-import Navbar from "./navbarMovie/navbar";
+} from "../components/ui/carousel";
+import Footer from "./common/Footer";
+import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 export default function MoodPage() {
   const moods = [
