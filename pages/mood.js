@@ -1,4 +1,4 @@
-import MoodPage from "@/components/home/MoodPage";
+import MoodPage from "@/components/MoodPage";
 
 export default function mood() {
   return <MoodPage />;

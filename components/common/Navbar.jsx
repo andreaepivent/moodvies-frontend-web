@@ -1,4 +1,4 @@
-import LanguageSelect from "@/components/common/LanguageSelect";
+import LanguageSelect from "./LanguageSelect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldCat } from "@fortawesome/free-solid-svg-icons";
 
