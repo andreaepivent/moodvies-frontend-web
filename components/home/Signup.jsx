@@ -22,6 +22,7 @@ import {
 
 export default function Signup({ closeModal }) {
   return (
+
     <div
       className="z-10 fixed inset-0  flex items-center justify-center"
       onClick={closeModal}
@@ -98,7 +99,8 @@ export default function Signup({ closeModal }) {
             </Button>
           </CardFooter>
         </Card>
-      </div>
-    </div>
+        </div>
+        </div>
+   
   );
 }
