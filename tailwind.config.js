@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      textAlign: {
+        justify: "justify",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -74,5 +77,16 @@ module.exports = {
     },
   },
 
-  plugins: [require("tailwindcss-animate", "daisyui")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("daisyui"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".text-justify": {
+          "text-align": "justify",
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };

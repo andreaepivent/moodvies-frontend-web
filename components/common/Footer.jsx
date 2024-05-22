@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 
 export default function Footer() {
   return (
-    <Card className="w-screen bg-black text-slate-300">
+    <Card className="w-screen bg-black text-slate-300 rounded-none border-t-2 border-slate-300">
       <footer class="mt-auto">
         <div class="max-w-xl mx-auto p-4 grid grid-cols-2 lg:max-w-7xl lg:grid-cols-6 md:py-10">
           <div class="m-2">
@@ -109,7 +109,7 @@ export default function Footer() {
             <form className="flex items-center">
               <Input
                 placeholder="Enter your email"
-                className="dark text-slate-300 rounded-3xl focus-visible:ring-offset-none "
+                className="dark text-slate-300 rounded-3xl focus-visible:ring-offset-none bg-black "
               ></Input>
               <Button
                 variant="subscribe"

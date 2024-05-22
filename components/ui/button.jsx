@@ -22,11 +22,14 @@ const buttonVariants = cva(
           "bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:bg-gradient-to-l",
         facebook: "bg-blue-700 hover:bg-blue-600",
         subscribe: "bg-gradient-to-r from-slate-100 to-gray-900",
+        moodButton:
+          "bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 ",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-11 rounded-md px-10",
         icon: "h-10 w-10",
       },
     },

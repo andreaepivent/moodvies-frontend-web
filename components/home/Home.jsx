@@ -2,17 +2,6 @@ import React, { useState } from "react";
 import Footer from "../common/Footer";
 import { Button } from "../ui/button";
 import { createPortal } from "react-dom";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import Signup from "./Signup";
 
 const Home = () => {
@@ -157,7 +146,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-center basis-1/4 grow text-center border-2 border-red mt-44">
+        <div className="flex justify-center basis-1/4 grow text-center mt-44">
           <img
             className="w-8/12 h-2/6"
             src="phone.png"
