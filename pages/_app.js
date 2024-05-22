@@ -1,13 +1,16 @@
-import React from 'react';
-import HomePage from '../components/HomePage';
-import '../styles/globals.css'
+import "@/styles/globals.css";
+import { Roboto } from "next/font/google";
+import React from "react";
 
-function App() {
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export default function App({ Component, pageProps }) {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <main className={roboto.className}>
+      <Component {...pageProps} />
+    </main>
   );
 }
-
-export default App;
