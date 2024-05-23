@@ -9,18 +9,28 @@ function HomePageMiddle() {
       </h1>
       <div>
         <div class="w-full h-full absolute left-1/3 ">
-          <img class="" src="Graduate3.png" alt="Graduate2" />
+          <img
+            class=""
+            src="/home/Graduate3.png"
+            alt="Graduate"
+            oncontextmenu="return false;"
+          />
         </div>
 
         <div class="w-full h-full absolute top-2/4 right-1/4">
-          <img class="" src="Graduate1.png" alt="Graduate2" />
+          <img
+            class=""
+            src="/home/Graduate1.png"
+            alt="Graduate"
+            oncontextmenu="return false;"
+          />
         </div>
 
         <div className="flex justify-center basis-1/4 grow text- z-10 ">
           <img
             class=" mt-20 mr-4 w-19 h-20 "
-            src="icon_1.png"
-            alt="logo-moodvie-letter"
+            src="/home/icon_1.png"
+            alt="icon-puzzle"
           />
           <div className="content-center w-4/12 mt-20 z-10">
             <h2 class="text-left text-white font-bold mb-3">
@@ -38,8 +48,8 @@ function HomePageMiddle() {
       <div className="flex justify-center basis-1/4 grow text-center z-10">
         <img
           class=" mt-20 mr-4 w-19 h-20"
-          src="icon_2.png"
-          alt="logo-moodvie-letter"
+          src="/home/icon_2.png"
+          alt="icon-horgamingram"
         />
         <div className="content-center w-4/12 mt-16">
           <h2 class="text-left text-white font-bold mb-3">
@@ -56,8 +66,8 @@ function HomePageMiddle() {
       <div className="flex justify-center basis-1/4 grow text-center z-10">
         <img
           class=" mt-20 mr-4 w-19 h-20 "
-          src="icon_3.png"
-          alt="logo-moodvie-letter"
+          src="/home/icon_3.png"
+          alt="icon-rocket"
         />
         <div className="content-center w-4/12  mt-16">
           <h2 class="text-left text-white font-bold mb-3">
@@ -73,8 +83,8 @@ function HomePageMiddle() {
       <div className="flex justify-center basis-1/4 grow text-center z-10">
         <img
           class=" mt-20 mr-4 w-19 h-20"
-          src="icon_4.png"
-          alt="logo-moodvie-letter"
+          src="/home/icon_4.png"
+          alt="icon-box"
         />
         <div className="content-center w-4/12 mt-16">
           <h2 class="text-left text-white font-bold mb-3">

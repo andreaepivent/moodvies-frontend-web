@@ -9,33 +9,12 @@ import {
 import Footer from "./common/Footer";
 import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
+import { moods } from "./data";
 
 export default function MoodPage() {
-  const moods = [
-    "Happy",
-    "Chill",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-  ];
   const router = useRouter();
 
-  function handleClick(mood) {
+  function handleMovies(mood) {
     router.push(`/movies`);
     // router.push(`/movies/${mood.toLowerCase()}`);
   }
@@ -70,7 +49,7 @@ export default function MoodPage() {
                   <div className="p-1 w-full ">
                     <Card
                       className="bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 cursor-pointer"
-                      onClick={() => handleClick(mood)}
+                      onClick={() => handleMovies(mood)}
                     >
                       <CardContent className="flex items-center justify-center p-2 ">
                         <span className="text-1xl text-slate-100 font-semibold">

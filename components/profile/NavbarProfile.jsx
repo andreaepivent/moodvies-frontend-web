@@ -17,14 +17,11 @@ export default function NavbarProfile() {
       <div className="flex items-center justify-between pt-4 z-10 px-6 w-full">
         <div className="flex flex-col justify-between items-center">
           <img
-            src="/logo-moodvie-letter.svg"
+            src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
-            className="size-20 cursor-pointer"
+            className="size-20 cursor-pointer ml-10"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">
-            Find your favorite movie for tonight
-          </p>
         </div>
         <div className="border-b border-slate-100 flex justify-around w-1/2 ">
           <NavLink

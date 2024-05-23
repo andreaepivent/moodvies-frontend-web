@@ -3,60 +3,10 @@ import CarrousselMood from "./CarrousselMood";
 import Navbar from "./common/Navbar";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState } from "react";
+import Image from "next/image";
+import { movies } from "./data";
 
 export default function MoviesPage() {
-  const movies = [
-    {
-      title: "Avatar",
-      director: "James Cameron",
-      duration: 164,
-      year: 2012,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "avatar.jpeg",
-      trailer: "d9MyW72ELq0",
-    },
-    {
-      title: "Spider Man",
-      director: "Stan Lee",
-      duration: 150,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      year: 2004,
-      background: "spider-man.jpeg",
-      trailer: "qh0sNabDy94",
-    },
-    {
-      title: "Star Wars",
-      director: "George Lucas",
-      duration: 184,
-      year: 1997,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "star-wars.jpeg",
-      trailer: "pHgwf2eMFnA",
-    },
-    {
-      title: "The Lord of the Ring",
-      director: "Peter Jackson",
-      duration: 240,
-      year: 2003,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "lord-of-the-ring.jpeg",
-      trailer: "RCuDRcK0BBM",
-    },
-    {
-      title: "Gladiator",
-      director: "Ridley Scott",
-      year: 2000,
-      duration: 150,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      trailer: "P5ieIbInFpg",
-      background: "gladiator.jpg",
-    },
-  ];
   const [firstFilm, ...otherFilms] = movies;
   const [films, setFilms] = useState(movies);
   const [mainFilm, setMainFilm] = useState(firstFilm);
@@ -72,13 +22,14 @@ export default function MoviesPage() {
   return (
     <>
       <div className="relative w-screen flex flex-col bg-top ">
-        <div
-          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
-          style={{
-            backgroundImage: `url(/movie/${mainFilm.background})`,
-            zIndex: 1,
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
+          <Image
+            src={`/movie/${mainFilm.background}`}
+            alt={mainFilm.title}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
@@ -115,7 +66,7 @@ export default function MoviesPage() {
 
       <div className="bg-black mx-auto w-full h-screen flex items-center justify-center">
         <div className="h-[400px] flex flex-nowrap justify-start">
-          {films.map((movie, index) => (
+          {movies.map((movie, index) => (
             <>
               <input
                 type="radio"
@@ -126,14 +77,15 @@ export default function MoviesPage() {
               />
               <label
                 htmlFor={index}
-                className="  group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
-                style={{
-                  backgroundImage: `url('/movie/${movie.background}')`,
-
-                  backgroundSize: "center",
-                  backgroundPosition: "center",
-                }}
+                className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
               >
+                <Image
+                  src={`/movie/${movie.background}`}
+                  alt={movie.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
                 <div className="flex flex-nowrap p-4">
                   <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-allease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
                     <h4 className="uppercase text-white font-extrabold">

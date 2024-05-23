@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import TUBY1 from "./Mod-TuB/TUBY1";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,18 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
-import { createPortal } from "react-dom";
 
-export default function Signup({ closeModal }) {
-  const [showModalPlatforms, setshowModalPlatforms] = useState(false);
-
-  function handleClick() {
-    setshowModalPlatforms(!showModalPlatforms);
-    closeModal();
-  }
-
+export default function Submit({ closeModal }) {
   return (
+
     <div
       className="z-10 fixed inset-0  flex items-center justify-center"
       onClick={closeModal}
@@ -40,7 +32,7 @@ export default function Signup({ closeModal }) {
           onClick={(e) => e.stopPropagation()}
           className="w-[350px] dark absolute"
         >
-          <img src="/home/Logo-moodvie-letter.svg" className="size-10 m-2" />
+          <img src="/Logo-moodvie-letter.svg" className="size-10 m-2" />
           <CardHeader>
             <CardTitle className="text-center -mt-10">
               Create an account
@@ -87,11 +79,7 @@ export default function Signup({ closeModal }) {
             </form>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button
-              variant="gradientPurple"
-              className="w-full"
-              onClick={() => handleClick()}
-            >
+            <Button variant="gradientPurple" className="w-full">
               Submit
             </Button>
           </CardFooter>
@@ -111,15 +99,8 @@ export default function Signup({ closeModal }) {
             </Button>
           </CardFooter>
         </Card>
-
-        <div className="relative">
-          {showModalPlatforms &&
-            createPortal(
-              <TUBY1 closeModal={() => setshowModalPlatforms(false)} />,
-              document.body
-            )}
         </div>
-      </div>
-    </div>
+        </div>
+   
   );
 }

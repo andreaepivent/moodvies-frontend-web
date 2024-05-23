@@ -10,9 +10,7 @@ export default function Home() {
         <HomePageHeader />
         <HomePageMiddle />
         <HomePageBottom />
-        <div className="border-t-2 border-slate-300">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </>
   );
