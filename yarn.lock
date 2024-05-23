@@ -261,8 +261,12 @@
 <<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.0.5.tgz#71657b1b116de6c7a0b03242d7d43e01062c7300"
 =======
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.0.5.tgz#71657b1b116de6c7a0b03242d7d43e01062c7300"
+=======
   resolved "https://registry.npmjs.org/@radix-ui/react-dialog/-/react-dialog-1.0.5.tgz"
 >>>>>>> 16ce4625a86867d6ab67f0baaf13f7935fc1a452
+>>>>>>> c8bf56de082cf604e6f182e5da40b7497cd21a08
   integrity sha512-GjWJX/AUpB703eEBanuBnIWdIXg6NvJFCXcNlSZk4xdszCdhrJgBoUd1cGk67vFO+WdA2pfI/plOpqz/5GUP6Q==
   dependencies:
     "@babel/runtime" "^7.13.10"
@@ -458,9 +462,21 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.5"
 
+<<<<<<< HEAD
+"@radix-ui/react-slot@1.0.2":
+=======
 "@radix-ui/react-slot@1.0.2", "@radix-ui/react-slot@^1.0.2":
+>>>>>>> c8bf56de082cf604e6f182e5da40b7497cd21a08
   version "1.0.2"
   resolved "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.2.tgz"
+  integrity sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-compose-refs" "1.0.1"
+
+"@radix-ui/react-slot@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.0.2.tgz#a9ff4423eade67f501ffb32ec22064bc9d3099ab"
   integrity sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==
   dependencies:
     "@babel/runtime" "^7.13.10"
@@ -622,8 +638,12 @@ aria-hidden@^1.1.1:
 <<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/aria-hidden/-/aria-hidden-1.2.4.tgz#b78e383fdbc04d05762c78b4a25a501e736c4522"
 =======
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/aria-hidden/-/aria-hidden-1.2.4.tgz#b78e383fdbc04d05762c78b4a25a501e736c4522"
+=======
   resolved "https://registry.npmjs.org/aria-hidden/-/aria-hidden-1.2.4.tgz"
 >>>>>>> 16ce4625a86867d6ab67f0baaf13f7935fc1a452
+>>>>>>> c8bf56de082cf604e6f182e5da40b7497cd21a08
   integrity sha512-y+CcFFwelSXpLZk/7fMB2mUbGtX9lKycf1MWJ7CaTIERyitVlyQx6C+sxcROU2BAJ24OiZyK+8wj2i8AlBoS3A==
   dependencies:
     tslib "^2.0.0"
@@ -1256,6 +1276,9 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+<<<<<<< HEAD
+react-dom@^18:
+=======
 react-circular-progressbar@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.1.0.tgz#99e5ae499c21de82223b498289e96f66adb8fa3a"
@@ -1266,6 +1289,7 @@ react-dom@^18:
 =======
 "react-dom@^16.8 || ^17.0 || ^18.0", react-dom@^18, react-dom@^18.2.0, react-dom@>=16.8.0:
 >>>>>>> 16ce4625a86867d6ab67f0baaf13f7935fc1a452
+>>>>>>> c8bf56de082cf604e6f182e5da40b7497cd21a08
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -1498,8 +1522,12 @@ tailwindcss-animate@^1.0.7:
 <<<<<<< HEAD
 tailwindcss@^3.4.3:
 =======
+<<<<<<< HEAD
+tailwindcss@^3.4.3:
+=======
 tailwindcss@^3.4.3, "tailwindcss@>=3.0.0 || insiders":
 >>>>>>> 16ce4625a86867d6ab67f0baaf13f7935fc1a452
+>>>>>>> c8bf56de082cf604e6f182e5da40b7497cd21a08
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.3.tgz#be48f5283df77dfced705451319a5dffb8621519"
   integrity sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==
