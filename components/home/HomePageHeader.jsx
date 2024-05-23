@@ -3,20 +3,23 @@ import Footer from "../common/Footer";
 import { Button } from "../ui/button";
 import { createPortal } from "react-dom";
 import Signup from "./Signup";
+import Login from "./Login";
+import TUBY1 from "./Mod-TuB/TUBY1"
+import TUBY2 from "./Mod-TuB/TUBY2"
 
 const HomePageHeader = () => {
-  const [showModalSignIn, setShowModalSignIn] = useState(false);
+  const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
 
   const toggleSignUp = () => {
     setShowModalSignUp(!showModalSignUp);
   };
 
-  const toggleSignIn = () => {
-    setShowModalSignIn(!showModalSignIn);
+  const toggleLogin = () => {
+    setShowModalLogin(!showModalLogin);
   };
 
-  const isModalOpen = showModalSignIn || showModalSignUp;
+  const isModalOpen = showModalLogin || showModalSignUp;
 
   return (
     <div className="w-screen bg-black">
@@ -27,9 +30,9 @@ const HomePageHeader = () => {
 
         <div className="flex h-screen justify-center items-center bg-pink z-10">
           <img
-            className="flex place-self-start absolute left-1 top-3 w-20 h-21"
-            src="logo-moodvie-letter.png"
-            alt="logo-moodvie-letter"
+            className="flex place-self-start absolute left-8 top-8 w-20 h-21"
+            src="/home/logo-moodvie-letter.png"
+            alt="logo-moodvie"
           />
 
           <div className="flex flex-col z-10">
@@ -50,10 +53,11 @@ const HomePageHeader = () => {
               >
                 Signup
               </Button>
+
               <Button
                 variant="ghost"
                 className="w-32 border-2 text-slate-100"
-                onClick={toggleSignIn}
+                onClick={toggleLogin}
               >
                 Login
               </Button>
@@ -63,6 +67,14 @@ const HomePageHeader = () => {
               {showModalSignUp &&
                 createPortal(
                   <Signup closeModal={() => setShowModalSignUp(false)} />,
+                  document.body
+                )}
+            </div>
+
+            <div className="relative">
+              {showModalLogin &&
+                createPortal(
+                  <Login closeModal={() => setShowModalLogin(false)} />,
                   document.body
                 )}
             </div>
