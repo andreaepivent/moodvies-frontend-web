@@ -32,7 +32,7 @@ function MoodCarousel() {
         filteredMoodsArray[filteredMoodsArray.indexOf(filteredMoodsArray.find((e) => e.mood === m.mood))].count ++
       }
     }
-  }, [])
+  }, [filteredMoodsArray])
   
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function MoodCarousel() {
   }, [filteredMoodsArray]);
 
   return (
-      <Carousel className="w-[90%]">
+      <Carousel className="w-[80%]">
         <CarouselContent className="">
           {bars.map((bar, index) => (
             <CarouselItem key={index} className="md:basis-1/5 basis-1/3 flex justify-center ">

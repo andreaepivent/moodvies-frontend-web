@@ -25,6 +25,7 @@ const Carousel = React.forwardRef((
     plugins,
     className,
     children,
+    scrollSlides = 2,
     ...props
   },
   ref
@@ -45,13 +46,17 @@ const Carousel = React.forwardRef((
     setCanScrollNext(api.canScrollNext())
   }, [])
 
-  const scrollPrev = React.useCallback(() => {
-    api?.scrollPrev()
-  }, [api])
-
   const scrollNext = React.useCallback(() => {
-    api?.scrollNext()
-  }, [api])
+    if (!api) return;
+    const nextIndex = Math.min(api.selectedScrollSnap() + scrollSlides, api.scrollSnapList().length - 1);
+    api.scrollTo(nextIndex);
+  }, [api, scrollSlides]);
+
+  const scrollPrev = React.useCallback(() => {
+    if (!api) return;
+    const previousIndex = Math.max(api.selectedScrollSnap() - scrollSlides, 0);
+    api.scrollTo(previousIndex);
+  }, [api, scrollSlides]);
 
   const handleKeyDown = React.useCallback((event) => {
     if (event.key === "ArrowLeft") {
