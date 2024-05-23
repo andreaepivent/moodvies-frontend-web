@@ -28,4 +28,57 @@ const moods = [
   "Surprise"
 ]
 
-export default moods;
+
+const movies = [
+  {
+    title: "Spider Man",
+    director: "Stan Lee",
+    duration: 150,
+    synopsis:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    year: 2004,
+    background: "spider-man.jpeg",
+    trailer: "qh0sNabDy94",
+  },
+  {
+    title: "Star Wars",
+    director: "George Lucas",
+    duration: 184,
+    year: 1997,
+    synopsis:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    background: "star-wars.jpeg",
+    trailer: "pHgwf2eMFnA",
+  },
+  {
+    title: "The Lord of the Ring",
+    director: "Peter Jackson",
+    duration: 240,
+    year: 2003,
+    synopsis:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    background: "lord-of-the-ring.jpeg",
+    trailer: "RCuDRcK0BBM",
+  },
+  {
+    title: "Avatar",
+    director: "James Cameron",
+    duration: 164,
+    year: 2012,
+    synopsis:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    background: "avatar.jpeg",
+    trailer: "d9MyW72ELq0",
+  },
+  {
+    title: "Gladiator",
+    director: "Ridley Scott",
+    year: 2000,
+    duration: 150,
+    synopsis:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    trailer: "P5ieIbInFpg",
+  },
+];
+
+export { moods, movies };
