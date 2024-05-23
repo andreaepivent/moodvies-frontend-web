@@ -1,13 +1,12 @@
-import React from 'react'
-import MoodCarousel from './MoodCarousel'
-import Navbar from './Navbar'
-import CollectionCarousel from './CollectionCarousel'
-
+import React from "react";
+import MoodCarousel from "./MoodCarousel";
+import NavbarProfile from "./NavbarProfile";
+import CollectionCarousel from "./CollectionCarousel";
 
 function History() {
   return (
     <div className="h-screen bg-radial-gradient flex flex-col items-center justify-around ">
-      <Navbar />
+      <NavbarProfile />
       <div className="w-full flex flex-col items-center md:flex-row md:justify-between md:items-end">
         <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-4xl lg:text-5xl xl:text-7xl mb-4 md:mb-0 md:pl-20">
           Hello Louis
@@ -28,6 +27,5 @@ function History() {
   );
 }
 
-
-
 export default History
+
