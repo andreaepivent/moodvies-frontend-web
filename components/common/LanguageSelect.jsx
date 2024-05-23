@@ -11,7 +11,7 @@ function LanguageSelect() {
   return (
     <Select>
       <SelectTrigger className="w-[100px] p-2 bg-transparent text-white cursor-pointer">
-        <SelectValue placeholder="language" className="text-slate-500" />
+        <SelectValue placeholder="Language" className="text-slate-500" />
       </SelectTrigger>
       <SelectContent className="bg-transparent text-white">
         <SelectItem
