@@ -12,14 +12,17 @@ function Informations() {
       setIsEditClicked={setIsEditClicked}
     />
   ) : (
-    <div className="w-screen h-screen bg-radial-gradient flex flex-col items-center">
-      <NavbarProfile />
-      <div className="w-full h-36 flex flex-col mt-3">
-        <h1 className="h-28 w-1/2 mb-0 ml-40 text-transparent text-8xl bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 inline-block">
-          Hello Louis
-        </h1>
+    <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+      <div className="fixed top-7 h-[25%] w-full">
+        <NavbarProfile />
+        <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
+          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
+            Hello Louis
+          </h1>
+        </div>
       </div>
-      <div className="mx-auto w-1/2 h-1/4 flex justify-center ">
+      
+      <div className="mx-auto w-1/2 h-1/4 flex justify-center mt-60">
         <div className="w-1/2 flex flex-col items-center justify-around">
           <span className="text-white">Username :</span>
           <span className="text-white">Email :</span>
