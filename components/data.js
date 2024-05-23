@@ -57,17 +57,17 @@ const movies = [
     year: 2003,
     synopsis:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-    background: "lord-of-the-ring.jpeg",
+    background: "lordofthering.jpeg",
     trailer: "RCuDRcK0BBM",
   },
   {
-    title: "Avatar",
+    title: "Blade Runner",
     director: "James Cameron",
     duration: 164,
     year: 2012,
     synopsis:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-    background: "avatar.jpeg",
+    background: "blade-runner.jpeg",
     trailer: "d9MyW72ELq0",
   },
   {
@@ -77,6 +77,7 @@ const movies = [
     duration: 150,
     synopsis:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
+    background: "gladiator.jpg",
     trailer: "P5ieIbInFpg",
   },
 ];

@@ -30,8 +30,21 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/router";
 
 export function Setting() {
+  const router = useRouter();
+
+  function handleHistory() {
+    router.push(`/profile/history`);
+  }
+  function handleInformations() {
+    router.push(`/profile/informations`);
+  }
+  function handlePlatforms() {
+    router.push(`/profile/platforms`);
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,17 +54,17 @@ export function Setting() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleInformations()}>
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleHistory()}>
             <CreditCard className="mr-2 h-4 w-4" />
             <span>History</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handlePlatforms}>
             <Settings className="mr-2 h-4 w-4" />
             <span>Plateforms</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
@@ -93,17 +106,17 @@ export function Setting() {
           </DropdownMenuItem>
         </DropdownMenuGroup> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem disabled>
-          <Github className="mr-2 h-4 w-4" />
-          <span>GitHub</span>
+        <DropdownMenuItem>
+          <Cloud className="mr-2 h-4 w-4" />
+          <span>IA</span>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Cloud className="mr-2 h-4 w-4" />
-          <span>IA</span>
+        <DropdownMenuItem disabled>
+          <Github className="mr-2 h-4 w-4" />
+          <span>GitHub</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
