@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 function LanguageSelect() {
-
   return (
     <Select>
         <SelectTrigger className="w-[100px] p-2 bg-transparent text-white">
@@ -19,7 +18,7 @@ function LanguageSelect() {
           <SelectItem value="english">english</SelectItem>
         </SelectContent>
     </Select>
-  )
+  );
 }
 
-export default LanguageSelect
+export default LanguageSelect;
