@@ -39,7 +39,7 @@ function MoodCarousel() {
     const generatedBars = filteredMoodsArray.map((mood) => {
       if (mood.count >= 1) {
         return (
-          <div key={mood.mood} style={{ width: 150, height: 150 }}>
+          <div key={mood.mood} style={{ width: 130, height: 130 }}>
             <CircularProgressbarWithChildren value={mood.count} minValue={0} maxValue={10} styles={{
             // Customize the root svg element
             root: {
@@ -82,7 +82,7 @@ function MoodCarousel() {
               fill: '#3e98c7',
             },
         }}>
-          <div className="text-white text-center">{mood.mood}</div>
+          <div className="text-white text-sm text-center">{mood.mood}</div>
           <div className="text-white text-center">{mood.count}</div>
         </CircularProgressbarWithChildren>
           </div>
@@ -95,10 +95,10 @@ function MoodCarousel() {
   }, [filteredMoodsArray]);
 
   return (
-      <Carousel className="w-[80%]">
+      <Carousel className="w-[50%] flex justify-center items-middle">
         <CarouselContent className="">
           {bars.map((bar, index) => (
-            <CarouselItem key={index} className="md:basis-1/5 basis-1/3 flex justify-center ">
+            <CarouselItem key={index} className="basis-1/2 flex justify-center pl-4 md:basis-1/3 lg:basis-1/5 ">
               {bar}
             </CarouselItem>
           ))}
