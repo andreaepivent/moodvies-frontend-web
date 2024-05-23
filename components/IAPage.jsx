@@ -1,15 +1,9 @@
-import { Card, CardContent } from "../components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../components/ui/carousel";
 import Footer from "./common/Footer";
 import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
 import { Button } from "./ui/button";
+import Image from "next/image";
+import parrain from "../public/movie/le-parrain.jpeg";
 
 export default function IAPage() {
   const router = useRouter();
@@ -20,9 +14,9 @@ export default function IAPage() {
 
   return (
     <>
-      <div className="relative w-screen min-h-screen flex flex-col bg-black">
+      <div className=" relative w-screen h-screen flex flex-col bg-center ">
         <div
-          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
+          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed "
           style={{
             backgroundImage: `url(/movie/le-parrain.jpeg)`,
             zIndex: 1,
@@ -32,6 +26,7 @@ export default function IAPage() {
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
         ></div>
+
         <Navbar />
 
         <div className="flex-grow flex flex-col items-center justify-center gap-5 my-auto mx-32 z-10 pt-20 inset-0">
@@ -112,6 +107,7 @@ export default function IAPage() {
                 </p>
               </div>
             </div>
+
             <div className="flex justify-center items-center">
               <Button variant="gradientPurple" className="w-1/2">
                 Submit
@@ -119,6 +115,10 @@ export default function IAPage() {
             </div>
           </div>
         </div>
+        <div
+          className="w-full h-full absolute bg-black "
+          style={{ zIndex: 1, top: "95vh" }}
+        ></div>
         <div className="mt-6 z-10">
           <Footer />
         </div>

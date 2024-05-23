@@ -23,7 +23,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between pt-4 z-10 px-6">
         <div className="flex flex-col justify-center items-center">
           <img
-            src="/logo-moodvie-letter.svg"
+            src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}

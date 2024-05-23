@@ -9,30 +9,9 @@ import {
 import Footer from "./common/Footer";
 import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
+import { moods } from "./data";
 
 export default function MoodPage() {
-  const moods = [
-    "Happy",
-    "Chill",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-    "Sad",
-    "Angry",
-    "Horny",
-    "Hello",
-    "Test",
-    "Coucou",
-  ];
   const router = useRouter();
 
   function handleMovies(mood) {
