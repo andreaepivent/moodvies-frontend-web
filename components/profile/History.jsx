@@ -23,12 +23,13 @@ function History() {
       </div>
       <div className="w-[90%] md:w-[80%] h-[5%] flex justify-between border-b">
         <h2 className="text-white text-lg md:text-xl mb-3 ">Collection</h2>
-        <h3 className="text-slate-300 text-sm md:text-l font-thin mb-3">last watched</h3>
+        <h3 className="text-slate-300 text-sm md:text-l font-thin mb-3">
+          last watched
+        </h3>
       </div>
       <CollectionCarousel />
     </div>
   );
 }
 
-export default History
-
+export default History;

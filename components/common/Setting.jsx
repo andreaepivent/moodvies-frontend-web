@@ -64,7 +64,7 @@ export function Setting() {
             <span>History</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handlePlatforms}>
+          <DropdownMenuItem onClick={() => handlePlatforms()}>
             <Settings className="mr-2 h-4 w-4" />
             <span>Plateforms</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>

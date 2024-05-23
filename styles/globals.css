@@ -99,5 +99,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Syne", sans-serif;
   }
 }

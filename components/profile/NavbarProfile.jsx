@@ -17,7 +17,7 @@ export default function NavbarProfile() {
       <div className="flex items-center justify-between z-10 px-6 w-full">
         <div className="flex flex-col justify-between items-center">
           <img
-            src="/logo-moodvie-letter.svg"
+            src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
             className="size-20 cursor-pointer ml-10"
             onClick={() => handleHome()}

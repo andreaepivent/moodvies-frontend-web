@@ -11,6 +11,11 @@ export default function Navbar() {
     router.push(`/mood`);
   }
 
+  function handleMaud() {
+    router.push(`/maud`);
+    // router.push(`/movies/${mood.toLowerCase()}`);
+  }
+
   const [showModalSettings, setShowModalSettings] = useState(false);
 
   return (
@@ -18,7 +23,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between pt-4 z-10 px-6">
         <div className="flex flex-col justify-center items-center">
           <img
-            src="/logo-moodvie-letter.svg"
+            src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
@@ -27,7 +32,10 @@ export default function Navbar() {
             Find your favorite movie for tonight
           </p>
         </div>
-        <div className="hidden  flex-col justify-center items-center mt-4  lg:flex">
+        <div
+          className="hidden  flex-col justify-center items-center mt-4  lg:flex"
+          onClick={() => handleMaud()}
+        >
           <FontAwesomeIcon
             icon={faShieldCat}
             className="text-slate-100 size-8 mb-6 animate-pulse animate-infinite cursor-pointer 
