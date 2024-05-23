@@ -1,16 +1,29 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
+import MoodCarousel from './MoodCarousel'
 import Navbar from './Navbar'
+import CollectionCarousel from './CollectionCarousel'
+
 
 function History() {
+  
   return (
-    <div class="w-screen h-screen bg-radial-gradient">
+    <div className="h-screen bg-radial-gradient flex flex-col items-center">
       <Navbar />
-      <div class="w-full h-36 flex flex-col mt-14 ml-40">
-        <h1 class="h-28 w-1/2 mb-0 text-transparent text-8xl bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 inline-block">Hello Binga</h1>
-        <p class='text-white mt-0'><span class='text-fuchsia-500'>156h</span> de Moodage</p>
+      <div className="w-full h-36 flex flex-col mt-3">
+        <h1 className="h-28 w-1/2 mb-0 ml-40 text-transparent text-8xl bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 inline-block">Hello Louis</h1>
+        <p className='text-white mt-0 ml-40'><span className='text-fuchsia-500'>156h</span> de Moodage</p>
       </div>
-    </div>
+      <div className='w-screen flex justify-center mt-10'> 
+        <MoodCarousel  />
+      </div>
+      <div className='w-[80%] h-[10%] flex justify-between border-b'>
+        <h2 className='text-white text-xl mb-3 flex flex-col justify-end'>Collection</h2>
+        <h3 className='text-white text-xl font-thin mb-3 flex flex-col justify-end'>last watched</h3>
+      </div>
+      <CollectionCarousel />
+    </div> 
   )
 }
+
+
 export default History

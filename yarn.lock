@@ -723,6 +723,7 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
+<<<<<<< HEAD
 electron-to-chromium@^1.4.668:
   version "1.4.774"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.774.tgz"
@@ -731,6 +732,11 @@ electron-to-chromium@^1.4.668:
 embla-carousel-react@^8.1.3:
   version "8.1.3"
   resolved "https://registry.npmjs.org/embla-carousel-react/-/embla-carousel-react-8.1.3.tgz"
+=======
+embla-carousel-react@^8.1.3:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-8.1.3.tgz#a07770eee003a56dfe2fa55304b48892cc00c013"
+>>>>>>> fc109b174d655a6ef61da604e577ddbe22e45bbc
   integrity sha512-YrezDPgxPDKa+OKMhSrwuPEU2OgF5147vFW473EWT3bx9DETV3W/RyWTxq0/2pf3M4VXkjqFNbS/W1xM8lTaVg==
   dependencies:
     embla-carousel "8.1.3"
@@ -738,12 +744,20 @@ embla-carousel-react@^8.1.3:
 
 embla-carousel-reactive-utils@8.1.3:
   version "8.1.3"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.1.3.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.1.3.tgz#b4e7d439ab6aefb9554b14198e567e919b52f167"
+>>>>>>> fc109b174d655a6ef61da604e577ddbe22e45bbc
   integrity sha512-D8tAK6NRQVEubMWb+b/BJ3VvGPsbEeEFOBM6cCCwfiyfLzNlacOAt0q2dtUEA9DbGxeWkB8ExgXzFRxhGV2Hig==
 
 embla-carousel@8.1.3:
   version "8.1.3"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/embla-carousel/-/embla-carousel-8.1.3.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-8.1.3.tgz#d086738ee529e59815dae4e2ecd9ee37c47ffc1a"
+>>>>>>> fc109b174d655a6ef61da604e577ddbe22e45bbc
   integrity sha512-GiRpKtzidV3v50oVMly8S+D7iE1r96ttt7fSlvtyKHoSkzrAnVcu8fX3c4j8Ol2hZSQlVfDqDIqdrFPs0u5TWQ==
 
 emoji-regex@^8.0.0:
@@ -1161,7 +1175,16 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+<<<<<<< HEAD
 "react-dom@^16.8 || ^17.0 || ^18.0", react-dom@^18, react-dom@^18.2.0, react-dom@>=16.8.0:
+=======
+react-circular-progressbar@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.1.0.tgz#99e5ae499c21de82223b498289e96f66adb8fa3a"
+  integrity sha512-xp4THTrod4aLpGy68FX/k1Q3nzrfHUjUe5v6FsdwXBl3YVMwgeXYQKDrku7n/D6qsJA9CuunarAboC2xCiKs1g==
+
+react-dom@^18:
+>>>>>>> fc109b174d655a6ef61da604e577ddbe22e45bbc
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==

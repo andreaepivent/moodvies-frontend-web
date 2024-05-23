@@ -10,12 +10,19 @@ import {
 function LanguageSelect() {
   return (
     <Select>
-      <SelectTrigger className="w-[120px]">
-        <SelectValue placeholder="language" />
+      <SelectTrigger className="w-[100px] p-2 bg-transparent text-white cursor-pointer">
+        <SelectValue placeholder="language" className="text-slate-500" />
       </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="français">français</SelectItem>
-        <SelectItem value="english">english</SelectItem>
+      <SelectContent className="bg-transparent text-white">
+        <SelectItem
+          value="français"
+          className="hover:focus:bg-slate-500 cursor-pointer"
+        >
+          français
+        </SelectItem>
+        <SelectItem value="english" className="cursor-pointer">
+          english
+        </SelectItem>
       </SelectContent>
     </Select>
   );
