@@ -24,6 +24,8 @@ const buttonVariants = cva(
         subscribe: "bg-gradient-to-r from-slate-100 to-gray-900",
         moodButton:
           "bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 ",
+        settingButton:
+          "w-[100px] p-2 bg-transparent text-white cursor-pointer border hover:none",
       },
       size: {
         default: "h-10 px-4 py-2",

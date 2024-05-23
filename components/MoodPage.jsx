@@ -42,16 +42,24 @@ export default function MoodPage() {
 
   return (
     <>
-      <div
-        className="w-screen h-screen flex flex-col bg-center pl-10"
-        style={{ backgroundImage: "url(/movie/blade-runner.jpeg)" }}
-      >
+      <div className=" relative w-screen h-screen flex flex-col bg-center">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
+          style={{
+            backgroundImage: `url(/movie/blade-runner.jpeg)`,
+            zIndex: 1,
+          }}
+        ></div>
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
+          style={{ zIndex: 2 }}
+        ></div>
         <Navbar />
 
         <h1 className="uppercase text-center mt-60 text-slate-100 font-bold text-4xl">
           Select a mood, we’ll pick your movie
         </h1>
-        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32">
+        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pt-20">
           <Carousel className="w-full flex justify-center">
             <CarouselContent className="-ml-1">
               {moods.map((mood, index) => (
@@ -59,7 +67,7 @@ export default function MoodPage() {
                   key={index}
                   className="pl-1 md:basis-1/6 basis-1/3"
                 >
-                  <div className="p-1 w-full">
+                  <div className="p-1 w-full ">
                     <Card
                       className="bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 cursor-pointer"
                       onClick={() => handleClick(mood)}
@@ -79,7 +87,10 @@ export default function MoodPage() {
           </Carousel>
         </div>
       </div>
-      <Footer></Footer>
+
+      <div className="">
+        <Footer></Footer>
+      </div>
     </>
   );
 }
