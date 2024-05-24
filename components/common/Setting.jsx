@@ -1,18 +1,12 @@
 import {
   Cloud,
-  CreditCard,
   Github,
-  Keyboard,
+  Laptop,
   LifeBuoy,
   LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
+  History,
   Settings,
   User,
-  UserPlus,
-  Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -46,7 +40,7 @@ export function Setting() {
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu className="">
       <DropdownMenuTrigger asChild>
         <Button variant="settingButton">Settings</Button>
       </DropdownMenuTrigger>
@@ -60,12 +54,12 @@ export function Setting() {
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handleHistory()}>
-            <CreditCard className="mr-2 h-4 w-4" />
+            <History className="mr-2 h-4 w-4" />
             <span>History</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handlePlatforms()}>
-            <Settings className="mr-2 h-4 w-4" />
+            <Laptop className="mr-2 h-4 w-4" />
             <span>Plateforms</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
