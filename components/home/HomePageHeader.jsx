@@ -14,6 +14,7 @@ const HomePageHeader = () => {
   const [showModalSignUp, setShowModalSignUp] = useState(false);
   const [showPlatfomsModal, setShowPlatfomsModal] = useState(false);
   const [showMoviesModal, setShowMoviesModal] = useState(false);
+  const [showBackModalLogin, setShowBackModalLogin] = useState(false);
 
   const router = useRouter();
 
@@ -32,6 +33,10 @@ const HomePageHeader = () => {
 
   const toggleLogin = () => {
     setShowModalLogin(!showModalLogin);
+  };
+
+  const submitBackSignUp = () => {
+    setShowBackMoviesModal(!showBackMoviesModal);
   };
 
   const submitMovies = () => {
@@ -135,6 +140,28 @@ const HomePageHeader = () => {
                   <PlatfomsModal
                     closeModal={() => setShowPlatfomsModal(false)}
                     submit={() => submitPlatform()}
+                  />,
+                  document.body
+                )}
+            </div>
+
+            <div className="relative">
+              {showPlatfomsModal &&
+                createPortal(
+                  <PlatfomsModal
+                    closeModal={() => setShowPlatfomsModal(false)}
+                    submit={() => submitPlatform()}
+                  />,
+                  document.body
+                )}
+            </div>
+
+            <div className="relative">
+              {showBackModalLogin &&
+                createPortal(
+                  <PlatfomsModal
+                    closeModal={() => setshowBackModalLogin(false)}
+                    submit={() => submitSignUp()}
                   />,
                   document.body
                 )}
