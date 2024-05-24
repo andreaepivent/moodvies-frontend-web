@@ -4,7 +4,6 @@ import { faShieldCat } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "./Setting";
-import { BorderBeam } from "../ui/border-beam";
 
 export default function Navbar() {
   const router = useRouter();
@@ -39,11 +38,11 @@ export default function Navbar() {
         >
           <FontAwesomeIcon
             icon={faShieldCat}
-            className="text-slate-100 size-8 mb-6 animate-pulse animate-infinite cursor-pointer 
+            className="gradient-icon text-slate-100 size-8 mb-6 animate-pulse animate-infinite cursor-pointer 
             "
           />
 
-          <p className="text-slate-100 font-bold">
+          <p className="gradient-text text-slate-100 font-bold">
             Choose to be guided by our AI
           </p>
         </div>

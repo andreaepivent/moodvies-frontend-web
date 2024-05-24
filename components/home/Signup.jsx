@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import TUBY1 from "./Mod-TuB/TUBY1";
+import PlatfomsModal from "./Modals/PlatfomsModal";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,13 +22,13 @@ import {
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
-export default function Signup({ closeModal }) {
-  const [showModalPlatforms, setshowModalPlatforms] = useState(false);
+export default function Signup({ closeModal, submit }) {
+  /* const [showModalPlatforms, setshowModalPlatforms] = useState(false);
 
   function handleClick() {
     setshowModalPlatforms(!showModalPlatforms);
-    closeModal();
-  }
+    //closeModal();
+  } */
 
   return (
     <div
@@ -52,8 +52,8 @@ export default function Signup({ closeModal }) {
                 <div className="flex flex-col space-y-1.5">
                   <Input id="name" placeholder="Username" />
                   <Input id="email" placeholder="Email" />
-                  <Input id="password" placeholder="Password" />
-                </div>
+                  <Input id="password" /* type="password" */ placeholder="Password" />
+                </div>  
                 <div className="flex flex-row gap-2">
                   <Input id="age" placeholder="Age" className="w-16" />
                   <Select>
@@ -90,7 +90,7 @@ export default function Signup({ closeModal }) {
             <Button
               variant="gradientPurple"
               className="w-full"
-              onClick={() => handleClick()}
+              onClick={() => submit()}
             >
               Submit
             </Button>
@@ -112,13 +112,13 @@ export default function Signup({ closeModal }) {
           </CardFooter>
         </Card>
 
-        <div className="relative">
+        {/* <div className="relative">
           {showModalPlatforms &&
             createPortal(
-              <TUBY1 closeModal={() => setshowModalPlatforms(false)} />,
+              <PlatfomsModal closeModal={() => setshowModalPlatforms(false)} />,
               document.body
             )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

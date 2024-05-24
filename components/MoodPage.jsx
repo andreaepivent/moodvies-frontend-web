@@ -11,6 +11,7 @@ import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "./data";
 
+
 export default function MoodPage() {
   const router = useRouter();
 

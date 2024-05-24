@@ -40,7 +40,7 @@ export function Setting() {
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu className="">
       <DropdownMenuTrigger asChild>
         <Button variant="settingButton">Settings</Button>
       </DropdownMenuTrigger>
