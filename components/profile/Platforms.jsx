@@ -37,12 +37,12 @@ function Platforms() {
   })
 
   const handleImageClicked = (imageClicked) => {
-    console.log(imageClicked)
-    /*imageClicked.forEach((platform) => {
+    imageClicked.forEach((platform) => {
       if (!logos.some((logo) => logo.src === platform.src)) {
         setLogos((prevLogos) => [...prevLogos, platform]);
+        setShowModal(false)
       }
-    });*/
+    });
   };
     
 

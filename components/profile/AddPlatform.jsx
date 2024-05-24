@@ -11,31 +11,39 @@ import { platformsLogo } from '../data';
 
 function AddPlatform(props) {
   const [imageClicked, setImageClicked] = useState([])
+  const [isImageClicked, setIsImageClicked] = useState(false)
 
   const closeModal = () => {
     props.setShowModal(false)
   }
 
   const handleClick = (e) => {
-    setImageClicked(true)
     const newPlatformSrc = e.target.src.match(props.regex)[1];
     const newPlatformName = e.target.alt;
-    setImageClicked([...imageClicked, {src: newPlatformSrc, name: newPlatformName}])
+    if (!imageClicked.some(image => image.src === newPlatformSrc)) {
+      setImageClicked([...imageClicked, { src: newPlatformSrc, name: newPlatformName }]);
+    } else {
+      setImageClicked(imageClicked.filter(image => image.src !== newPlatformSrc));
+    }
   }
 
-  const addNewPlatforms = (imageClicked) => {
+  const addNewPlatforms = () => {
     props.handleImageClicked(imageClicked)
   }
 
-  const imgs = platformsLogo.map((logo, index) => (
-    <img
+
+  const imgs = platformsLogo.map((logo, index) => {
+    const isClicked = imageClicked.some(image => image.src === logo.src);
+    return (
+      <img
       key={index}
       src={`/logo-platform/${logo.src}`}
-      className="size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer"
+      className={`size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer ${isClicked ? "border-white border-2" : ''}`}
       alt={logo.name}
       onClick={(e) => handleClick(e)}
     />
-  ));
+  )
+});
 
   return (
     <div
@@ -62,7 +70,7 @@ function AddPlatform(props) {
           <CardFooter className="flex justify-center">
             <Button 
             variant="gradientPurple" 
-            onClick={() => addNewPlatforms(newPlatformSrc, newPlatformName)}
+            onClick={() => addNewPlatforms()}
             >Add</Button>
           </CardFooter>
 
