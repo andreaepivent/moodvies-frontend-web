@@ -81,4 +81,35 @@ const movies = [
   },
 ];
 
-export { moods, movies };
+const platformsLogo = [
+  {
+  src: "AppleTV.png",
+  name: "Apple"
+},
+{
+  src: "Disney+.png",
+  name: "Disney+"
+},
+{
+  src: "HBO.png",
+  name: "HBO"
+},
+{
+  src: "MyCanal.png",
+  name: "MyCanal"
+},
+{
+  src: "Netflix.png",
+  name: "Netflix"
+},
+{
+  src: "OSC.png",
+  name: "OSC"
+},
+{
+  src: "Prime.png",
+  name: "Prime"
+}
+]
+
+export { moods, movies, platformsLogo };
