@@ -1,10 +1,14 @@
-import { Button } from "../components/ui/button";
-import CarrousselMood from "./CarrousselMood";
+"use client";
+import React from "react";
+
 import Navbar from "./common/Navbar";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState } from "react";
 import Image from "next/image";
 import { movies } from "./data";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import AceternityLogo from "./logo/AceternityLogo";
+import { BorderBeam } from "./ui/border-beam";
 
 export default function MoviesPage() {
   const [firstFilm, ...otherFilms] = movies;
@@ -38,24 +42,43 @@ export default function MoviesPage() {
         <Navbar />
 
         <div className="my-auto text-center text-slate-100 mx-auto mt-72 z-10">
-          <h2 className="text-7xl font-bold">{mainFilm.title}</h2>
-          <p className="text-1xl font-semibold mt-2">
+          <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
+            {mainFilm.title}
+          </h2>
+          <p className="scroll-m-20 text-xl font-semibold tracking-tight mt-2">
             Directed by {mainFilm.director}. {mainFilm.duration} minutes.{" "}
             {mainFilm.year}
           </p>
           <div className="max-w-2xl flex items-center justify-center mt-6">
-            <p className=" pr-4 pl-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
+            <blockquote className="mt-6 pl-6 italic pr-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
               {mainFilm.synopsis}
-            </p>
+            </blockquote>
           </div>
           <div className="mt-12 pr-4 pl-4">
-            <YouTubeEmbed videoid={mainFilm.trailer} height={400} />
-            <Button variant="ghost" className="mr-6 border">
-              View on Netflix
-            </Button>
-            <Button variant="ghost" className="border">
-              View on Prime
-            </Button>
+            <div className="relative mb-6">
+              <YouTubeEmbed videoid={mainFilm.trailer} className="" />
+
+              <BorderBeam />
+            </div>
+
+            <div className="flex justify-center items-center gap-4">
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-transparent text-slate-100 flex items-center space-x-2"
+              >
+                <AceternityLogo />
+                <span>View on Netflix</span>
+              </HoverBorderGradient>
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-transparent text-slate-100 flex items-center space-x-2"
+              >
+                <AceternityLogo />
+                <span>View on Prime</span>
+              </HoverBorderGradient>
+            </div>
           </div>
         </div>
       </div>
@@ -88,16 +111,17 @@ export default function MoviesPage() {
                 />
                 <div className="flex flex-nowrap p-4">
                   <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-allease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
-                    <h4 className="uppercase text-white font-extrabold">
+                    <h4 className="uppercase text-white scroll-m-20 text-2xl font-semibold tracking-tight">
                       {movie.title}
                     </h4>
-                    <p className="text-slate-100 pt-1">
+                    <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
                       Directed by {movie.director} - {movie.duration} minutes -{" "}
                       {movie.year}
                     </p>
-                    <p className="text-slate-100 pt-1 line-clamp-3">
+
+                    <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">
                       {movie.synopsis}
-                    </p>
+                    </blockquote>
                   </div>
                 </div>
               </label>

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import parrain from "../public/movie/le-parrain.jpeg";
+import { BorderBeam } from "./ui/border-beam";
 
 export default function IAPage() {
   const router = useRouter();
@@ -35,11 +36,13 @@ export default function IAPage() {
               Tell us about your mood
             </h3>
             <p className="text-slate-100 text-center mb-6">
-              Our AI Maid is here to help you find the perfect movie that
+              Our AI Maud is here to help you find the perfect movie that
               matches your current mood
             </p>
           </div>
-          <div className="mx-auto h-full text-slate-100 w-full md:w-3/4 lg:w-4/5">
+
+          <div className="relative rounded-xl first-letter:mx-auto h-full text-slate-100 w-full md:w-3/4 lg:w-4/5">
+            <BorderBeam />
             <div className="rounded-xl m-10 bg-zinc-900 py-16 overflow-y-auto max-h-[70vh]">
               <div className="text-left ml-16">
                 <p className="mb-4">Maud - 9:45</p>
@@ -48,78 +51,78 @@ export default function IAPage() {
                   Magnam, non.
                 </p>
               </div>
-              <div className="text-right mr-16">
-                <p className="mb-4">Paul - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div className="text-left ml-16">
-                <p className="mb-4">Maud - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, non.
-                </p>
-              </div>
-              <div className="text-right mr-16">
-                <p className="mb-4">Paul - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div className="text-left ml-16">
-                <p className="mb-4">Maud - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, non.
-                </p>
-              </div>
-              <div className="text-right mr-16">
-                <p className="mb-4">Paul - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div className="text-left ml-16">
-                <p className="mb-4">Maud - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, non.
-                </p>
-              </div>
-              <div className="text-right mr-16">
-                <p className="mb-4">Paul - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-              <div className="text-left ml-16">
-                <p className="mb-4">Maud - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, non.
-                </p>
-              </div>
-              <div className="text-right mr-16">
-                <p className="mb-4">Paul - 9:45</p>
-                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
 
-            <div className="flex justify-center items-center">
-              <Button variant="gradientPurple" className="w-1/2">
-                Submit
-              </Button>
+              <div className="text-right mr-16">
+                <p className="mb-4">Paul - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div className="text-left ml-16">
+                <p className="mb-4">Maud - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam, non.
+                </p>
+              </div>
+              <div className="text-right mr-16">
+                <p className="mb-4">Paul - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div className="text-left ml-16">
+                <p className="mb-4">Maud - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam, non.
+                </p>
+              </div>
+              <div className="text-right mr-16">
+                <p className="mb-4">Paul - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div className="text-left ml-16">
+                <p className="mb-4">Maud - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam, non.
+                </p>
+              </div>
+              <div className="text-right mr-16">
+                <p className="mb-4">Paul - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet.
+                </p>
+              </div>
+              <div className="text-left ml-16">
+                <p className="mb-4">Maud - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam, non.
+                </p>
+              </div>
+              <div className="text-right mr-16">
+                <p className="mb-4">Paul - 9:45</p>
+                <p className="rounded-lg bg-gray-800 inline px-10 py-2">
+                  Lorem ipsum dolor sit amet.
+                </p>
+              </div>
             </div>
+          </div>
+          <div className="flex justify-center items-center mt-6">
+            <Button variant="gradientPurple" className="w-96">
+              Submit
+            </Button>
           </div>
         </div>
         <div
           className="w-full h-full absolute bg-black "
           style={{ zIndex: 1, top: "95vh" }}
         ></div>
-        <div className="mt-6 z-10">
+        <div className="mt-16 z-10">
           <Footer />
         </div>
       </div>
