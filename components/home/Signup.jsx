@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import PlatfomsModal from "./Modals/PlatfomsModal";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -20,15 +19,57 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-import { createPortal } from "react-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../reducers/user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-export default function Signup({ closeModal, submit }) {
-  /* const [showModalPlatforms, setshowModalPlatforms] = useState(false);
+export default function Signup({ closeModal, signUpToPlatformModal }) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [gender, setGender] = useState("");
 
-  function handleClick() {
-    setshowModalPlatforms(!showModalPlatforms);
-    //closeModal();
-  } */
+  const dispatch = useDispatch();
+
+  const submitSignUp = () => {
+    const connectionData = {
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday,
+      gender: gender,
+    };
+
+    console.log(gender);
+
+    fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(connectionData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.result) {
+          console.log(data);
+          signUpToPlatformModal();
+          setUsername("");
+          setPassword("");
+          setEmail("");
+          setBirthday("");
+          setGender("");
+          dispatch(
+            login({
+              token: data.token,
+              username: data.username,
+            })
+          );
+        }
+      });
+  };
 
   return (
     <div
@@ -50,14 +91,57 @@ export default function Signup({ closeModal, submit }) {
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Input id="name" placeholder="Username" />
-                  <Input id="email" placeholder="Email" />
-                  <Input id="password" /* type="password" */ placeholder="Password" />
-                </div>  
+                  <Input
+                    id="name"
+                    placeholder="Username"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <Input
+                    id="email"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      placeholder="Password"
+                      type={isVisible ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 flex items-center px-2"
+                      onClick={() => setIsVisible(!isVisible)}
+                    >
+                      {isVisible ? (
+                        <FontAwesomeIcon
+                          icon={faEye}
+                          className="text-base text-default-400"
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faEyeSlash}
+                          className="text-base text-default-400"
+                        />
+                      )}
+                    </button>
+                  </div>
+                </div>
                 <div className="flex flex-row gap-2">
-                  <Input id="age" placeholder="Age" className="w-16" />
-                  <Select>
-                    <SelectTrigger id="gender">
+                  <Input
+                    id="age"
+                    placeholder="Age"
+                    className="w-16"
+                    onChange={(e) => setBirthday(e.target.value)}
+                  />
+                  <Select onValueChange={setGender} value={gender}>
+                    <SelectTrigger
+                      id="gender"
+                      onValueChange={setGender}
+                      value={gender}
+                    >
                       <SelectValue
                         placeholder="Gender"
                         className="text-slate-100"
@@ -90,7 +174,7 @@ export default function Signup({ closeModal, submit }) {
             <Button
               variant="gradientPurple"
               className="w-full"
-              onClick={() => submit()}
+              onClick={() => submitSignUp()}
             >
               Submit
             </Button>
@@ -111,14 +195,6 @@ export default function Signup({ closeModal, submit }) {
             </Button>
           </CardFooter>
         </Card>
-
-        {/* <div className="relative">
-          {showModalPlatforms &&
-            createPortal(
-              <PlatfomsModal closeModal={() => setshowModalPlatforms(false)} />,
-              document.body
-            )}
-        </div> */}
       </div>
     </div>
   );

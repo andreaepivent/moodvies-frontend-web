@@ -1,38 +1,27 @@
-import React, { useState } from "react";
-import Footer from "../common/Footer";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { createPortal } from "react-dom";
 import Signup from "./Signup";
 import Login from "./Login";
-import PlatfomsModal from "./Modals/PlatfomsModal";
 import MoviesModal from "./Modals/MoviesModal";
 import { useRouter } from "next/router";
-import LanguageSelect from "../common/LanguageSelect";
 import NavbarHome from "./NavbarHome";
-import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import AceternityLogo from "../logo/AceternityLogo";
+import PlatfomsModal from "./Modals/PlatfomsModal";
 
 const HomePageHeader = () => {
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
   const [showPlatfomsModal, setShowPlatfomsModal] = useState(false);
   const [showMoviesModal, setShowMoviesModal] = useState(false);
-
   const router = useRouter();
 
-  const submitSignUp = () => {
+  // Inverse Data Flow -> Qd valide Signup ça la ferme et ouvre Platform
+  const signUpToPlatformModal = () => {
     setShowModalSignUp(false);
     setShowPlatfomsModal(true);
   };
-  const submitPlatform = () => {
-    setShowPlatfomsModal(false);
-    setShowMoviesModal(true);
-  };
 
-  const toggleSignUp = () => {
-    setShowModalSignUp(!showModalSignUp);
-  };
-
+  // Ouvre Login
   const toggleLogin = () => {
     setShowModalLogin(!showModalLogin);
   };
@@ -45,8 +34,22 @@ const HomePageHeader = () => {
   const isModalOpen =
     showModalLogin || showModalSignUp || showMoviesModal || showPlatfomsModal;
 
+  // Empeche Scroll si Modal open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Clean up the class on component unmount
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isModalOpen]);
+
   return (
-    <div className="relative w-screen bg-black">
+    <div className="relative w-screen bg-black overflow-hidden">
       <div className="">
         <video
           className={`absolute inset-0 w-full h-full object-cover z-10 ${
@@ -93,13 +96,17 @@ const HomePageHeader = () => {
               {showModalSignUp &&
                 createPortal(
                   <Signup
-                    closeModal={() => {
-                      setShowModalSignUp(false);
-                    }}
-                    submit={() => submitSignUp()}
+                    closeModal={() => setShowModalSignUp(false)}
+                    style={{ zIndex: 1 }}
+                    signUpToPlatformModal={signUpToPlatformModal}
                   />,
                   document.body
                 )}
+            </div>
+
+            <div className="relative">
+              {showPlatfomsModal &&
+                createPortal(<PlatfomsModal />, document.body)}
             </div>
 
             <div className="relative">
@@ -110,34 +117,12 @@ const HomePageHeader = () => {
                 )}
             </div>
 
-            <div className="relative">
-              {showPlatfomsModal &&
-                createPortal(
-                  <PlatfomsModal
-                    closeModal={() => setShowPlatfomsModal(false)}
-                    submit={() => submitPlatform()}
-                  />,
-                  document.body
-                )}
-            </div>
-
             <div>
               {showMoviesModal &&
                 createPortal(
                   <MoviesModal
                     closeModal={() => setShowMoviesModal(false)}
                     submit={() => submitMovies()}
-                  />,
-                  document.body
-                )}
-            </div>
-
-            <div className="relative">
-              {showPlatfomsModal &&
-                createPortal(
-                  <PlatfomsModal
-                    closeModal={() => setShowPlatfomsModal(false)}
-                    submit={() => submitPlatform()}
                   />,
                   document.body
                 )}

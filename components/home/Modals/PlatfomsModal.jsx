@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import IconPlatform from "./IconPlatform";
@@ -7,33 +6,16 @@ import IconPlatform from "./IconPlatform";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-
-export default function Signup({ closeModal, submit, Signup }) {
+export default function PlatformsModal() {
   return (
-    <div
-      className="z-10 fixed inset-0  flex items-center justify-center"
-      onClick={closeModal}
-    >
+    <div className="z-10 fixed inset-0  flex items-center justify-center">
       <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <Card
-          onClick={(e) => e.stopPropagation()}
-          className="w-[550px] h-[500px] dark absolute"
-        >
+        <Card className="w-[550px] h-[500px] dark absolute">
           <img src="/home/Logo-moodvie-letter.svg" className="size-12 m-4" />
           <CardHeader>
             <CardTitle className="text-center -mt-12 mb-4">
@@ -46,7 +28,7 @@ export default function Signup({ closeModal, submit, Signup }) {
 
           <CardContent>
             <form class="">
-              <div class=" flex flex-row flex-wrap flex justify-center m-6 mt-4 rounded ">
+              <div class=" flex-row flex-wrap flex justify-center m-6 mt-4 rounded ">
                 <IconPlatform nom="Netflix"></IconPlatform>
                 <IconPlatform nom="Prime"></IconPlatform>
                 <IconPlatform nom="Disney+"></IconPlatform>
@@ -61,16 +43,14 @@ export default function Signup({ closeModal, submit, Signup }) {
           <CardFooter className="flex justify-between ">
             <Button
               variant="outline"
-              className="w-4/12 rounded-full absolute bottom-10 inset-x-60 h-16 w-16"
-              onClick={submit}
+              className=" rounded-full absolute bottom-10 inset-x-60 h-16 w-16"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
 
             <Button
               variant="outline"
-              className="w-4/12 rounded-full absolute top-6 right-6 h-8 w-16"
-              onClick={Signup}
+              className="rounded-full absolute top-6 right-6 h-8 w-16"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>

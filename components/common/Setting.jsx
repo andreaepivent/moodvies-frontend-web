@@ -5,7 +5,6 @@ import {
   LifeBuoy,
   LogOut,
   History,
-  Settings,
   User,
 } from "lucide-react";
 
@@ -25,7 +24,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/router";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../reducers/user";
 export function Setting() {
   const router = useRouter();
 
@@ -37,6 +37,13 @@ export function Setting() {
   }
   function handlePlatforms() {
     router.push(`/profile/platforms`);
+  }
+
+  const dispatch = useDispatch();
+
+  function gotoHomePage() {
+    dispatch(logout());
+    router.push(`/`);
   }
 
   return (
@@ -65,40 +72,6 @@ export function Setting() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
-        {/* <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Users className="mr-2 h-4 w-4" />
-            <span>Team</span>
-          </DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <UserPlus className="mr-2 h-4 w-4" />
-              <span>Invite users</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal className="dark">
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <Mail className="mr-2 h-4 w-4" />
-                  <span>Email</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  <span>Message</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  <span>More...</span>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-          <DropdownMenuItem>
-            <Plus className="mr-2 h-4 w-4" />
-            <span>New Team</span>
-            <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuGroup> */}
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Cloud className="mr-2 h-4 w-4" />
@@ -113,7 +86,7 @@ export function Setting() {
           <span>GitHub</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => gotoHomePage()}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
