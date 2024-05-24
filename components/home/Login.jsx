@@ -19,7 +19,7 @@ import { Spinner } from "@nextui-org/spinner";
 export default function Login({ closeModal }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -69,7 +69,7 @@ export default function Login({ closeModal }) {
             <Spinner
               label="Loading..."
               color="primary"
-              className="w-full mb-36 mt-10"
+              className="w-full gap-10 pb-20 pt-16"
               size="lg"
               labelColor="primary"
             />
