@@ -10,6 +10,7 @@ import Footer from "./common/Footer";
 import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
 
+
 export default function MoodPage() {
   const moods = [
     "Happy",

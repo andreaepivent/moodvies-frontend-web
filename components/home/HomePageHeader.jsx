@@ -4,12 +4,27 @@ import { Button } from "../ui/button";
 import { createPortal } from "react-dom";
 import Signup from "./Signup";
 import Login from "./Login";
-import TUBY1 from "./Mod-TuB/TUBY1"
-import TUBY2 from "./Mod-TuB/TUBY2"
+import PlatfomsModal from "./Modals/PlatfomsModal";
+import MoviesModal from "./Modals/MoviesModal";
+import { Router, useRouter } from "next/router";
+import LanguageSelect from "../common/LanguageSelect";
 
 const HomePageHeader = () => {
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalSignUp, setShowModalSignUp] = useState(false);
+  const [showPlatfomsModal, setShowPlatfomsModal] = useState(false);
+  const [showMoviesModal, setShowMoviesModal] = useState(false);
+
+  const router = useRouter();
+
+  const submitSignUp = () => {
+    setShowModalSignUp(false);
+    setShowPlatfomsModal(true);
+  };
+  const submitPlatform = () => {
+    setShowPlatfomsModal(false);
+    setShowMoviesModal(true);
+  };
 
   const toggleSignUp = () => {
     setShowModalSignUp(!showModalSignUp);
@@ -19,11 +34,19 @@ const HomePageHeader = () => {
     setShowModalLogin(!showModalLogin);
   };
 
-  const isModalOpen = showModalLogin || showModalSignUp;
+  const submitMovies = () => {
+    setShowMoviesModal(false);
+    router.push("/mood");
+  };
+
+  const isModalOpen =
+    showModalLogin || showModalSignUp || showMoviesModal || showPlatfomsModal;
 
   return (
     <div className="w-screen bg-black">
+     
       <div>
+        
         <video className={`${isModalOpen ? "blur" : ""}`} autoPlay loop muted>
           <source src="MATRIX4.mp4" />
         </video>
@@ -49,7 +72,7 @@ const HomePageHeader = () => {
               <Button
                 variant="ghost"
                 className="w-32 border-2 text-slate-100"
-                onClick={toggleSignUp}
+                onClick={() => setShowModalSignUp(true)}
               >
                 Signup
               </Button>
@@ -66,7 +89,12 @@ const HomePageHeader = () => {
             <div className="relative">
               {showModalSignUp &&
                 createPortal(
-                  <Signup closeModal={() => setShowModalSignUp(false)} />,
+                  <Signup
+                    closeModal={() => {
+                      setShowModalSignUp(false);
+                    }}
+                    submit={() => submitSignUp()}
+                  />,
                   document.body
                 )}
             </div>
@@ -78,6 +106,40 @@ const HomePageHeader = () => {
                   document.body
                 )}
             </div>
+
+            <div className="relative">
+              {showPlatfomsModal &&
+                createPortal(
+                  <PlatfomsModal
+                    closeModal={() => setShowPlatfomsModal(false)}
+                    submit={() => submitPlatform()}
+                  />,
+                  document.body
+                )}
+            </div>
+
+            <div>
+              {showMoviesModal &&
+                createPortal(
+                  <MoviesModal
+                    closeModal={() => setShowMoviesModal(false)}
+                    submit={() => submitMovies()}
+                  />,
+                  document.body
+                )}
+            </div>
+
+            <div className="relative">
+              {showPlatfomsModal &&
+                createPortal(
+                  <PlatfomsModal
+                    closeModal={() => setShowPlatfomsModal(false)}
+                    submit={() => submitPlatform()}
+                  />,
+                  document.body
+                )}
+            </div>
+
           </div>
         </div>
       </div>
