@@ -14,7 +14,7 @@ export default function NavbarProfile() {
 
   return (
     <>
-      <div className="flex items-center justify-between pt-4 z-10 px-6 w-full">
+      <div className="flex items-center justify-between z-10 px-6 w-full">
         <div className="flex flex-col justify-between items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
