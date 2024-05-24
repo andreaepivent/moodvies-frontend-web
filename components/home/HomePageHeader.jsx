@@ -6,8 +6,11 @@ import Signup from "./Signup";
 import Login from "./Login";
 import PlatfomsModal from "./Modals/PlatfomsModal";
 import MoviesModal from "./Modals/MoviesModal";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import LanguageSelect from "../common/LanguageSelect";
+import NavbarHome from "./NavbarHome";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import AceternityLogo from "../logo/AceternityLogo";
 
 const HomePageHeader = () => {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -43,21 +46,21 @@ const HomePageHeader = () => {
     showModalLogin || showModalSignUp || showMoviesModal || showPlatfomsModal;
 
   return (
-    <div className="w-screen bg-black">
-     
-      <div>
-        
-        <video className={`${isModalOpen ? "blur" : ""}`} autoPlay loop muted>
-          <source src="MATRIX4.mp4" />
+    <div className="relative w-screen bg-black">
+      <div className="">
+        <video
+          className={`absolute inset-0 w-full h-full object-cover z-10 ${
+            isModalOpen ? "blur" : ""
+          }`}
+          autoPlay
+          loop
+          muted
+        >
+          <source src="/video/MATRIX4.mp4" />
         </video>
+        <NavbarHome />
 
         <div className="flex h-screen justify-center items-center bg-pink z-10">
-          <img
-            className="flex place-self-start absolute left-8 top-8 w-20 h-21"
-            src="/home/logo-moodvie-letter.png"
-            alt="logo-moodvie"
-          />
-
           <div className="flex flex-col z-10">
             <div
               className={`flex flex-col content-start ${
@@ -139,7 +142,6 @@ const HomePageHeader = () => {
                   document.body
                 )}
             </div>
-
           </div>
         </div>
       </div>
