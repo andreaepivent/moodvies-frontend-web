@@ -10,7 +10,7 @@ import Footer from "./common/Footer";
 import Navbar from "./common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "./data";
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MoodPage() {
   const router = useRouter();
@@ -19,7 +19,8 @@ export default function MoodPage() {
     router.push(`/movies`);
     // router.push(`/movies/${mood.toLowerCase()}`);
   }
-
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
   return (
     <>
       <div className=" relative w-screen h-screen flex flex-col bg-center">
