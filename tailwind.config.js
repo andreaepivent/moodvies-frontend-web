@@ -95,7 +95,7 @@ module.exports = {
     nextui(),
     addVariablesForColors,
     require("tailwindcss-animate"),
-    require("daisyui"),
+
     function ({ addUtilities }) {
       const newUtilities = {
         ".text-justify": {

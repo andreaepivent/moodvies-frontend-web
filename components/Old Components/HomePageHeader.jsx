@@ -7,6 +7,7 @@ import MoviesModal from "./Modals/MoviesModal";
 import { useRouter } from "next/router";
 import NavbarHome from "./NavbarHome";
 import PlatfomsModal from "./Modals/PlatfomsModal";
+import HomePageHeaders from "./HomePageHeaders";
 
 const HomePageHeader = () => {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -33,20 +34,6 @@ const HomePageHeader = () => {
 
   const isModalOpen =
     showModalLogin || showModalSignUp || showMoviesModal || showPlatfomsModal;
-
-  // Empeche Scroll si Modal open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    // Clean up the class on component unmount
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isModalOpen]);
 
   return (
     <div className="relative w-screen bg-black overflow-hidden">
@@ -75,57 +62,9 @@ const HomePageHeader = () => {
               </h1>
             </div>
             <div className="flex justify-center gap-10">
-              <Button
-                variant="ghost"
-                className="w-32 border-2 text-slate-100"
-                onClick={() => setShowModalSignUp(true)}
-              >
-                Signup
-              </Button>
+              <Signup />
 
-              <Button
-                variant="ghost"
-                className="w-32 border-2 text-slate-100"
-                onClick={toggleLogin}
-              >
-                Login
-              </Button>
-            </div>
-
-            <div className="relative">
-              {showModalSignUp &&
-                createPortal(
-                  <Signup
-                    closeModal={() => setShowModalSignUp(false)}
-                    style={{ zIndex: 1 }}
-                    signUpToPlatformModal={signUpToPlatformModal}
-                  />,
-                  document.body
-                )}
-            </div>
-
-            <div className="relative">
-              {showPlatfomsModal &&
-                createPortal(<PlatfomsModal />, document.body)}
-            </div>
-
-            <div className="relative">
-              {showModalLogin &&
-                createPortal(
-                  <Login closeModal={() => setShowModalLogin(false)} />,
-                  document.body
-                )}
-            </div>
-
-            <div>
-              {showMoviesModal &&
-                createPortal(
-                  <MoviesModal
-                    closeModal={() => setShowMoviesModal(false)}
-                    submit={() => submitMovies()}
-                  />,
-                  document.body
-                )}
+              <Login />
             </div>
           </div>
         </div>

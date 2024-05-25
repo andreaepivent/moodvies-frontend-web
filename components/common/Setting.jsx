@@ -47,11 +47,11 @@ export function Setting() {
 
   return (
     <>
-      {user.username ? (
+      {user.firstname ? (
         <>
           <DropdownMenu className="">
             <DropdownMenuTrigger asChild>
-              <Button variant="settingButton">{user.username}</Button>
+              <Button variant="settingButton">{user.firstname}</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark w-56">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
