@@ -24,7 +24,7 @@ import { logout } from "../../reducers/user";
 
 export function Setting() {
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+  //console.log(user);
   const router = useRouter();
 
   function handleHistory() {

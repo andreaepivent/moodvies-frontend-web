@@ -1,3 +1,7 @@
+if (typeof window != 'undefined' && process.env.NODE_ENV === 'development') {
+  localStorage.clear();
+}
+
 import "@/styles/globals.css";
 import { Lato } from "next/font/google";
 import * as React from "react";
@@ -12,13 +16,19 @@ import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
 import { NextUIProvider } from "@nextui-org/system";
 
+console.log("Current NODE_ENV:", process.env.NODE_ENV);
+
 const lato = Lato({
   weight: "400",
   subsets: ["latin"],
 });
 
 const reducers = combineReducers({ user, platforms, movies });
-const persistConfig = { key: "applicationName", storage };
+const persistConfig = { 
+  key: "applicationName", 
+  storage, 
+  whitelist: ["user"] 
+};
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import PlatfomsModal from "./Modals/PlatfomsModal";
 import { Button } from "@/components/ui/button";
-import { FieldCalendar } from "./FieldCalendar";
+import { FieldCalendar } from "../ui/FieldCalendar";
 import {
   Card,
   CardContent,
