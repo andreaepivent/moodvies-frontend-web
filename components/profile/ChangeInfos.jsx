@@ -49,21 +49,7 @@ function ChangeInfos(props) {
       })
       const updatedProfile = await response.json()
       if (updatedProfile) {
-        fetch('http://localhost:3000/users/getUserData', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            token: user.token
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          dispatch(update(data.data.username))
-          console.log(user.username)
-        })
-        .catch(error => console.log(error.message))
+        dispatch(update({username: usernameValue}))
         props.setIsEditClicked(false)
         setShowModal(true)
       }
