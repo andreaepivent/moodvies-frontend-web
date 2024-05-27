@@ -77,7 +77,7 @@ const movies = [
     synopsis:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
     trailer: "P5ieIbInFpg",
-    background: "gladiator.jpg",
+    background: "gladiator.jpeg",
   },
 ];
 
