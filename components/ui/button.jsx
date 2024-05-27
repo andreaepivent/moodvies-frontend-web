@@ -19,6 +19,13 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         gradientPurple:"bg-gradient-to-r from-fuchsia-700 to-fuchsia-900",
+        facebook: "bg-blue-700 hover:bg-blue-600",
+        subscribe: "bg-gradient-to-r from-slate-100 to-gray-900",
+        moodButton:
+          "bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 ",
+        settingButton:
+          "w-[100px] p-2 bg-transparent text-white cursor-pointer border hover:none",
+      },
       },
       size: {
         default: "h-10 px-4 py-2",
