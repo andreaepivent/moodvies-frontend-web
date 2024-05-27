@@ -24,7 +24,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-const reducers = combineReducers({ user, platforms, movies });
+const reducers = combineReducers({ user, platforms, movies, recommendations });
 const persistConfig = {
   key: "applicationName",
   storage,
