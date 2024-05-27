@@ -16,8 +16,8 @@ function IconMovie({ nom, selected, onSelect }) {
   return (
     <div
       className={
-        "relative size-20 m-2 rounded transition duration-500 ease-in-out transform hover:scale-125 hover:brightness-75" +
-        (selected ? " border-4 border-white" : "")
+        "relative size-20 m-2 rounded transition duration-500 ease-in-out transform hover:scale-110 hover:brightness-75" +
+        (selected ? " border-4 border-green-500" : "")
       }
       onClick={onSelect}
       onContextMenu={(e) => e.preventDefault()}

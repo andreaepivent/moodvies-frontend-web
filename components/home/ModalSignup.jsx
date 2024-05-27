@@ -38,49 +38,49 @@ export default function ModalSignup() {
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-  // const submitTest = () => {
-  //   wait().then(() => {
-  //     setOpen(false);
-  //     setNextModalOpen(true);
-  //   });
-  // };
-
-  const submitSignUp = () => {
-    const connectionData = {
-      username: username,
-      password: password,
-      email: email,
-      birthday: birthday,
-      gender: gender,
-    };
-
-    fetch("http://localhost:3000/users/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(connectionData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result) {
-          console.log(data);
-          wait().then(() => {
-            setOpen(false);
-            setNextModalOpen(true);
-          });
-          setUsername("");
-          setPassword("");
-          setEmail("");
-          setBirthday("");
-          setGender("");
-          dispatch(
-            login({
-              token: data.token,
-              username: data.username,
-            })
-          );
-        }
-      });
+  const submitTest = () => {
+    wait().then(() => {
+      setOpen(false);
+      setNextModalOpen(true);
+    });
   };
+
+  // const submitSignUp = () => {
+  //   const connectionData = {
+  //     username: username,
+  //     password: password,
+  //     email: email,
+  //     birthday: birthday,
+  //     gender: gender,
+  //   };
+
+  //   fetch("http://localhost:3000/users/signup", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(connectionData),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data.result) {
+  //         console.log(data);
+  //         wait().then(() => {
+  //           setOpen(false);
+  //           setNextModalOpen(true);
+  //         });
+  //         setUsername("");
+  //         setPassword("");
+  //         setEmail("");
+  //         setBirthday("");
+  //         setGender("");
+  //         dispatch(
+  //           login({
+  //             token: data.token,
+  //             username: data.username,
+  //           })
+  //         );
+  //       }
+  //     });
+  // };
 
   return (
     <>
@@ -184,7 +184,7 @@ export default function ModalSignup() {
               type="submit"
               variant="gradientPurple"
               className="w-full mb-1"
-              onClick={() => submitSignUp()}
+              onClick={() => submitTest()}
             >
               Submit
             </Button>

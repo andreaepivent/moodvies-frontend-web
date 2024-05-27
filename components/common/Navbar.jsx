@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between pt-4 z-10 px-6">
+      <div className="flex items-center justify-between pt-4 z-10 px-8">
         <div className="flex flex-col justify-center items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
