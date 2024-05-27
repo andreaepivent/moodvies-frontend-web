@@ -18,7 +18,7 @@ function ChangeInfos(props) {
   // State variables to manage form inputs
   const [usernameValue, setUsernameValue] = useState("Louis");
   const [emailValue, setEmailValue] = useState("email");
-  const [passwordValue, setPasswordValue] = useState("password");
+  const [currentPasswordValue, setCurrentPasswordValue] = useState("current password");
 
   return (
     // Main container with background and flex layout
@@ -65,11 +65,19 @@ function ChangeInfos(props) {
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="username">Username</Label>
-                  <Input id="username" defaultValue="@peduarte" />
+                  <Input 
+                    id="username" 
+                    value={usernameValue}
+                    onChange={(value) => setUsernameValue(value)}
+                  />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" defaultValue="peduarte@gmail.com" />
+                  <Input 
+                    id="email"
+                    value={emailValue}
+                    onChange={(value) => setEmailValue(value)}
+                  />
                 </div>
               </CardContent>
               <CardFooter>
