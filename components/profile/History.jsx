@@ -5,7 +5,10 @@ import CollectionCarousel from "./CollectionCarousel";
 
 function History() {
   return (
+    // Main container with background and flex layout
     <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+      
+      {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
         <NavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
@@ -18,15 +21,20 @@ function History() {
         </div>
       </div>
 
+      {/* Mood Carousel section */}
       <div className="w-full flex justify-center mt-60">
         <MoodCarousel />
       </div>
+
+      {/* Collection header */}
       <div className="w-[90%] md:w-[80%] h-[5%] flex justify-between border-b">
-        <h2 className="text-white text-lg md:text-xl mb-3 ">Collection</h2>
+        <h2 className="text-white text-lg md:text-xl mb-3">Collection</h2>
         <h3 className="text-slate-300 text-sm md:text-l font-thin mb-3">
           last watched
         </h3>
       </div>
+
+      {/* Collection Carousel section */}
       <CollectionCarousel />
     </div>
   );
