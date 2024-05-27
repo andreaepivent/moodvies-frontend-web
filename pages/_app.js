@@ -1,15 +1,15 @@
 import "@/styles/globals.css";
-import { Roboto } from "next/font/google";
+import { Lato } from "next/font/google";
 import React from "react";
 
-const roboto = Roboto({
+const lato = Lato({
   weight: "400",
   subsets: ["latin"],
 });
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={roboto.className}>
+    <main className={lato.className}>
       <Component {...pageProps} />
     </main>
   );

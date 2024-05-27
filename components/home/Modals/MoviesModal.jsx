@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChevronRight,ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import IconMovie from "./IconMovie";
 
@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function MoviesModal({ closeModal, submit,Signup }) {
+export default function MoviesModal({ closeModal, submit, Signup }) {
   return (
     <div
       className="z-10 fixed inset-0  flex items-center justify-center"
@@ -43,12 +43,10 @@ export default function MoviesModal({ closeModal, submit,Signup }) {
 
           <CardContent>
             <form class="flex flex-row flex-wrap flex justify-center m-6 mt-4 rounded">
-              <IconMovie nom="Barbie" />
-              <IconMovie nom="GOT" />
-              <IconMovie nom="Avengers" />
-              <IconMovie nom="Barbie" />
-              <IconMovie nom="Barbie" />
-              <IconMovie nom="Barbie" />
+              <IconMovie nom="/Barbie" />
+              <IconMovie nom="/GOT" />
+              <IconMovie nom="/Avengers" />
+              <IconMovie nom="/Barbie" />
               <IconMovie nom="Barbie" />
               <IconMovie nom="Barbie" />
               <IconMovie nom="Barbie" />
@@ -59,23 +57,11 @@ export default function MoviesModal({ closeModal, submit,Signup }) {
               <IconMovie nom="Barbie" />
               <IconMovie nom="Barbie" />
               <IconMovie nom="Barbie" />
-
-             
+              <IconMovie nom="Barbie" />
+              <IconMovie nom="Barbie" />
             </form>
-
-            
-
           </CardContent>
           <CardFooter className="flex justify-between">
-            
-          <Button
-              variant="outline"
-              className="w-4/12 rounded-full absolute top-6 right-6 h-8 w-16"
-              onClick={Signup}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-
             <Button
               variant="gradientPurple"
               className="w-full"

@@ -1,62 +1,16 @@
-import { Button } from "../components/ui/button";
-import CarrousselMood from "./CarrousselMood";
+"use client";
+import React from "react";
+
 import Navbar from "./common/Navbar";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState } from "react";
+import Image from "next/image";
+import { movies } from "./data";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import AceternityLogo from "./logo/AceternityLogo";
+import { BorderBeam } from "./ui/border-beam";
 
 export default function MoviesPage() {
-  const movies = [
-    {
-      title: "Avatar",
-      director: "James Cameron",
-      duration: 164,
-      year: 2012,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "avatar.jpeg",
-      trailer: "d9MyW72ELq0",
-    },
-    {
-      title: "Spider Man",
-      director: "Stan Lee",
-      duration: 150,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      year: 2004,
-      background: "spider-man.jpeg",
-      trailer: "qh0sNabDy94",
-    },
-    {
-      title: "Star Wars",
-      director: "George Lucas",
-      duration: 184,
-      year: 1997,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "star-wars.jpeg",
-      trailer: "pHgwf2eMFnA",
-    },
-    {
-      title: "The Lord of the Ring",
-      director: "Peter Jackson",
-      duration: 240,
-      year: 2003,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      background: "lord-of-the-ring.jpeg",
-      trailer: "RCuDRcK0BBM",
-    },
-    {
-      title: "Gladiator",
-      director: "Ridley Scott",
-      year: 2000,
-      duration: 150,
-      synopsis:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
-      trailer: "P5ieIbInFpg",
-      background: "gladiator.jpg",
-    },
-  ];
   const [firstFilm, ...otherFilms] = movies;
   const [films, setFilms] = useState(movies);
   const [mainFilm, setMainFilm] = useState(firstFilm);
@@ -72,13 +26,14 @@ export default function MoviesPage() {
   return (
     <>
       <div className="relative w-screen flex flex-col bg-top ">
-        <div
-          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
-          style={{
-            backgroundImage: `url(/movie/${mainFilm.background})`,
-            zIndex: 1,
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
+          <Image
+            src={`/movie/${mainFilm.background}`}
+            alt={mainFilm.title}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
@@ -87,24 +42,43 @@ export default function MoviesPage() {
         <Navbar />
 
         <div className="my-auto text-center text-slate-100 mx-auto mt-72 z-10">
-          <h2 className="text-7xl font-bold">{mainFilm.title}</h2>
-          <p className="text-1xl font-semibold mt-2">
+          <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
+            {mainFilm.title}
+          </h2>
+          <p className="scroll-m-20 text-xl font-semibold tracking-tight mt-2">
             Directed by {mainFilm.director}. {mainFilm.duration} minutes.{" "}
             {mainFilm.year}
           </p>
           <div className="max-w-2xl flex items-center justify-center mt-6">
-            <p className=" pr-4 pl-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
+            <blockquote className="mt-6 pl-6 italic pr-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
               {mainFilm.synopsis}
-            </p>
+            </blockquote>
           </div>
           <div className="mt-12 pr-4 pl-4">
-            <YouTubeEmbed videoid={mainFilm.trailer} height={400} />
-            <Button variant="ghost" className="mr-6 border">
-              View on Netflix
-            </Button>
-            <Button variant="ghost" className="border">
-              View on Prime
-            </Button>
+            <div className="relative mb-6">
+              <YouTubeEmbed videoid={mainFilm.trailer} className="" />
+
+              <BorderBeam />
+            </div>
+
+            <div className="flex justify-center items-center gap-4">
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-transparent text-slate-100 flex items-center space-x-2"
+              >
+                <AceternityLogo />
+                <span>View on Netflix</span>
+              </HoverBorderGradient>
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-transparent text-slate-100 flex items-center space-x-2"
+              >
+                <AceternityLogo />
+                <span>View on Prime</span>
+              </HoverBorderGradient>
+            </div>
           </div>
         </div>
       </div>
@@ -115,7 +89,7 @@ export default function MoviesPage() {
 
       <div className="bg-black mx-auto w-full h-screen flex items-center justify-center">
         <div className="h-[400px] flex flex-nowrap justify-start">
-          {films.map((movie, index) => (
+          {movies.map((movie, index) => (
             <>
               <input
                 type="radio"
@@ -126,26 +100,28 @@ export default function MoviesPage() {
               />
               <label
                 htmlFor={index}
-                className="  group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
-                style={{
-                  backgroundImage: `url('/movie/${movie.background}')`,
-
-                  backgroundSize: "center",
-                  backgroundPosition: "center",
-                }}
+                className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
               >
+                <Image
+                  src={`/movie/${movie.background}`}
+                  alt={movie.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
                 <div className="flex flex-nowrap p-4">
                   <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-allease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
-                    <h4 className="uppercase text-white font-extrabold">
+                    <h4 className="uppercase text-white scroll-m-20 text-2xl font-semibold tracking-tight">
                       {movie.title}
                     </h4>
-                    <p className="text-slate-100 pt-1">
+                    <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
                       Directed by {movie.director} - {movie.duration} minutes -{" "}
                       {movie.year}
                     </p>
-                    <p className="text-slate-100 pt-1 line-clamp-3">
+
+                    <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">
                       {movie.synopsis}
-                    </p>
+                    </blockquote>
                   </div>
                 </div>
               </label>

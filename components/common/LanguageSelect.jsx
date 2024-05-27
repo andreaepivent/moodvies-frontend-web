@@ -18,10 +18,10 @@ function LanguageSelect() {
           value="français"
           className="hover:focus:bg-slate-500 cursor-pointer"
         >
-          français
+          Français
         </SelectItem>
         <SelectItem value="english" className="cursor-pointer">
-          english
+          English
         </SelectItem>
       </SelectContent>
     </Select>
