@@ -23,7 +23,7 @@ export default function MoodPage() {
   console.log(user);
   return (
     <>
-      <div className=" relative w-screen h-screen flex flex-col bg-center">
+      <div className=" relative w-screen h-screen flex flex-col bg-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
           style={{
@@ -35,6 +35,7 @@ export default function MoodPage() {
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
         ></div>
+
         <Navbar />
 
         <h1 className="uppercase text-center mt-60 text-slate-100 font-bold text-4xl">
@@ -54,7 +55,7 @@ export default function MoodPage() {
                       onClick={() => handleMovies(mood)}
                     >
                       <CardContent className="flex items-center justify-center p-2 ">
-                        <span className="text-1xl text-slate-100 font-semibold">
+                        <span className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
                           {mood}
                         </span>
                       </CardContent>

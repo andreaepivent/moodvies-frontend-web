@@ -52,7 +52,7 @@ export default function MoviesPage() {
 
   return (
     <>
-      <div className="relative w-screen flex flex-col bg-top ">
+      <div className="relative w-screen flex flex-col bg-top overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
           <Image
             src={`https://image.tmdb.org/t/p/original${mainFilm.backdrop}`}
@@ -110,11 +110,11 @@ export default function MoviesPage() {
         </div>
       </div>
 
-      <h2 className="pt-20 text-3xl font-extrabold text-center text-slate-100 bg-black -mb-16">
+      <h2 className="w-screen pt-20 text-3xl font-extrabold text-center text-slate-100 bg-black -mb-16">
         You can also checkout :
       </h2>
 
-      <div className="bg-black mx-auto w-full h-screen flex items-center justify-center">
+      <div className="bg-black mx-auto w-screen h-screen flex items-center justify-center">
         <div className="h-[400px] flex flex-nowrap justify-start">
           {moviesTest.map((movie, index) => (
             <>

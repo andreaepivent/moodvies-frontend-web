@@ -13,7 +13,7 @@ export default function NavbarHome() {
 
   return (
     <>
-      <div className="flex items-center justify-between pt-4 z-1 px-6 absolute top-0 left-0 w-full bg-transparent z-20">
+      <div className="flex items-center justify-between pt-4 z-1 px-8 absolute top-0 left-0 w-full bg-transparent z-20">
         <div className="flex flex-col justify-center items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
