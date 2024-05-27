@@ -1,8 +1,37 @@
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/newsletters/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+      if (response.ok) {
+        setMessage("Subscription successful");
+      } else {
+        setMessage("Subscription failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage("Subscription failed");
+    }
+  };
+
   return (
     <Card className="w-screen bg-black text-slate-300 rounded-none">
       <footer className="mt-auto">
@@ -110,17 +139,22 @@ export default function Footer() {
               <Input
                 placeholder="Enter your email"
                 className="dark text-slate-300 rounded-3xl focus-visible:ring-offset-none bg-black "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               ></Input>
               <Button
                 variant="subscribe"
                 className="text-slate-100 rounded-3xl h-11 w-40 -ml-24"
+                onClick={handleSubmit}
               >
                 Subscribe
               </Button>
             </form>
+            {message && <p>{message}</p>}
           </div>
         </div>
       </footer>
     </Card>
   );
 }
+
