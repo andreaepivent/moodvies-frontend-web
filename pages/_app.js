@@ -5,7 +5,6 @@ if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
 import "@/styles/globals.css";
 import { Lato } from "next/font/google";
 import * as React from "react";
-
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
