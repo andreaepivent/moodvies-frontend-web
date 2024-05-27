@@ -24,6 +24,20 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 
+//Calendrier
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { FieldCalendar } from "../ui/FieldCalendar";
+
+const FormSchema = z.object({
+  dob: z.date({
+    required_error: "A date of birth is required.",
+  }),
+});
+
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");
@@ -40,6 +54,7 @@ export default function ModalSignup() {
 
   const submitTest = () => {
     wait().then(() => {
+      console.log(birthday);
       setOpen(false);
       setNextModalOpen(true);
     });
@@ -122,6 +137,7 @@ export default function ModalSignup() {
             <Input
               id="email"
               placeholder="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -148,9 +164,11 @@ export default function ModalSignup() {
             </div>
             <div className="flex flex-row gap-2">
               <Input
-                id="age"
-                placeholder="Age"
-                className="w-16"
+                id="birthday"
+                placeholder="Date de naissance"
+                type="date"
+                className="w-40"
+                value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
               />
               <Select onValueChange={setGender} value={gender}>

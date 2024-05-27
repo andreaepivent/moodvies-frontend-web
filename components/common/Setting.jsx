@@ -57,8 +57,7 @@ export function Setting() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark w-56">
               <DropdownMenuLabel>
-                {user.firstname.charAt(0).toUpperCase() +
-                  user.firstname.slice(1)}{" "}
+                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}{" "}
                 account
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
