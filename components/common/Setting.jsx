@@ -24,7 +24,7 @@ import { logout } from "../../reducers/user";
 
 export function Setting() {
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+  //console.log(user);
   const router = useRouter();
 
   function handleHistory() {
@@ -46,14 +46,13 @@ export function Setting() {
 
   return (
     <>
-      {user.firstname ? (
+      {user.username ? (
         <>
           <DropdownMenu className="">
             <DropdownMenuTrigger asChild>
               <Button variant="settingButton">
                 Hello {""}
-                {user.firstname.charAt(0).toUpperCase() +
-                  user.firstname.slice(1)}
+                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark w-56">

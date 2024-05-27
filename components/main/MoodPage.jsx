@@ -1,15 +1,15 @@
-import { Card, CardContent } from "../components/ui/card";
+import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../components/ui/carousel";
-import Footer from "./common/Footer";
-import Navbar from "./common/Navbar";
+} from "../../components/ui/carousel";
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
-import { moods } from "./data";
+import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";

@@ -21,9 +21,7 @@ export default function NavbarHome() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">
-            Find your favorite movie for tonight
-          </p>
+         
         </div>
         <div className="hidden  flex-col justify-center items-center mt-4  lg:flex"></div>
         <div className="flex gap-4">

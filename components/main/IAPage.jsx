@@ -1,5 +1,5 @@
-import Footer from "./common/Footer";
-import Navbar from "./common/Navbar";
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Button } from "./ui/button";
@@ -47,7 +47,8 @@ export default function IAPage() {
       ],
     },
     {
-      question: "Parfait, et tu voudrais regarder un film de quelle nationalité ?",
+      question:
+        "Parfait, et tu voudrais regarder un film de quelle nationalité ?",
       options: [
         "Américain",
         "Français",
@@ -60,12 +61,14 @@ export default function IAPage() {
         "Indifférent",
       ],
     },
-    {question: "Une préférence pour la période ?",
-      options:["Plutôt vieux (avant les années 60)",
+    {
+      question: "Une préférence pour la période ?",
+      options: [
+        "Plutôt vieux (avant les années 60)",
         "Années 60 à 2000",
         "Moderne (2000 à 2020)",
-        "2020 à aujourd'hui"
-      ]
+        "2020 à aujourd'hui",
+      ],
     },
     {
       question: "Combien de temps as-tu devant toi ?",
@@ -77,7 +80,8 @@ export default function IAPage() {
       ],
     },
     {
-      question: "Pour finir, tu cherches un film populaire ou plutôt de niche ?",
+      question:
+        "Pour finir, tu cherches un film populaire ou plutôt de niche ?",
       options: ["Populaire", "Niche", "Indifférent"],
     },
   ];
@@ -101,7 +105,7 @@ export default function IAPage() {
       const preferences = {
         genre: answers[0],
         country: answers[1],
-        release_year:answers[2],
+        release_year: answers[2],
         time: answers[3],
         popularity: answer,
       };

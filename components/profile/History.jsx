@@ -2,18 +2,21 @@ import React from "react";
 import MoodCarousel from "./MoodCarousel";
 import NavbarProfile from "./NavbarProfile";
 import CollectionCarousel from "./CollectionCarousel";
+import { useSelector }  from "react-redux";
+import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
 
 function History() {
+  const user = useSelector((state) => state.user.value)
   return (
     // Main container with background and flex layout
     <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
       
       {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
-        <NavbarProfile />
+        <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
           <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
-            Hello Louis
+            Hello {user.username}
           </h1>
           <p className="text-white flex items-end pb-1 text-lg md:text-l md:pr-32 lg:text-xl">
             <span className="text-[#A759AD] mr-1">156h</span>de Moodage
@@ -33,9 +36,13 @@ function History() {
           last watched
         </h3>
       </div>
+<<<<<<< HEAD
+      <CollectionCarousel/>
+=======
 
       {/* Collection Carousel section */}
       <CollectionCarousel />
+>>>>>>> c1f99c5eda3e5abc7c8c6640f2770a492a45ea27
     </div>
   );
 }
