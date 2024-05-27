@@ -2,60 +2,38 @@
 import React from "react";
 
 import Navbar from "./common/Navbar";
+import Footer from "./common/Footer";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import { movies } from "./data";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import AceternityLogo from "./logo/AceternityLogo";
-import { BorderBeam } from "./ui/border-beam";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import AceternityLogo from "../logo/AceternityLogo";
+import { BorderBeam } from "../ui/border-beam";
+import Navbar from "../common/Navbar";
 
 export default function MoviesPage() {
-  const [moviesTest, setMoviesTest] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [mainFilm, setMainFilm] = useState(null); 
+  const movies = useSelector(
+    (state) => state.recommendations.value.recommendations
+  );
+  const [mainFilm, setMainFilm] = useState(movies[0]);
 
   const handleFilmClick = (clickedFilm) => {
-    setMainFilm(clickedFilm);
+    setMainFilm(movies[clickedFilm]);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
 
-  const tokenTest = "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd";
-
-  useEffect(() => {
-    fetch("http://localhost:3000/recommendation", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: tokenTest,
-        userMood: "realization",
-        option: "similarity",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMoviesTest(data.recommendations);
-        setMainFilm(data.recommendations[0]); 
-        setLoading(false); 
-      });
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>; // Render a loading message or spinner
-  }
-
   return (
-    <>
+    <div className="bg-black">
       <div className="relative w-screen flex flex-col bg-top overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
           <Image
-            src={`https://image.tmdb.org/t/p/original${mainFilm.backdrop}`}
+            src={`https://image.tmdb.org/t/p/original${
+              mainFilm.backdrop ? mainFilm.backdrop : mainFilm.poster
+            }`}
             alt={mainFilm.title.fr}
             layout="fill"
             objectFit="cover"
@@ -69,42 +47,53 @@ export default function MoviesPage() {
         <Navbar />
 
         <div className="my-auto text-center text-slate-100 mx-auto mt-72 z-10">
-          <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl break-words">
+          <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
             {mainFilm.title.fr}
           </h2>
           <p className="scroll-m-20 text-xl font-semibold tracking-tight mt-2">
             Directed by {mainFilm.directors[0]}. {mainFilm.duration} minutes.{" "}
-            {mainFilm.release_date.substring(0,4)}
+            {mainFilm.release_date.substring(0, 4)}
           </p>
-          <div className="max-w-2xl flex items-center justify-center mt-6">
+          <div className="max-w-2xl mx-auto flex items-center justify-center mt-6">
             <blockquote className="mt-6 pl-6 italic pr-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
               {mainFilm.synopsis.fr}
             </blockquote>
           </div>
           <div className="mt-12 pr-4 pl-4">
             <div className="relative mb-6">
-              <YouTubeEmbed videoid={mainFilm.trailer.fr} className="" />
-
-              <BorderBeam />
+              {mainFilm.trailer ? (
+                mainFilm.trailer.fr ? (
+                  <>
+                    <YouTubeEmbed videoid={mainFilm.trailer.fr} className="" />
+                    <BorderBeam />
+                  </>
+                ) : mainFilm.trailer.en ? (
+                  <>
+                    <YouTubeEmbed videoid={mainFilm.trailer.en} className="" />
+                    <BorderBeam />
+                  </>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
+              )}
             </div>
 
             <div className="flex justify-center items-center gap-4">
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="button"
-                className="bg-transparent text-slate-100 flex items-center space-x-2"
-              >
-                <AceternityLogo />
-                <span>View on Netflix</span>
-              </HoverBorderGradient>
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="button"
-                className="bg-transparent text-slate-100 flex items-center space-x-2"
-              >
-                <AceternityLogo />
-                <span>View on Prime</span>
-              </HoverBorderGradient>
+              {mainFilm.providers.fr.length > 0 &&
+                mainFilm.providers.fr.map((platform) => {
+                  return (
+                    <HoverBorderGradient
+                      containerClassName="rounded-full"
+                      as="button"
+                      className="bg-transparent text-slate-100 flex items-center space-x-2"
+                    >
+                      <AceternityLogo />
+                      <span>Available on {platform}</span>
+                    </HoverBorderGradient>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -116,21 +105,23 @@ export default function MoviesPage() {
 
       <div className="bg-black mx-auto w-screen h-screen flex items-center justify-center">
         <div className="h-[400px] flex flex-nowrap justify-start">
-          {moviesTest.map((movie, index) => (
+          {movies.map((movie, index) => (
             <>
               <input
                 type="radio"
                 name="slide"
                 id={index}
                 className="hidden"
-                onClick={() => handleFilmClick(movie)}
+                onClick={() => handleFilmClick(index)}
               />
               <label
                 htmlFor={index}
                 className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
               >
                 <Image
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop}`}
+                  src={`https://image.tmdb.org/t/p/original${
+                    movie.backdrop ? movie.backdrop : movie.poster
+                  }`}
                   alt={movie.title.fr}
                   layout="fill"
                   objectFit="cover"
@@ -142,8 +133,8 @@ export default function MoviesPage() {
                       {movie.title.fr}
                     </h4>
                     <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
-                      Directed by {movie.directors[0]} - {movie.duration} minutes -{" "}
-                      {movie.release_date.substring(0,4)}
+                      Directed by {movie.directors[0]} - {movie.duration}{" "}
+                      minutes - {movie.release_date.substring(0, 4)}
                     </p>
 
                     <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">
@@ -156,6 +147,10 @@ export default function MoviesPage() {
           ))}
         </div>
       </div>
-    </>
+
+      <div className="mt-16 z-10">
+        <Footer />
+      </div>
+    </div>
   );
 }

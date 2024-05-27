@@ -95,8 +95,10 @@ export default function ModalSignup() {
             <Image
               src={"/home/logo-moodvie-letter.svg"}
               alt="logo-moodvie"
-              layout="fill"
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
+              width={50}
+              height={50}
+              fetchpriority="high"
             />
           </div>
           <DialogHeader>
@@ -138,15 +140,9 @@ export default function ModalSignup() {
                 onClick={() => setIsVisible(!isVisible)}
               >
                 {isVisible ? (
-                  <FontAwesomeIcon
-                    icon={faEye}
-                    className="text-base text-default-400"
-                  />
+                  <FontAwesomeIcon icon={faEye} className="" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faEyeSlash}
-                    className="text-base text-default-400"
-                  />
+                  <FontAwesomeIcon icon={faEyeSlash} className="" />
                 )}
               </button>
             </div>
@@ -199,9 +195,10 @@ export default function ModalSignup() {
               <Image
                 src="/logo/facebook.svg"
                 alt="logo-facebook"
-                layout="fill"
-                objectFit="contain"
-                className=""
+                style={{ objectFit: "contain" }}
+                width={18}
+                height={18}
+                fetchpriority="high"
               />
             </div>
             Continue with Facebook
@@ -211,9 +208,10 @@ export default function ModalSignup() {
               <Image
                 src="/logo/google.svg"
                 alt="logo-google"
-                layout="fill"
-                objectFit="contain"
-                className=""
+                style={{ objectFit: "contain" }}
+                width={30}
+                height={30}
+                fetchpriority="high"
               />
             </div>
             Continue with Google
