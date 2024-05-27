@@ -36,13 +36,9 @@ function History() {
           last watched
         </h3>
       </div>
-<<<<<<< HEAD
-      <CollectionCarousel/>
-=======
 
       {/* Collection Carousel section */}
       <CollectionCarousel />
->>>>>>> c1f99c5eda3e5abc7c8c6640f2770a492a45ea27
     </div>
   );
 }

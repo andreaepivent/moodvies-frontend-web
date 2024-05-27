@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import NavbarProfile from "./NavbarProfile";
 import { platformsLogo } from "../data";
 import AddPlatform from "./AddPlatform";
-<<<<<<< HEAD
-import NotePlatform from "./NotePlatform";
-=======
 import { useSelector } from "react-redux";
 import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
->>>>>>> c1f99c5eda3e5abc7c8c6640f2770a492a45ea27
 
 function Platforms() {
   const user = useSelector((state) => state.user.value)
