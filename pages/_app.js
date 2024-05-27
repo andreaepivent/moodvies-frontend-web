@@ -10,6 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import user from "../reducers/user";
 import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
+import recommendations from "../reducers/recommendations";
 import { NextUIProvider } from "@nextui-org/system";
 
 const lato = Lato({
@@ -17,7 +18,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-const reducers = combineReducers({ user, platforms, movies });
+const reducers = combineReducers({ user, platforms, movies, recommendations });
 const persistConfig = { key: "applicationName", storage };
 
 const store = configureStore({
