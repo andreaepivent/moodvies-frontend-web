@@ -5,31 +5,36 @@ import { Setting } from "../common/Setting";
 import NavLink from "../common/NavLink";
 
 export default function NavbarProfile() {
-  const router = useRouter();
+  const router = useRouter(); // Using Next.js useRouter hook for navigation
+
+  // Function to navigate to the mood page
   function handleHome() {
     router.push(`/mood`);
   }
 
-  const [showModalSettings, setShowModalSettings] = useState(false);
+  const [showModalSettings, setShowModalSettings] = useState(false); // State to manage the visibility of the settings modal
 
   return (
     <>
-      <div className="flex items-center justify-between z-10 px-8 w-full">
+      <div className="flex items-center justify-between z-10 px-6 w-full">
+        {/* Logo and home navigation */}
         <div className="flex flex-col justify-between items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
             className="size-20 cursor-pointer ml-10"
-            onClick={() => handleHome()}
+            onClick={() => handleHome()} // Navigate to home on click
           />
         </div>
+
+        {/* Navigation links */}
         <div className="border-b border-slate-100 flex justify-around w-1/2 ">
           <NavLink
             href="/profile/informations"
             activeClassName="text-white p-4"
             nonActiveClassName="text-slate-500 p-4"
           >
-            Personnal Informations
+            Personal Informations
           </NavLink>
           <NavLink
             href="/profile/history"
@@ -47,15 +52,16 @@ export default function NavbarProfile() {
           </NavLink>
         </div>
 
+        {/* Language selection and settings */}
         <div className="flex gap-4">
           <div className="hidden items-center md:flex">
-            <LanguageSelect />
+            <LanguageSelect /> {/* Language selection dropdown */}
           </div>
           <div
-            className=" flex items-center cursor-pointer"
-            onClick={() => setShowModalSettings(!showModalSettings)}
+            className="flex items-center cursor-pointer"
+            onClick={() => setShowModalSettings(!showModalSettings)} // Toggle settings modal
           >
-            <Setting></Setting>
+            <Setting /> {/* Settings icon */}
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Label } from "../ui/label"; 
+import { Input } from "../ui/input"; 
+import { Button } from "../ui/button"; 
 import {
   Card,
   CardContent,
@@ -10,16 +10,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import NavbarProfile from "./NavbarProfile";
+} from "@/components/ui/card"; 
+import NavbarProfile from "./NavbarProfile"; 
 
+// Functional component to change user information
 function ChangeInfos(props) {
+  // State variables to manage form inputs
   const [usernameValue, setUsernameValue] = useState("Louis");
   const [emailValue, setEmailValue] = useState("email");
-  const [passwordValue, setPasswordValue] = useState("password");
+  const [currentPasswordValue, setCurrentPasswordValue] = useState("current password");
 
   return (
+    // Main container with background and flex layout
     <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+      {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
         <NavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
@@ -29,12 +33,15 @@ function ChangeInfos(props) {
         </div>
       </div>
 
+      {/* Tabs section for Account and Password */}
       <div className="flex justify-center mt-60">
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="account">Account</TabsTrigger>
             <TabsTrigger value="password">Password</TabsTrigger>
           </TabsList>
+
+          {/* Account Tab Content */}
           <TabsContent value="account">
             <Card>
               <CardHeader>
@@ -45,25 +52,32 @@ function ChangeInfos(props) {
                     size="sm"
                     className="bg-transparent text-black hover:bg-slate-100 hover:rounded-full"
                     onClick={() => {
-                      props.setIsEditClicked(false);
+                      props.setIsEditClicked(false); // Close the edit form
                     }}
                   >
                     X
                   </Button>
                 </div>
                 <CardDescription>
-                  Make changes to your account here. Click save when you're
-                  done.
+                  Make changes to your account here. Click save when you're done.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="username">Username</Label>
-                  <Input id="username" defaultValue="@peduarte" />
+                  <Input 
+                    id="username" 
+                    value={usernameValue}
+                    onChange={(value) => setUsernameValue(value)}
+                  />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" defaultValue="peduarte@gmail.com" />
+                  <Input 
+                    id="email"
+                    value={emailValue}
+                    onChange={(value) => setEmailValue(value)}
+                  />
                 </div>
               </CardContent>
               <CardFooter>
@@ -71,6 +85,8 @@ function ChangeInfos(props) {
               </CardFooter>
             </Card>
           </TabsContent>
+
+          {/* Password Tab Content */}
           <TabsContent value="password">
             <Card>
               <CardHeader>
@@ -81,7 +97,7 @@ function ChangeInfos(props) {
                     size="sm"
                     className="bg-transparent text-black hover:bg-slate-100 hover:rounded-full"
                     onClick={() => {
-                      props.setIsEditClicked(false);
+                      props.setIsEditClicked(false); // Close the edit form
                     }}
                   >
                     X
@@ -112,4 +128,4 @@ function ChangeInfos(props) {
   );
 }
 
-export default ChangeInfos;
+export default ChangeInfos; // Exporting the component as default
