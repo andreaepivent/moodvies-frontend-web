@@ -10,7 +10,7 @@ function HomePageMiddle() {
       <div>
         <div class="w-full h-full absolute left-1/3 ">
           <img
-            class=""
+            class="pointer-events-none"
             src="/home/Graduate3.png"
             alt="Graduate"
             oncontextmenu="return false;"
@@ -19,7 +19,7 @@ function HomePageMiddle() {
 
         <div class="w-full h-full absolute top-2/4 right-1/4">
           <img
-            class=""
+            class="pointer-events-none"
             src="/home/Graduate1.png"
             alt="Graduate"
             oncontextmenu="return false;"
