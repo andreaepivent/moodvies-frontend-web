@@ -1,10 +1,9 @@
-import Footer from "./common/Footer";
-import Navbar from "./common/Navbar";
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Image from "next/image";
-import parrain from "../public/movie/le-parrain.jpeg";
-import { BorderBeam } from "./ui/border-beam";
+import { BorderBeam } from "../ui/border-beam";
 
 export default function IAPage() {
   const router = useRouter();

@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
-
-import Navbar from "./common/Navbar";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState } from "react";
 import Image from "next/image";
-import { movies } from "./data";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import AceternityLogo from "./logo/AceternityLogo";
-import { BorderBeam } from "./ui/border-beam";
+import { movies } from "../data";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import AceternityLogo from "../logo/AceternityLogo";
+import { BorderBeam } from "../ui/border-beam";
+import Navbar from "../common/Navbar";
 
 export default function MoviesPage() {
   const [firstFilm, ...otherFilms] = movies;
