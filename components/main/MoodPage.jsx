@@ -11,16 +11,43 @@ import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { updateRecommendation } from "@/reducers/recommendations";
+import { Spinner } from "@nextui-org/spinner";
 
 export default function MoodPage() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  function handleMovies(mood) {
-    router.push(`/movies`);
-    // router.push(`/movies/${mood.toLowerCase()}`);
-  }
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+  //console.log(user);
+
+  const tokenTest = "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd";
+
+  const handleMoodClick = (moodSelected) => {
+    setLoading(true);
+    console.log(moodSelected);
+    fetch("http://localhost:3000/recommendation", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: tokenTest,
+        userMood: moodSelected.toLowerCase(),
+        option: "similarity",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(updateRecommendation(data.recommendations));
+        router.push(`/movies`);
+        setLoading(false);
+      });
+  };
+
   return (
     <>
       <div className=" relative w-screen h-screen flex flex-col bg-center overflow-hidden">
@@ -52,7 +79,7 @@ export default function MoodPage() {
                   <div className="p-1 w-full ">
                     <Card
                       className="bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 cursor-pointer"
-                      onClick={() => handleMovies(mood)}
+                      onClick={() => handleMoodClick(mood)}
                     >
                       <CardContent className="flex items-center justify-center p-2 ">
                         <span className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
@@ -69,6 +96,14 @@ export default function MoodPage() {
           </Carousel>
         </div>
       </div>
+
+      {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="spinner-container">
+            <Spinner size="lg" color="secondary" />
+          </div>
+        </div>
+      )}
 
       <div className="">
         <Footer></Footer>
