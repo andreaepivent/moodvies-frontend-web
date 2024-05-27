@@ -27,7 +27,7 @@ function History() {
           last watched
         </h3>
       </div>
-      <CollectionCarousel />
+      <CollectionCarousel/>
     </div>
   );
 }

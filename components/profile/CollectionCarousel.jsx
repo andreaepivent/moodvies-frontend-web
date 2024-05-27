@@ -1,5 +1,5 @@
-import React from 'react'
-import { movies } from '../data'
+import React from "react";
+import { movies } from "../data";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +10,7 @@ import {
 
 function CollectionCarousel() {
   return (
-    <Carousel className="w-[70%] mb-16">
+    <Carousel className="w-[80%] mb-16">
       <CarouselContent className="">
         {movies.map((movie, index) => (
           <CarouselItem
@@ -23,6 +23,16 @@ function CollectionCarousel() {
                 src={`/movie/${movie.background}`}
                 alt={`${movie.title} poster`}
               />
+              {showModalSignUp &&
+                createPortal(
+                  <Signup
+                    closeModal={() => {
+                      setShowModalSignUp(false);
+                    }}
+                    submit={() => submitSignUp()}
+                  />,
+                  document.body
+                )}
               <div className="absolute bottom-0 left-0 right-0 text-white text-center p-2 opacity-0 transform translate-y-full transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-200">
                 {movie.title}
               </div>
@@ -36,4 +46,4 @@ function CollectionCarousel() {
   );
 }
 
-export default CollectionCarousel
+export default CollectionCarousel;

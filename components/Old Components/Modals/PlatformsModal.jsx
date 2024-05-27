@@ -22,7 +22,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+<<<<<<< HEAD:components/Old Components/Modals/PlatformsModal.jsx
 export default function Signup({ closeModal, submit, Signup }) {
+=======
+export default function Signup({ closeModal, submit, BackSignUp }) {
+>>>>>>> a9db546fd0bd3efb70b83654377edaea1eac8a8e:components/home/Modals/PlatfomsModal.jsx
   return (
     <div
       className="z-10 fixed inset-0  flex items-center justify-center"
@@ -64,14 +68,6 @@ export default function Signup({ closeModal, submit, Signup }) {
               onClick={submit}
             >
               <ChevronRight className="h-4 w-4" />
-            </Button>
-
-            <Button
-              variant="outline"
-              className="w-4/12 rounded-full absolute top-6 right-6 h-8 w-16"
-              onClick={Signup}
-            >
-              <ChevronLeft className="h-4 w-4" />
             </Button>
           </CardFooter>
         </Card>

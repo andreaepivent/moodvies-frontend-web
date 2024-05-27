@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import NavbarProfile from "./NavbarProfile";
 import { platformsLogo } from "../data";
 import AddPlatform from "./AddPlatform";
+import NotePlatform from "./NotePlatform";
 
 function Platforms() {
   const [logos, setLogos] = useState(platformsLogo)

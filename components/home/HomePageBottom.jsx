@@ -11,6 +11,7 @@ function HomePageBottom() {
         />
       </div>
 
+<<<<<<< HEAD
       <div className="flex justify-center align-center basis-1/4 grow text-center mt-40  ">
         <img
           className=" z-30 w-2/4 h-4/5 mr-12 pointer-events-none"
@@ -23,6 +24,14 @@ function HomePageBottom() {
             Moodvies is also <br />
             available on <br />
             your phone!
+=======
+      <div className="flex justify-center align-center basis-1/4 grow text-center mt-40 ">
+        <img class=" z-30 w-2/4 h-4/5 mr-12 pointer-events-none" src="/home/phone.png" alt="phone-image" oncontextmenu="return false;" />
+
+        <div className="mr-20">
+          <p className=" mt-60  text-5xl font-bold text-white ">
+            Moodvies is also <br/>available on <br/>your phone!
+>>>>>>> a9db546fd0bd3efb70b83654377edaea1eac8a8e
           </p>
           <div className="flex justify-center mt-20">
             <img
