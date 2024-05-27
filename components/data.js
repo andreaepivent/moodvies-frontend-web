@@ -77,39 +77,39 @@ const movies = [
     synopsis:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, temporibus eum sed culpa obcaecati cupiditate.",
     trailer: "P5ieIbInFpg",
-    background: "gladiator.jpg",
+    background: "gladiator.jpeg",
   },
 ];
 
 const platformsLogo = [
   {
-  src: "AppleTV.png",
-  name: "Apple"
-},
-{
-  src: "Disney+.png",
-  name: "Disney+"
-},
-{
-  src: "HBO.png",
-  name: "HBO"
-},
-{
-  src: "MyCanal.png",
-  name: "MyCanal"
-},
-{
-  src: "Netflix.png",
-  name: "Netflix"
-},
-{
-  src: "OSC.png",
-  name: "OSC"
-},
-{
-  src: "Prime.png",
-  name: "Prime"
-}
-]
+    src: "AppleTV.png",
+    name: "Apple",
+  },
+  {
+    src: "Disney+.png",
+    name: "Disney+",
+  },
+  {
+    src: "HBO.png",
+    name: "HBO",
+  },
+  {
+    src: "MyCanal.png",
+    name: "MyCanal",
+  },
+  {
+    src: "Netflix.png",
+    name: "Netflix",
+  },
+  {
+    src: "OSC.png",
+    name: "OSC",
+  },
+  {
+    src: "Prime.png",
+    name: "Prime",
+  },
+];
 
 export { moods, movies, platformsLogo };

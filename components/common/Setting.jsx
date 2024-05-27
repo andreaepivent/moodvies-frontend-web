@@ -7,7 +7,6 @@ import {
   History,
   User,
 } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -51,10 +50,18 @@ export function Setting() {
         <>
           <DropdownMenu className="">
             <DropdownMenuTrigger asChild>
-              <Button variant="settingButton">{user.firstname}</Button>
+              <Button variant="settingButton">
+                Hello {""}
+                {user.firstname.charAt(0).toUpperCase() +
+                  user.firstname.slice(1)}
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>
+                {user.firstname.charAt(0).toUpperCase() +
+                  user.firstname.slice(1)}{" "}
+                account
+              </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => handleInformations()}>

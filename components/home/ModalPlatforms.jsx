@@ -18,7 +18,7 @@ function IconPlatform({ nom, onSelect, selected }) {
       src={`/logo-platform/${nom}.png`}
       className={
         "size-20 m-4 rounded transition duration-500 ease-in-out transform hover:scale-125 hover:brightness-75 shadow-glow-white" +
-        (selected ? " border-4 border-white " : "")
+        (selected ? " border-4 border-green-500 " : "")
       }
       alt={nom + " Logo"}
       onClick={onSelect}
@@ -59,6 +59,7 @@ export default function PlatformsModal({ open, onOpenChange }) {
                 objectFit="contain"
               />
             </div>
+
             <DialogHeader>
               <DialogTitle className="text-center text-2xl mb-3">
                 Which platform(s) do you stream on?
