@@ -24,20 +24,6 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 
-//Calendrier
-import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { FieldCalendar } from "../ui/FieldCalendar";
-
-const FormSchema = z.object({
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-});
-
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");

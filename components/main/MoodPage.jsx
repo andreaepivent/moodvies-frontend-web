@@ -48,13 +48,38 @@ export default function MoodPage() {
       });
   };
 
+  const randomMovie = [
+    "avatar",
+    "gladiator",
+    "cercle-des-poetes",
+    "fight-club",
+    "intouchable",
+    "inception",
+    "interstellar",
+    "la-ligne-verte",
+    "la-vie-est-belle",
+    "le-parrain-2",
+    "le-voyage-de-chihiro",
+    "lebon-labrute",
+    "leon",
+    "les-evades",
+    "les-affranchis",
+    "lord-of-the-ring",
+    "pulp-fiction",
+    "retour-vers-le-futur",
+    "vol-au-dessus",
+    "the-dark-knight",
+  ];
+
+  const random = Math.floor(Math.random() * 21);
+
   return (
     <>
       <div className=" relative w-screen h-screen flex flex-col bg-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
           style={{
-            backgroundImage: `url(/movie/blade-runner.jpeg)`,
+            backgroundImage: `url(/movie/blade-runner.jpg)`,
             zIndex: 1,
           }}
         ></div>
