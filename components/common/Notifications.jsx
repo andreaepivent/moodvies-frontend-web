@@ -45,7 +45,7 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative mr-2">
       <FontAwesomeIcon
         icon={faBell}
         className="text-slate-100 size-6 cursor-pointer mt-2"

@@ -1,6 +1,5 @@
-"use client";
 import React from "react";
-
+import socketIOClient from "socket.io-client";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 import { YouTubeEmbed } from "@next/third-parties/google";
@@ -16,6 +15,22 @@ export default function MoviesPage() {
     (state) => state.recommendations.value.recommendations
   );
   const [mainFilm, setMainFilm] = useState(movies[0]);
+  const [mood, setMood] = useState("");
+
+  console.log(mood);
+
+  useEffect(() => {
+    const socket = socketIOClient("http://localhost:3000");
+
+    socket.on("moodAdded", (mood) => {
+      setMood(mood.userMood);
+      console.log("Mood received:", mood.userMood);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const handleFilmClick = (clickedFilm) => {
     setMainFilm(movies[clickedFilm]);
@@ -34,10 +49,13 @@ export default function MoviesPage() {
               mainFilm.backdrop ? mainFilm.backdrop : mainFilm.poster
             }`}
             alt={mainFilm.title.fr}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
+
+        <div className="text-xl text-center text-blue-500">{mood}</div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
@@ -45,7 +63,7 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="my-auto text-center text-slate-100 mx-auto mt-72 z-10">
+        <div className="my-auto text-center text-slate-100 mx-auto mt-64 z-10">
           <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
             {mainFilm.title.fr}
           </h2>
@@ -58,8 +76,8 @@ export default function MoviesPage() {
               {mainFilm.synopsis.fr}
             </blockquote>
           </div>
-          <div className="mt-12 pr-4 pl-4">
-            <div className="relative mb-6">
+          <div className="mt-20 pr-4 pl-4 mx-auto">
+            <div className="relative mb-6 w-full max-w-3xl mx-auto">
               {mainFilm.trailer ? (
                 mainFilm.trailer.fr ? (
                   <>
@@ -78,12 +96,12 @@ export default function MoviesPage() {
                 ""
               )}
             </div>
-
-            <div className="flex justify-center items-center gap-4">
+            <div className="flex justify-center items-center flex-wrap gap-4">
               {mainFilm.providers.fr.length > 0 &&
-                mainFilm.providers.fr.map((platform) => {
+                mainFilm.providers.fr.map((platform, index) => {
                   return (
                     <HoverBorderGradient
+                      key={index}
                       containerClassName="rounded-full"
                       as="button"
                       className="bg-transparent text-slate-100 flex items-center space-x-2"
@@ -105,7 +123,7 @@ export default function MoviesPage() {
       <div className="bg-black mx-auto w-screen h-screen flex items-center justify-center">
         <div className="h-[400px] flex flex-nowrap justify-start">
           {movies.map((movie, index) => (
-            <>
+            <React.Fragment key={index}>
               <input
                 type="radio"
                 name="slide"
@@ -122,12 +140,14 @@ export default function MoviesPage() {
                     movie.backdrop ? movie.backdrop : movie.poster
                   }`}
                   alt={movie.title.fr}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="rounded-2xl"
                 />
+
                 <div className="flex flex-nowrap p-4">
-                  <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-allease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
+                  <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-all ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
                     <h4 className="uppercase text-white scroll-m-20 text-2xl font-semibold tracking-tight">
                       {movie.title.fr}
                     </h4>
@@ -142,7 +162,7 @@ export default function MoviesPage() {
                   </div>
                 </div>
               </label>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
