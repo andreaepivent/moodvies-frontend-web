@@ -20,7 +20,7 @@ function LanguageSelect() {
   };
 
   return (
-    <Select>
+    <Select onValueChange={handleChange} value={currentLanguage}>
       <SelectTrigger className="w-[100px] p-2 bg-transparent text-white cursor-pointer">
         <SelectValue
           placeholder={currentLanguage === "fr" ? "Français" : "English"}
