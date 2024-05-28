@@ -18,7 +18,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        gradientPurple:"bg-gradient-to-r from-fuchsia-700 to-fuchsia-900",
+        gradientPurple:
+          "bg-gradient-to-r from-blue-500 to-fuchsia-900 hover:bg-gradient-to-l",
         facebook: "bg-blue-700 hover:bg-blue-600",
         subscribe: "bg-gradient-to-r from-slate-100 to-gray-900",
         moodButton:

@@ -2,10 +2,8 @@ import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Button } from "./ui/button";
-import Image from "next/image";
-import parrain from "../public/movie/le-parrain.jpeg";
-import { BorderBeam } from "./ui/border-beam";
+import { Button } from "../ui/button";
+import { BorderBeam } from "../ui/border-beam";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRecommendation } from "@/reducers/recommendations";
 
@@ -68,6 +66,7 @@ export default function IAPage() {
         "Années 60 à 2000",
         "Moderne (2000 à 2020)",
         "2020 à aujourd'hui",
+        "Indifférent",
       ],
     },
     {

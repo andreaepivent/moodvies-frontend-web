@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import Navbar from "./common/Navbar";
-import Footer from "./common/Footer";
+import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,6 @@ import Image from "next/image";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
 import { BorderBeam } from "../ui/border-beam";
-import Navbar from "../common/Navbar";
 
 export default function MoviesPage() {
   const movies = useSelector(

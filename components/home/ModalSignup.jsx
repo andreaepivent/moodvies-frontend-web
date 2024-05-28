@@ -38,49 +38,50 @@ export default function ModalSignup() {
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const submitTest = () => {
-    wait().then(() => {
-      setOpen(false);
-      setNextModalOpen(true);
-    });
-  };
-
-  // const submitSignUp = () => {
-  //   const connectionData = {
-  //     username: username,
-  //     password: password,
-  //     email: email,
-  //     birthday: birthday,
-  //     gender: gender,
-  //   };
-
-  //   fetch("http://localhost:3000/users/signup", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(connectionData),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         console.log(data);
-  //         wait().then(() => {
-  //           setOpen(false);
-  //           setNextModalOpen(true);
-  //         });
-  //         setUsername("");
-  //         setPassword("");
-  //         setEmail("");
-  //         setBirthday("");
-  //         setGender("");
-  //         dispatch(
-  //           login({
-  //             token: data.token,
-  //             username: data.username,
-  //           })
-  //         );
-  //       }
-  //     });
+  // const submitTest = () => {
+  //   wait().then(() => {
+  //     console.log(birthday);
+  //     setOpen(false);
+  //     setNextModalOpen(true);
+  //   });
   // };
+
+  const submitSignUp = () => {
+    const connectionData = {
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday,
+      gender: gender,
+    };
+
+    fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(connectionData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          console.log(data);
+          wait().then(() => {
+            setOpen(false);
+            setNextModalOpen(true);
+          });
+          setUsername("");
+          setPassword("");
+          setEmail("");
+          setBirthday("");
+          setGender("");
+          dispatch(
+            login({
+              token: data.token,
+              username: data.username,
+            })
+          );
+        }
+      });
+  };
 
   return (
     <>
@@ -122,6 +123,7 @@ export default function ModalSignup() {
             <Input
               id="email"
               placeholder="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -148,9 +150,11 @@ export default function ModalSignup() {
             </div>
             <div className="flex flex-row gap-2">
               <Input
-                id="age"
-                placeholder="Age"
-                className="w-16"
+                id="birthday"
+                placeholder="Date de naissance"
+                type="date"
+                className="w-40"
+                value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
               />
               <Select onValueChange={setGender} value={gender}>
@@ -180,7 +184,7 @@ export default function ModalSignup() {
               type="submit"
               variant="gradientPurple"
               className="w-full mb-1"
-              onClick={() => submitTest()}
+              onClick={() => submitSignUp()}
             >
               Submit
             </Button>

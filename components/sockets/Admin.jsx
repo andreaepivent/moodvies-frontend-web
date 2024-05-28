@@ -20,9 +20,13 @@ export default function Admin() {
 
   const handleAddMovie = () => {
     const socket = socketIOClient("http://localhost:3000");
+    const movieData = {
+      title: title,
+      date: formatDate(date),
+    };
 
-    socket.emit("addMovie", title);
-    socket.emit("addDate", formatDate(date));
+    socket.emit("addMovie", movieData);
+
     setMessage(
       `Movie title: ${title} available: ${formatDate(date)} added successfully!`
     );

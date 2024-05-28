@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
 
 function Platforms() {
-  const user = useSelector((state) => state.user.value)
+  const user = useSelector((state) => state.user.value);
 
   const [logos, setLogos] = useState(platformsLogo); // State to manage the logos
   const [showModal, setShowModal] = useState(false); // State to manage the visibility of the modal
@@ -14,7 +14,9 @@ function Platforms() {
 
   // Function to delete a logo
   const deleteLogos = (e) => {
-    const newLogos = logos.filter((logo) => logo.src !== e.target.previousSibling.src.match(regex)[1]);
+    const newLogos = logos.filter(
+      (logo) => logo.src !== e.target.previousSibling.src.match(regex)[1]
+    );
     setLogos(newLogos);
   };
 
@@ -26,14 +28,17 @@ function Platforms() {
   // Mapping over logos to create the platform elements
   const platforms = logos.map((logo, index) => {
     return (
-      <div key={index} className="relative image-container overflow-hidden h-48 w-48 flex justify-center items-center ">
+      <div
+        key={index}
+        className="relative image-container overflow-hidden h-48 w-48 flex justify-center items-center "
+      >
         <img
           className="h-36 w-36 object-cover rounded-2xl"
           src={`/logo-platform/${logo.src}`}
           alt={`${logo.name} poster`}
         />
-        <div 
-          className='absolute top-4 right-5 w-6 h-6 font-extrabold text-xs text-white bg-transparent border rounded-full flex justify-center items-center group hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-30 hover:text-black'
+        <div
+          className="absolute top-4 right-5 w-6 h-6 font-extrabold text-xs text-white bg-transparent border rounded-full flex justify-center items-center group hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-30 hover:text-black"
           onClick={(e) => deleteLogos(e)}
         >
           X
@@ -64,24 +69,22 @@ function Platforms() {
             </h1>
           </div>
         </div>
-        
+
         {/* Conditional rendering for modal and platform list */}
         {showModal ? (
-          <AddPlatform 
-            handleImageClicked={handleImageClicked} 
-            setShowModal={setShowModal} 
-            showModal={showModal} 
-            logos={logos} 
-            setLogos={setLogos} 
+          <AddPlatform
+            handleImageClicked={handleImageClicked}
+            setShowModal={setShowModal}
+            showModal={showModal}
+            logos={logos}
+            setLogos={setLogos}
             regex={regex}
           />
         ) : (
           <div className="mt-36 flex flex-col items-center">
-            <div className="w-70% flex flex-wrap">
-              {platforms}
-            </div>
-            <Button 
-              variant="gradientPurple" 
+            <div className="w-70% flex flex-wrap">{platforms}</div>
+            <Button
+              variant="gradientPurple"
               className="text-white mt-20"
               onClick={addNewPlatform}
             >

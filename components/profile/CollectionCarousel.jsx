@@ -1,5 +1,5 @@
-import React from 'react'; // Importing React library
-import { movies } from '../data'; // Importing movie data
+import React from "react";
+import { movies } from "../data";
 import {
   Carousel,
   CarouselContent,
@@ -26,8 +26,6 @@ function CollectionCarousel() {
                 src={`/movie/${movie.background}`} // Movie background image
                 alt={`${movie.title} poster`} // Alt text for accessibility
               />
-
-              {/* Title of the movie appears on hover */}
               <div className="absolute bottom-0 left-0 right-0 text-white text-center p-2 opacity-0 transform translate-y-full transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-200">
                 {movie.title}
               </div>

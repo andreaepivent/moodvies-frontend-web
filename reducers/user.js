@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: {
-    token: "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd",
-    username: "Louis",
+    token: null,
+    username: null,
   },
 };
 
@@ -21,7 +21,7 @@ export const userSlice = createSlice({
     },
     update: (state, action) => {
       state.value.username = action.payload.username;
-    }
+    },
   },
 });
 

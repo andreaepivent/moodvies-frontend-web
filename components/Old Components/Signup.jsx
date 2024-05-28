@@ -29,6 +29,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { FieldCalendar } from "../ui/FieldCalendar";
 
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
@@ -111,9 +112,9 @@ export default function Signup({ closeModal, submit }) {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div class="flex-row grow ml-2 w-10">
+                  {/* <div class="flex-row grow ml-2 w-10">
                     <FieldCalendar />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="mt-6">
