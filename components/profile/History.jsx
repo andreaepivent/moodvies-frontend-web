@@ -2,11 +2,37 @@ import React from "react";
 import MoodCarousel from "./MoodCarousel";
 import NavbarProfile from "./Navbar/NavbarProfile";
 import CollectionCarousel from "./CollectionCarousel";
-import { useSelector }  from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile";
 
 function History() {
   const user = useSelector((state) => state.user.value);
+  const [hourMoodage, setHourMoodage] = useState(null);
+
+  // Récupérer le nombre d'h de moodage
+  useEffect(() => {
+    fetch(
+      `http://localhost:3000/users/getRecommendations/${user.token}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        let totalDuration = 0;
+
+        data.forEach((entry) => {
+          totalDuration += entry.movie.duration;
+        });
+
+        setHourMoodage(totalDuration);
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  }, []);
+
   return (
     // Main container with background and flex layout
     <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
@@ -18,7 +44,7 @@ function History() {
             Hello {user.username}
           </h1>
           <p className="text-white flex items-end pb-1 text-lg md:text-l md:pr-32 lg:text-xl">
-            <span className="text-[#A759AD] mr-1">156h</span>de Moodage
+            <span className="text-[#A759AD] mr-1">{Math.floor(hourMoodage/60)}h</span>de Moodage
           </p>
         </div>
       </div>
@@ -32,7 +58,7 @@ function History() {
       <div className="w-[90%] md:w-[80%] h-[5%] flex justify-between border-b">
         <h2 className="text-white text-lg md:text-xl mb-3">Collection</h2>
         <h3 className="text-slate-300 text-sm md:text-l font-thin mb-3">
-          last watched
+          last recommended
         </h3>
       </div>
 
