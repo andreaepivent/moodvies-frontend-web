@@ -6,44 +6,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../components/ui/carousel";
-import socketIOClient from "socket.io-client";
+
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
+import { addMood } from "../../reducers/moods";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
-  const [mood, setMood] = useState("");
 
   const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const socket = useRef(null);
-
-  useEffect(() => {
-    socket.current = socketIOClient("http://localhost:3000");
-
-    return () => {
-      socket.current.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (mood) {
-      socket.current.emit("addMood", { userMood: mood });
-    }
-  }, [mood]);
-
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
-    setMood(moodSelected);
-    console.log(moodSelected); // Utilisez moodSelected ici pour vérifier la valeur
 
     fetch("http://localhost:3000/recommendation", {
       method: "POST",
@@ -62,6 +44,7 @@ export default function MoodPage() {
         dispatch(updateRecommendation(data.recommendations));
         router.push(`/movies`);
         setLoading(false);
+        dispatch(addMood([moodSelected]));
       });
   };
 

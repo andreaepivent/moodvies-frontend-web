@@ -1,5 +1,5 @@
 import React from "react";
-import socketIOClient from "socket.io-client";
+import { Button } from "../ui/button";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 import { YouTubeEmbed } from "@next/third-parties/google";
@@ -9,27 +9,18 @@ import Image from "next/image";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
 import { BorderBeam } from "../ui/border-beam";
+import { removeMood } from "@/reducers/moods";
+import { useRouter } from "next/router";
 
 export default function MoviesPage() {
   const movies = useSelector(
     (state) => state.recommendations.value.recommendations
   );
+  const moods = useSelector((state) => state.moods);
+  console.log(moods);
   const [mainFilm, setMainFilm] = useState(movies[0]);
-  const [mood, setMood] = useState("");
-
-  useEffect(() => {
-    const socket = socketIOClient("http://localhost:3000");
-
-    socket.on("moodAdded", (mood) => {
-      console.log(mood);
-      setMood(mood.userMood);
-      console.log("Mood received:", mood.userMood);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleFilmClick = (clickedFilm) => {
     setMainFilm(movies[clickedFilm]);
@@ -38,6 +29,11 @@ export default function MoviesPage() {
       behavior: "smooth",
     });
   };
+
+  function handleMood() {
+    dispatch(removeMood());
+    router.push(`/mood`);
+  }
 
   return (
     <div className="bg-black">
@@ -54,7 +50,6 @@ export default function MoviesPage() {
           />
         </div>
 
-        <div className="text-xl text-center text-blue-500 z-10">{mood}</div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
@@ -62,7 +57,22 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="my-auto text-center text-slate-100 mx-auto mt-64 z-10">
+        <div className="ml-10 mt-10 flex justify-center items-center z-10">
+          <Button variant="ghost" className="w-50 border-2 text-slate-100">
+            Your mood : {moods[0]}
+          </Button>
+        </div>
+
+        <div className="ml-10 mt-4 flex justify-center items-center  z-10">
+          <Button
+            variant="ghost"
+            className="w-50 border-2 text-slate-100"
+            onClick={() => handleMood()}
+          >
+            Go back ?
+          </Button>
+        </div>
+        <div className="my-auto text-center text-slate-100 mx-auto mt-44 z-10">
           <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
             {mainFilm.title.fr}
           </h2>
