@@ -82,10 +82,10 @@ export default function ModalMovies({ open, onOpenChange }) {
             <div className="grid grid-cols-4 lg:grid-cols-10 sm:grid-cols-5 items-center gap-2">
               {[
                 "avatar",
-                "blade-runner",
+                "gladiator",
                 "cercle-des-poetes",
                 "fight-club",
-                "gladiator",
+                "intouchable",
                 "inception",
                 "interstellar",
                 "la-ligne-verte",
@@ -98,7 +98,7 @@ export default function ModalMovies({ open, onOpenChange }) {
                 "les-affranchis",
                 "lord-of-the-ring",
                 "pulp-fiction",
-                "spider-man",
+                "retour-vers-le-futur",
                 "vol-au-dessus",
                 "the-dark-knight",
               ].map((movie) => (
