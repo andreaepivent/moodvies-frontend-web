@@ -12,7 +12,7 @@ import { ChevronRight } from "lucide-react";
 import ModalSignup from "./ModalSignup";
 import ModalMovies from "./ModalMovies";
 import { useDispatch } from "react-redux";
-import addPlatform from "../../reducers/platforms";
+import { addPlatform } from "@/reducers/platforms";
 
 function IconPlatform({ nom, onSelect, selected }) {
   return (
