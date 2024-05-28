@@ -14,18 +14,8 @@ export default function NavbarProfile() {
   }
 
   return (
-    <div className="flex items-center justify-between z-10 px-6 w-full">
-      {/* Logo and home navigation */}
-      <div className="flex flex-col justify-between items-center">
-        <img
-          src="/home/Logo-moodvie-letter.svg"
-          alt="logo-moodvie"
-          className="size-20 cursor-pointer ml-10"
-          onClick={() => handleHome()} // Navigate to home on click
-        />
-      </div>
-
-        <div className="flex items-center justify-between z-10 px-6 w-full">
+        <>
+          <div className="flex items-center justify-between z-10 px-6 w-full">
           {/* Logo and home navigation */}
           <div className="flex flex-col justify-between items-center">
             <img
@@ -78,8 +68,7 @@ export default function NavbarProfile() {
           onClick={() => setShowModalSettings(!showModalSettings)} // Toggle settings modal
         >
           <Setting /> {/* Settings icon */}
-        </div>
       </div>
-    </div>
+    </>  
   );
 }
