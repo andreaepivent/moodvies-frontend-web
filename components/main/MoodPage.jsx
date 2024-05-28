@@ -6,28 +6,40 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../components/ui/carousel";
+import socketIOClient from "socket.io-client";
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
+  const [mood, setMood] = useState("");
+
+  const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.value);
-  //console.log(user);
+  useEffect(() => {
+    const socket = socketIOClient("http://localhost:3000");
 
-  const tokenTest = "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd";
+    if (mood) {
+      socket.emit("addMood", { userMood: mood });
+    }
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [mood]);
 
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
-    console.log(moodSelected);
+    setMood(moodSelected);
+
     fetch("http://localhost:3000/recommendation", {
       method: "POST",
       headers: {
@@ -35,7 +47,7 @@ export default function MoodPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: tokenTest,
+        token: user.token,
         userMood: moodSelected.toLowerCase(),
         option: "similarity",
       }),
@@ -47,31 +59,6 @@ export default function MoodPage() {
         setLoading(false);
       });
   };
-
-  const randomMovie = [
-    "avatar",
-    "gladiator",
-    "cercle-des-poetes",
-    "fight-club",
-    "intouchable",
-    "inception",
-    "interstellar",
-    "la-ligne-verte",
-    "la-vie-est-belle",
-    "le-parrain-2",
-    "le-voyage-de-chihiro",
-    "lebon-labrute",
-    "leon",
-    "les-evades",
-    "les-affranchis",
-    "lord-of-the-ring",
-    "pulp-fiction",
-    "retour-vers-le-futur",
-    "vol-au-dessus",
-    "the-dark-knight",
-  ];
-
-  const random = Math.floor(Math.random() * 21);
 
   return (
     <>

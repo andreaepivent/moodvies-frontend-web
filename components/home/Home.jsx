@@ -1,11 +1,22 @@
 import Footer from "@/components/common/Footer";
 import HomePageBottom from "./HomePageBottom";
 import HomePageMiddle from "./HomePageMiddle";
-import NavbarHome from "./NavBarHome";
+import NavbarHome from "./NavbarHome";
 import ModalSignup from "./ModalSignup";
 import ModalLogin from "./ModalLogin";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import AceternityLogo from "../logo/AceternityLogo";
 
 export default function Home() {
+  const user = useSelector((state) => state.user.value);
+  const router = useRouter();
+
+  function handleMood() {
+    router.push("/mood");
+  }
+
   return (
     <>
       <div className="bg-black">
@@ -29,9 +40,24 @@ export default function Home() {
                   </h1>
                 </div>
                 <div className="flex justify-center gap-10">
-                  <ModalSignup />
-
-                  <ModalLogin />
+                  {user.username ? (
+                    <>
+                      <HoverBorderGradient
+                        containerClassName="rounded-full"
+                        as="button"
+                        className="bg-transparent text-slate-100 flex items-center space-x-2"
+                        onClick={() => handleMood()}
+                      >
+                        <AceternityLogo />
+                        <span>Go to your mood</span>
+                      </HoverBorderGradient>
+                    </>
+                  ) : (
+                    <>
+                      <ModalSignup />
+                      <ModalLogin />
+                    </>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "@/reducers/traduction";
 import {
   Select,
   SelectContent,
@@ -8,19 +10,31 @@ import {
 } from "@/components/ui/select";
 
 function LanguageSelect() {
+
+  const dispatch = useDispatch();
+  const currentLanguage = useSelector((state) => state.traduction.language);
+  console.log(currentLanguage) 
+
+  const handleChange = (language) => {
+    dispatch(setLanguage(language));
+  };
+
   return (
-    <Select>
+    <Select onValueChange={handleChange} value={currentLanguage}>
       <SelectTrigger className="w-[100px] p-2 bg-transparent text-white cursor-pointer">
-        <SelectValue placeholder="Language" className="text-slate-500" />
+        <SelectValue
+          placeholder={currentLanguage === "fr" ? "Français" : "English"}
+          className="text-slate-500"
+        />
       </SelectTrigger>
       <SelectContent className="bg-transparent text-white">
         <SelectItem
-          value="français"
+          value="fr"
           className="hover:focus:bg-slate-500 cursor-pointer"
         >
           Français
         </SelectItem>
-        <SelectItem value="english" className="cursor-pointer">
+        <SelectItem value="en" className="cursor-pointer">
           English
         </SelectItem>
       </SelectContent>

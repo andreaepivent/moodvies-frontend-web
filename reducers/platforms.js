@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: [],
+  value: [{
+    src: "AppleTV.png",
+    name: "Apple"
+  },
+  {
+    src: "Disney+.png",
+    name: "Disney+"
+  }]
 };
 
 export const PlatformSlice = createSlice({
@@ -13,7 +20,7 @@ export const PlatformSlice = createSlice({
     },
     deletePlatform: (state, action) => {
       state.value = state.value.filter(
-        (platform) => platform.id !== action.payload.id
+        (platform) => platform.src !== action.payload
       );
     },
   },

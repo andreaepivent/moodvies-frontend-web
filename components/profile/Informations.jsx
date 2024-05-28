@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import NavbarProfile from "./NavbarProfile";
+import NavbarProfile from "./Navbar/NavbarProfile";
 import { Button } from "../ui/button";
 import ChangeInfos from "./ChangeInfos";
 import { useSelector } from "react-redux";
-import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
+import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile";
 
 function Informations() {
   const user = useSelector((state) => state.user.value);

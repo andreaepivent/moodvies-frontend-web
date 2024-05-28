@@ -36,13 +36,14 @@ export default function PlatformsModal({ open, onOpenChange }) {
 
   const handleNavigation = (targetModal) => {
     selectedPlatforms.forEach((el) => {
-      console.log(selectedPlatforms);
       dispatch(addPlatform({ src: `${el}.png`, name: el }));
     });
     wait().then(() => setCurrentModal(targetModal));
   };
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
+
+  console.log(selectedPlatforms)
 
   function handleSelectPlatform(platform) {
     setSelectedPlatforms((prev) =>
