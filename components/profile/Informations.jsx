@@ -50,7 +50,7 @@ function Informations() {
       setIsEditClicked={setIsEditClicked}
     />
   ) : (
-    <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+    <div className="w-screen min-h-screen bg-radial-gradient flex flex-col justify-around items-center">
       <div className="fixed top-7 h-[25%] w-full">
         <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
