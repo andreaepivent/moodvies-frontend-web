@@ -25,36 +25,6 @@ export default function NavbarProfile() {
         />
       </div>
 
-<<<<<<< HEAD:components/profile/NavbarProfile.jsx
-      {/* Navigation links */}
-      <div className="md:flex border-b border-slate-100 justify-around w-1/2 ">
-        <NavLink
-          href="/profile/informations"
-          activeClassName="text-white p-4"
-          nonActiveClassName="text-slate-500 p-4"
-        >
-          Personal Informations
-        </NavLink>
-        <NavLink
-          href="/profile/history"
-          activeClassName="text-white p-4"
-          nonActiveClassName="text-slate-500 p-4"
-        >
-          History
-        </NavLink>
-        <NavLink
-          href="/profile/platforms"
-          activeClassName="text-white p-4"
-          nonActiveClassName="text-slate-500 p-4"
-        >
-          Preferred Platforms
-        </NavLink>
-      </div>
-      {/* Language selection and settings */}
-      <div className="flex gap-4">
-        <div className="flex items-center">
-          <LanguageSelect /> {/* Language selection dropdown */}
-=======
         <div className="flex items-center justify-between z-10 px-6 w-full">
           {/* Logo and home navigation */}
           <div className="flex flex-col justify-between items-center">
@@ -102,7 +72,6 @@ export default function NavbarProfile() {
               <Setting /> {/* Settings icon */}
             </div>
           </div>
->>>>>>> change-infos:components/profile/Navbar/NavbarProfile.jsx
         </div>
         <div
           className="flex items-center cursor-pointer"
