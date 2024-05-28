@@ -13,7 +13,7 @@ function History() {
   // Récupérer le nombre d'h de moodage
   useEffect(() => {
     fetch(
-      `http://localhost:3000/users/getRecommendations/7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd`
+      `http://localhost:3000/users/getRecommendations/${user.token}`
     )
       .then((response) => {
         if (!response.ok) {
