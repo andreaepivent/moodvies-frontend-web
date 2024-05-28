@@ -43,7 +43,7 @@ export default function Footer() {
               className="size-12"
             />
             <p className="text-slate-300 my-2 text-sm sm:text-md">
-            Explorez, découvrez et appréciez chaque soirée cinéma ! Votre prochain film coup de cœur, recommandé sur mesure par notre IA Maud.            </p>
+            Explore, discover and enjoy every movie night! Your next favorite film, custom-recommended by our AI Maud.             </p>
           </div>
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
