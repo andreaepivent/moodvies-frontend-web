@@ -3,9 +3,9 @@ if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
 }
 
 import "@/styles/globals.css";
+import Head from "next/head";
 import { Lato } from "next/font/google";
 import * as React from "react";
-
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
@@ -15,6 +15,7 @@ import user from "../reducers/user";
 import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
 import recommendations from "../reducers/recommendations";
+import notifications from "../reducers/notifications";
 import { NextUIProvider } from "@nextui-org/system";
 
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
@@ -24,11 +25,16 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-const reducers = combineReducers({ user, platforms, movies, recommendations });
+const reducers = combineReducers({
+  user,
+  platforms,
+  movies,
+  recommendations,
+  notifications,
+});
 const persistConfig = {
   key: "applicationName",
   storage,
-  whitelist: ["user"],
 };
 
 const store = configureStore({
@@ -44,6 +50,10 @@ export default function App({ Component, pageProps }) {
     <NextUIProvider>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          <Head>
+            <title>Moodvie</title>
+            <link rel="icon" href="/home/Logo-moodvie-letter.png" />
+          </Head>
           <main className={lato.className}>
             <Component {...pageProps} />
           </main>

@@ -71,7 +71,6 @@ function NotePlatform(props) {
                 </div>
               </div>
             </div>
-            
           </CardContent>
 
           <CardFooter className="flex justify-center">
