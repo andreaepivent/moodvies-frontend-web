@@ -25,7 +25,7 @@ import Image from "next/image";
 
 export function Setting() {
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+
   const router = useRouter();
 
   function handleHistory() {
