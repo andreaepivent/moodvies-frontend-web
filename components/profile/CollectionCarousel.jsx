@@ -12,9 +12,7 @@ import { useSelector } from "react-redux";
 // Functional component to display a carousel of movie collections
 function CollectionCarousel() {
   const movies = useSelector((state) => state.movies.value)
-  movies.forEach(movie => {
-    console.log(movie)
-  })
+ 
   return (
     // Main Carousel component with width and margin styles
     <Carousel className="w-[70%] mb-16">

@@ -11,7 +11,9 @@ function Platforms() {
   const user = useSelector((state) => state.user.value);
   const platformsFromRedux = useSelector((state) => state.platforms.value);
   const [showModal, setShowModal] = useState(false); 
-  const regex = /platform\/(.*)/; // Regular expression to extract platform names from the URL  
+  const regex = /platform\/(.*)/; // Regular expression to extract platform names from the URL 
+  
+  console.log(platformsFromRedux)
   
   // Function to delete a logo
   const deleteLogos = (e) => {
