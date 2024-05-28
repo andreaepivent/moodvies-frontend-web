@@ -1,6 +1,9 @@
 // if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
 //   localStorage.clear();
 // }
+/* if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
+  localStorage.clear();
+} */
 
 import "@/styles/globals.css";
 import Head from "next/head";
@@ -16,7 +19,9 @@ import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
 import recommendations from "../reducers/recommendations";
 import notifications from "../reducers/notifications";
+import traduction from "../reducers/traduction";
 import { NextUIProvider } from "@nextui-org/system";
+import "../i18n";
 
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
@@ -31,9 +36,10 @@ const reducers = combineReducers({
   movies,
   recommendations,
   notifications,
+  traduction,
 });
 const persistConfig = {
-  key: "applicationName",
+  key: "Moodvies",
   storage,
 };
 

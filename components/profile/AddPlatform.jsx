@@ -8,10 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { platformsLogo } from '../data';
-
+import { addPlatform } from '../../reducers/platforms';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Functional component to add platforms
 function AddPlatform(props) {
+  const dispatch = useDispatch();
+  const userPlatforms = useSelector((state) => state.platforms.value);
   // State to keep track of clicked images
   const [imageClicked, setImageClicked] = useState([]);
 
@@ -24,8 +27,9 @@ function AddPlatform(props) {
   const handleClick = (e) => {
     const newPlatformSrc = e.target.src.match(props.regex)[1]; // Extracting platform src using regex
     const newPlatformName = e.target.alt; // Getting platform name from alt attribute
+
     // Check if the image is already clicked
-    if (!imageClicked.some(image => image.src === newPlatformSrc)) {
+    if (!imageClicked.some(image => image.src === newPlatformSrc) && !userPlatforms.some(image => image.src === newPlatformSrc)) {
       // Add new image to clicked list
       setImageClicked([...imageClicked, { src: newPlatformSrc, name: newPlatformName }]);
     } else {
@@ -36,18 +40,25 @@ function AddPlatform(props) {
 
   // Function to add new platforms
   const addNewPlatforms = () => {
-    props.handleImageClicked(imageClicked); // Call the parent function to handle the addition of new platforms
+    // Dispatch actions to add new platforms
+    imageClicked.forEach(platform => {
+      console.log(platform)
+      dispatch(addPlatform(platform))
+    });
+    props.setShowModal(false); // Close the modal after adding the new platform
   };
 
   // Mapping over platformsLogo to create image elements
-  const imgs = platformsLogo.map((logo, index) => {
-    const isClicked = imageClicked.some(image => image.src === logo.src); // Check if image is clicked
+  const imgs = platformsLogo.map((platform, index) => {
+    const isClicked = imageClicked.some(image => image.src === platform.src); // Check if image is clicked
+    const isAlreadyInList = userPlatforms.some(image => image.src === platform.src); // Check if image is already in user platforms
+
     return (
       <img
         key={index}
-        src={`/logo-platform/${logo.src}`}
-        className={`size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer ${isClicked ? "border-white border-2" : ''}`}
-        alt={logo.name}
+        src={`/logo-platform/${platform.src}`}
+        className={`size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer ${isClicked && !isAlreadyInList ? "border-white border-2" : ''}`}
+        alt={platform.name}
         onClick={(e) => handleClick(e)}
       />
     );
@@ -67,7 +78,7 @@ function AddPlatform(props) {
           <CardHeader>
             <CardTitle className="text-center -mt-10">
               Add platform
-            </CardTitle >
+            </CardTitle>
             <CardTitle className="text-center text-sm">Which platform(s) would you like to add?</CardTitle>
           </CardHeader>
 

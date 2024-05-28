@@ -7,8 +7,11 @@ import { useState } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
 import Notifications from "./Notifications";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+  
   const router = useRouter();
 
   const [showModalSettings, setShowModalSettings] = useState(false);
@@ -33,7 +36,7 @@ export default function Navbar() {
             onClick={() => handleHome()}
           />
           <p className="text-slate-100 font-bold">
-            Find your favorite movie for tonight
+          {t('slogan')}
           </p>
         </div>
         <div

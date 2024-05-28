@@ -11,6 +11,8 @@ import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import ModalPlatforms from "./ModalPlatforms";
 import { useRouter } from "next/router";
+import { addMovie } from "../../reducers/movies";
+import { useDispatch, UseDispatch } from "react-redux";
 
 function IconMovie({ nom, selected, onSelect }) {
   return (
@@ -36,11 +38,17 @@ function IconMovie({ nom, selected, onSelect }) {
 export default function ModalMovies({ open, onOpenChange }) {
   const [currentModal, setCurrentModal] = useState("movies");
   const [selectedMovies, setSelectedMovies] = useState([]);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
+  console.log(selectedMovies)
+
   function handleNavigation(targetModal) {
+    selectedMovies.forEach((el) => {
+      dispatch(addMovie(el));
+    });
     if (targetModal === "mood") {
       router.push("/mood");
     } else {

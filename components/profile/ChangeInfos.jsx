@@ -18,22 +18,26 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import NavbarProfile from "./NavbarProfile"; 
+import NavbarProfile from "./Navbar/NavbarProfile"; 
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "@/reducers/user";
 
 // Functional component to change user information
 function ChangeInfos(props) {
+  // Using Redux to get the current user's data and dispatch actions
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
-  // State variables to manage form inputs
+
+  // Local state to manage form inputs and messages
   const [usernameValue, setUsernameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
-  const [currentPasswordValue, setCurrentPasswordValue] = useState("current password");
-  const [showModal, setShowModal] = useState(false)
+  const [currentPasswordValue, setCurrentPasswordValue] = useState("");
+  const [newPasswordValue, setNewPasswordValue] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [infosMessage, setInfosMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  console.log(user)
-
+  // Function to save new username and email
   const saveNewUsernameAndEmail = async () => {
     try {
       const response = await fetch('http://localhost:3000/users/editProfile', {
@@ -46,17 +50,46 @@ function ChangeInfos(props) {
           username: usernameValue,
           email: emailValue
         })
-      })
-      const updatedProfile = await response.json()
-      if (updatedProfile) {
-        dispatch(update({username: usernameValue}))
-        props.setIsEditClicked(false)
-        setShowModal(true)
+      });
+      const updatedProfile = await response.json();
+      if (updatedProfile.ok) {
+        dispatch(update({ username: usernameValue })); // Dispatching update action to Redux store
+        props.setIsEditClicked(false); // Closing the edit form
+        setShowModal(true); // Showing success modal
+      } else {
+        setInfosMessage(updatedProfile.error); // Setting error message
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
+      setInfosMessage("An error occured");
     }
-  }
+  };
+
+  // Function to save new password
+  const saveNewPassword = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/users/editPassword', {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          token: user.token,
+          currentPassword: currentPasswordValue,
+          newPassword: newPasswordValue,
+        })
+      });
+      const data = await response.json();
+      if (data.result) {
+        setPasswordMessage('Password updated successfully.');
+      } else {
+        setPasswordMessage(data.error); // Setting error message
+      }
+    } catch (error) {
+      console.log(error.message);
+      setPasswordMessage('An error occurred.');
+    }
+  };
 
   return (
     // Main container with background and flex layout
@@ -118,10 +151,9 @@ function ChangeInfos(props) {
                   />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button
-                 onClick={(e) => saveNewUsernameAndEmail(e)}
-                >Save changes</Button>
+              <CardFooter className='flex flex-col'>
+                <Button onClick={saveNewUsernameAndEmail}>Save changes</Button>
+                {infosMessage && <p className='font-extrabold mt-1 text-lg'>{infosMessage}</p>}
               </CardFooter>
             </Card>
           </TabsContent>
@@ -150,15 +182,26 @@ function ChangeInfos(props) {
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="current">Current password :</Label>
-                  <Input id="current" type="password" />
+                  <Input 
+                    id="current" 
+                    type="password" 
+                    value={currentPasswordValue}
+                    onChange={(e) => setCurrentPasswordValue(e.target.value)}
+                    />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="new">New password :</Label>
-                  <Input id="new" type="password" />
+                  <Input 
+                    id="new" 
+                    type="password" 
+                    value={newPasswordValue}
+                    onChange={(e) => setNewPasswordValue(e.target.value)}
+                  />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button>Save password</Button>
+              <CardFooter className='flex flex-col'>
+                <Button onClick={saveNewPassword}>Save password</Button>
+                {passwordMessage && <p className='font-extrabold mt-1 text-lg'>{passwordMessage}</p>}
               </CardFooter>
             </Card>
           </TabsContent>
@@ -166,7 +209,7 @@ function ChangeInfos(props) {
       </div>
 
       {showModal && (
-        <Dialog open={showDialog} onOpenChange={setShowModal}>
+        <Dialog open={showModal} onOpenChange={setShowModal}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Changes Saved</DialogTitle>
@@ -181,4 +224,4 @@ function ChangeInfos(props) {
   );
 }
 
-export default ChangeInfos; // Exporting the component as default
+export default ChangeInfos; 
