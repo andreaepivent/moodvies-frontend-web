@@ -84,7 +84,7 @@ const movies = [
 const platformsLogo = [
   {
   src: "AppleTV.png",
-  name: "Apple"
+  name: "AppleTV"
 },
 {
   src: "Disney+.png",
