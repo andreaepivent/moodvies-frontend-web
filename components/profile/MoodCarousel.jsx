@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"; // Importing React and necessary hooks
-import { moods } from "../data"; // Importing moods data
 import { CircularProgressbarWithChildren } from "react-circular-progressbar"; // Importing CircularProgressbarWithChildren component
 import {
   Carousel,
@@ -8,9 +7,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carouselProfile"; // Importing Carousel components
+import { useSelector } from "react-redux";
 
 // Functional component to display a carousel of moods
 function MoodCarousel() {
+  const user = useSelector((state) => state.user.value);
   const [bars, setBars] = useState([]); // State to store the generated progress bars
   const [filteredMoodsArray, setFilteredMoodsArray] = useState([]); // State to store filtered moods array
   const [maxValue, setMaxValue] = useState(null);
