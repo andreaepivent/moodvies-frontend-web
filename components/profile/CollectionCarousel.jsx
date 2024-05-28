@@ -10,6 +10,9 @@ import {
 
 // Functional component to display a carousel of movie collections
 function CollectionCarousel() {
+  movies.forEach(movie => {
+    console.log(movie)
+  })
   return (
     // Main Carousel component with width and margin styles
     <Carousel className="w-[70%] mb-16">
@@ -26,7 +29,6 @@ function CollectionCarousel() {
                 src={`/movie/${movie.background}`} // Movie background image
                 alt={`${movie.title} poster`} // Alt text for accessibility
               />
-
               <div className="absolute bottom-0 left-0 right-0 text-white text-center p-2 opacity-0 transform translate-y-full transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-200">
                 {movie.title}
               </div>
@@ -40,4 +42,4 @@ function CollectionCarousel() {
   );
 }
 
-export default CollectionCarousel; // Exporting the component as default
+export default CollectionCarousel;
