@@ -13,10 +13,9 @@ function HomePageBottom() {
 
       <div className="flex justify-center align-center basis-1/4 grow text-center mt-40 ">
         <img
-          class=" z-30 w-2/4 h-4/5 mr-12 pointer-events-none"
+          className=" z-30 w-2/4 h-4/5 mr-12 pointer-events-none"
           src="/home/phone.png"
           alt="phone-image"
-          oncontextmenu="return false;"
         />
 
         <div className="mr-20">
