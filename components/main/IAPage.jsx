@@ -66,6 +66,7 @@ export default function IAPage() {
         "Années 60 à 2000",
         "Moderne (2000 à 2020)",
         "2020 à aujourd'hui",
+        "Indifférent",
       ],
     },
     {

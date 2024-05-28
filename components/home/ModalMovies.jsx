@@ -24,7 +24,7 @@ function IconMovie({ nom, selected, onSelect }) {
       style={{ cursor: "pointer" }}
     >
       <Image
-        src={`/movie/${nom}.jpeg`}
+        src={`/movie/${nom}.jpg`}
         alt={nom + " Movie"}
         layout="fill"
         objectFit="cover"
@@ -49,52 +49,58 @@ export default function ModalMovies({ open, onOpenChange }) {
   }
 
   function handleSelectMovie(movie) {
-    setSelectedMovies((prev) =>
-      prev.includes(movie) ? prev.filter((m) => m !== movie) : [...prev, movie]
-    );
+    setSelectedMovies((prev) => {
+      if (prev.includes(movie)) {
+        return prev.filter((m) => m !== movie);
+      } else if (prev.length < 5) {
+        return [...prev, movie];
+      }
+      return prev;
+    });
   }
 
   return (
     <>
       {currentModal === "movies" && (
-        <Dialog open={open} onOpenChange={onOpenChange}>
+        <Dialog open={open}>
           <DialogContent className="dark text-slate-100 sm:max-w-[950px]">
             <div className="relative w-10 h-10">
               <Image
                 src={"/home/logo-moodvie-letter.svg"}
                 alt="logo-moodvie"
-                layout="fill"
                 objectFit="contain"
+                width={10}
+                height={10}
               />
             </div>
             <DialogHeader>
               <DialogTitle className="text-center text-2xl mb-3">
-                Pick 5 movies
+                Pick at least 5 movies
               </DialogTitle>
             </DialogHeader>
 
-            <div className="grid grid-cols-10 items-center gap-2">
+            <div className="grid grid-cols-4 lg:grid-cols-10 sm:grid-cols-5 items-center gap-2">
               {[
                 "avatar",
-                "blade-runner",
                 "gladiator",
-                "le-parrain",
+                "cercle-des-poetes",
+                "fight-club",
+                "intouchable",
+                "inception",
+                "interstellar",
+                "la-ligne-verte",
+                "la-vie-est-belle",
+                "le-parrain-2",
+                "le-voyage-de-chihiro",
+                "lebon-labrute",
+                "leon",
+                "les-evades",
+                "les-affranchis",
                 "lord-of-the-ring",
-                "spider-man",
-                "star-wars",
-                "avatar",
-                "blade-runner",
-                "gladiator",
-                "le-parrain",
-                "lord-of-the-ring",
-                "spider-man",
-                "star-wars",
-                "avatar",
-                "blade-runner",
-                "gladiator",
-                "le-parrain",
-                "lord-of-the-ring",
-                "spider-man",
+                "pulp-fiction",
+                "retour-vers-le-futur",
+                "vol-au-dessus",
+                "the-dark-knight",
               ].map((movie) => (
                 <IconMovie
                   key={movie}
@@ -120,6 +126,7 @@ export default function ModalMovies({ open, onOpenChange }) {
                   variant="outline"
                   className="rounded-full size-16 mb-1 flex justify-center items-center"
                   onClick={() => handleNavigation("mood")}
+                  disabled={selectedMovies.length === 0}
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>

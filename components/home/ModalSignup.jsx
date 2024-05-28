@@ -24,20 +24,6 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 
-//Calendrier
-import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { FieldCalendar } from "../ui/FieldCalendar";
-
-const FormSchema = z.object({
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-});
-
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");
@@ -52,50 +38,50 @@ export default function ModalSignup() {
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const submitTest = () => {
-    wait().then(() => {
-      console.log(birthday);
-      setOpen(false);
-      setNextModalOpen(true);
-    });
-  };
-
-  // const submitSignUp = () => {
-  //   const connectionData = {
-  //     username: username,
-  //     password: password,
-  //     email: email,
-  //     birthday: birthday,
-  //     gender: gender,
-  //   };
-
-  //   fetch("http://localhost:3000/users/signup", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(connectionData),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         console.log(data);
-  //         wait().then(() => {
-  //           setOpen(false);
-  //           setNextModalOpen(true);
-  //         });
-  //         setUsername("");
-  //         setPassword("");
-  //         setEmail("");
-  //         setBirthday("");
-  //         setGender("");
-  //         dispatch(
-  //           login({
-  //             token: data.token,
-  //             username: data.username,
-  //           })
-  //         );
-  //       }
-  //     });
+  // const submitTest = () => {
+  //   wait().then(() => {
+  //     console.log(birthday);
+  //     setOpen(false);
+  //     setNextModalOpen(true);
+  //   });
   // };
+
+  const submitSignUp = () => {
+    const connectionData = {
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday,
+      gender: gender,
+    };
+
+    fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(connectionData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          console.log(data);
+          wait().then(() => {
+            setOpen(false);
+            setNextModalOpen(true);
+          });
+          setUsername("");
+          setPassword("");
+          setEmail("");
+          setBirthday("");
+          setGender("");
+          dispatch(
+            login({
+              token: data.token,
+              username: data.username,
+            })
+          );
+        }
+      });
+  };
 
   return (
     <>
@@ -198,7 +184,7 @@ export default function ModalSignup() {
               type="submit"
               variant="gradientPurple"
               className="w-full mb-1"
-              onClick={() => submitTest()}
+              onClick={() => submitSignUp()}
             >
               Submit
             </Button>
