@@ -12,7 +12,7 @@ import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
 
@@ -24,21 +24,26 @@ export default function MoodPage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const socket = socketIOClient("http://localhost:3000");
+  const socket = useRef(null);
 
-    if (mood) {
-      socket.emit("addMood", { userMood: mood });
-    }
+  useEffect(() => {
+    socket.current = socketIOClient("http://localhost:3000");
 
     return () => {
-      socket.disconnect();
+      socket.current.disconnect();
     };
+  }, []);
+
+  useEffect(() => {
+    if (mood) {
+      socket.current.emit("addMood", { userMood: mood });
+    }
   }, [mood]);
 
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
     setMood(moodSelected);
+    console.log(moodSelected); // Utilisez moodSelected ici pour vérifier la valeur
 
     fetch("http://localhost:3000/recommendation", {
       method: "POST",
@@ -62,7 +67,7 @@ export default function MoodPage() {
 
   return (
     <>
-      <div className=" relative w-screen h-screen flex flex-col bg-center overflow-hidden">
+      <div className="relative w-screen h-screen flex flex-col bg-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
           style={{

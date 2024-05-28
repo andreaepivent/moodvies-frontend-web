@@ -10,10 +10,8 @@ import {
 } from "@/components/ui/select";
 
 function LanguageSelect() {
-
   const dispatch = useDispatch();
   const currentLanguage = useSelector((state) => state.traduction.language);
-  console.log(currentLanguage) 
 
   const handleChange = (language) => {
     dispatch(setLanguage(language));
