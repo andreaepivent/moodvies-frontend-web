@@ -17,12 +17,11 @@ export default function MoviesPage() {
   const [mainFilm, setMainFilm] = useState(movies[0]);
   const [mood, setMood] = useState("");
 
-  console.log(mood);
-
   useEffect(() => {
     const socket = socketIOClient("http://localhost:3000");
 
     socket.on("moodAdded", (mood) => {
+      console.log(mood);
       setMood(mood.userMood);
       console.log("Mood received:", mood.userMood);
     });
@@ -55,7 +54,7 @@ export default function MoviesPage() {
           />
         </div>
 
-        <div className="text-xl text-center text-blue-500">{mood}</div>
+        <div className="text-xl text-center text-blue-500 z-10">{mood}</div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
           style={{ zIndex: 2 }}
