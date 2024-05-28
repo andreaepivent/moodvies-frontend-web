@@ -48,16 +48,17 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={faBell}
-        className="text-slate-100 size-8 cursor-pointer"
+        className="text-slate-100 size-6 cursor-pointer mt-2"
         onClick={() => handleNotification()}
       />
+
       {!notificationsSeen && notifications.length > 0 && (
         <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {notifications.length}
         </span>
       )}
       {showNotifications && (
-        <div className="bg-stone-950/75 absolute -right-60 mt-6 w-96 border rounded-lg shadow-lg ">
+        <div className="bg-stone-950/75 absolute -right-0 mt-6 w-96 border rounded-lg shadow-lg ">
           <ScrollArea className="h-72 rounded-md border text-slate-100">
             <div className="p-4">
               <h4 className="mb-4 text-2xl font-medium leading-none text-center">
@@ -67,7 +68,7 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
                 <>
                   <div
                     key={notification.id}
-                    className="text-lg rounded-lg flex justify-between items-center hover:bg-stone-900 cursor-pointer"
+                    className="text-md rounded-lg flex justify-between items-center hover:bg-stone-900 cursor-pointer"
                   >
                     <div>
                       <p>
@@ -77,7 +78,7 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
                           {notification.title}
                         </span>
                         available on
-                        <span className="text-fuschia-500 ml-2">
+                        <span className="text-green-500 ml-2">
                           {" "}
                           {notification.date}
                         </span>
@@ -85,7 +86,7 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
                     </div>
                     <FontAwesomeIcon
                       icon={faTimes}
-                      className=" cursor-pointer ml-2 hover:bg-stone-900"
+                      className=" cursor-pointer ml-2 hover:bg-stone-900 size-5"
                       onClick={() => handleRemoveNotification(index)}
                     />
                   </div>

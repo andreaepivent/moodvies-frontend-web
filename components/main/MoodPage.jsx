@@ -107,7 +107,7 @@ export default function MoodPage() {
                       onClick={() => handleMoodClick(mood)}
                     >
                       <CardContent className="flex items-center justify-center p-2 ">
-                        <span className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
+                        <span className="text-sm scroll-m-20 md:text-lg font-semibold tracking-tight p-1 px-2 text-slate-100">
                           {mood}
                         </span>
                       </CardContent>

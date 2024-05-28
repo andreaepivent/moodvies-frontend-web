@@ -38,14 +38,6 @@ export default function ModalSignup() {
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-  // const submitTest = () => {
-  //   wait().then(() => {
-  //     console.log(birthday);
-  //     setOpen(false);
-  //     setNextModalOpen(true);
-  //   });
-  // };
-
   const submitSignUp = () => {
     const connectionData = {
       username: username,
@@ -63,7 +55,6 @@ export default function ModalSignup() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          console.log(data);
           wait().then(() => {
             setOpen(false);
             setNextModalOpen(true);
@@ -99,7 +90,7 @@ export default function ModalSignup() {
               style={{ objectFit: "contain" }}
               width={50}
               height={50}
-              fetchpriority="high"
+              fetchPriority="hight"
             />
           </div>
           <DialogHeader>
@@ -107,7 +98,7 @@ export default function ModalSignup() {
               Create an account
             </DialogTitle>
             <DialogDescription>
-              Please enter all this informations
+              Please enter all this information
             </DialogDescription>
           </DialogHeader>
           <div className="grid w-full items-center gap-4">
@@ -131,7 +122,7 @@ export default function ModalSignup() {
               <Input
                 id="password"
                 placeholder="Password"
-                type={isVisible ? "text" : "password"}
+                type={isVisible ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="pr-10"
@@ -141,7 +132,7 @@ export default function ModalSignup() {
                 className="absolute inset-y-0 right-0 flex items-center px-2"
                 onClick={() => setIsVisible(!isVisible)}
               >
-                {isVisible ? (
+                {!isVisible ? (
                   <FontAwesomeIcon icon={faEye} className="" />
                 ) : (
                   <FontAwesomeIcon icon={faEyeSlash} className="" />
@@ -184,7 +175,7 @@ export default function ModalSignup() {
               type="submit"
               variant="gradientPurple"
               className="w-full mb-1"
-              onClick={() => submitSignUp()}
+              onClick={submitSignUp}
             >
               Submit
             </Button>
@@ -202,7 +193,7 @@ export default function ModalSignup() {
                 style={{ objectFit: "contain" }}
                 width={18}
                 height={18}
-                fetchpriority="high"
+                fetchPriority="hight"
               />
             </div>
             Continue with Facebook
@@ -215,7 +206,7 @@ export default function ModalSignup() {
                 style={{ objectFit: "contain" }}
                 width={30}
                 height={30}
-                fetchpriority="high"
+                fetchPriority="hight"
               />
             </div>
             Continue with Google

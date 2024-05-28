@@ -1,6 +1,6 @@
-if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
-  localStorage.clear();
-}
+// if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
+//   localStorage.clear();
+// }
 
 import "@/styles/globals.css";
 import Head from "next/head";
