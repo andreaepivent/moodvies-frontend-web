@@ -85,7 +85,7 @@ function Platforms() {
             </div>
             <Button 
               variant="gradientPurple" 
-              className="text-white mt-20"
+              className="text-white mt-20 p-3"
               onClick={addNewPlatform}
             >
               Add a new platform
