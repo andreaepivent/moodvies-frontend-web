@@ -19,8 +19,13 @@ export default function MoviesPage() {
   const moods = useSelector((state) => state.moods);
   console.log(moods);
   const [mainFilm, setMainFilm] = useState(movies[0]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsLoaded(true); // Mettre à jour l'état après le chargement initial de la page
+  }, []);
 
   const handleFilmClick = (clickedFilm) => {
     setMainFilm(movies[clickedFilm]);
@@ -36,8 +41,9 @@ export default function MoviesPage() {
   }
 
   return (
-    <div className="bg-black">
-      <div className="relative w-screen flex flex-col bg-top overflow-hidden">
+    <div className="bg-black relative z-20">
+      <BorderBeam />
+      <div className="relative w-screen flex flex-col bg-top overflow-hidden z-10">
         <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
           <Image
             src={`https://image.tmdb.org/t/p/original${
@@ -57,13 +63,16 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="ml-10 mt-10 flex justify-center items-center z-10">
-          <Button variant="ghost" className="w-50 border-2 text-slate-100">
+        <div className="relative ml-10 mt-20 flex justify-center items-center z-10">
+          <Button
+            variant="ghost"
+            className="w-80 border-2 text-slate-100 text-xl"
+          >
             Your mood : {moods[0]}
           </Button>
         </div>
 
-        <div className="ml-10 mt-4 flex justify-center items-center  z-10">
+        <div className="ml-10 mt-4 flex justify-center items-center z-10">
           <Button
             variant="ghost"
             className="w-50 border-2 text-slate-100"
@@ -72,7 +81,7 @@ export default function MoviesPage() {
             Go back ?
           </Button>
         </div>
-        <div className="my-auto text-center text-slate-100 mx-auto mt-44 z-10">
+        <div className="my-auto text-center text-slate-100 mx-auto mt-20 z-10">
           <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
             {mainFilm.title.fr}
           </h2>
@@ -91,12 +100,10 @@ export default function MoviesPage() {
                 mainFilm.trailer.fr ? (
                   <>
                     <YouTubeEmbed videoid={mainFilm.trailer.fr} className="" />
-                    <BorderBeam />
                   </>
                 ) : mainFilm.trailer.en ? (
                   <>
                     <YouTubeEmbed videoid={mainFilm.trailer.en} className="" />
-                    <BorderBeam />
                   </>
                 ) : (
                   ""
@@ -129,52 +136,54 @@ export default function MoviesPage() {
         You can also checkout :
       </h2>
 
-      <div className="bg-black mx-auto w-screen h-screen flex items-center justify-center">
-        <div className="h-[400px] flex flex-nowrap justify-start">
-          {movies.map((movie, index) => (
-            <React.Fragment key={index}>
-              <input
-                type="radio"
-                name="slide"
-                id={index}
-                className="hidden"
-                onClick={() => handleFilmClick(index)}
-              />
-              <label
-                htmlFor={index}
-                className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
-              >
-                <Image
-                  src={`https://image.tmdb.org/t/p/original${
-                    movie.backdrop ? movie.backdrop : movie.poster
-                  }`}
-                  alt={movie.title.fr}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="rounded-2xl"
+      {isLoaded && (
+        <div className="bg-black mx-auto w-screen h-screen flex items-center justify-center">
+          <div className="h-[400px] flex flex-nowrap justify-start">
+            {movies.map((movie, index) => (
+              <React.Fragment key={index}>
+                <input
+                  type="radio"
+                  name="slide"
+                  id={index}
+                  className="hidden"
+                  onClick={() => handleFilmClick(index)}
                 />
+                <label
+                  htmlFor={index}
+                  className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
+                >
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original${
+                      movie.backdrop ? movie.backdrop : movie.poster
+                    }`}
+                    alt={movie.title.fr}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="rounded-2xl"
+                  />
 
-                <div className="flex flex-nowrap p-4">
-                  <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-all ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
-                    <h4 className="uppercase text-white scroll-m-20 text-2xl font-semibold tracking-tight">
-                      {movie.title.fr}
-                    </h4>
-                    <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
-                      Directed by {movie.directors[0]} - {movie.duration}{" "}
-                      minutes - {movie.release_date.substring(0, 4)}
-                    </p>
+                  <div className="flex flex-nowrap p-4">
+                    <div className="flex flex-col justify-center opacity-0 transform translate-y-8 transition-all ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:duration-300 group-hover:delay-300 duration-0 delay-0">
+                      <h4 className="uppercase text-white scroll-m-20 text-2xl font-semibold tracking-tight">
+                        {movie.title.fr}
+                      </h4>
+                      <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
+                        Directed by {movie.directors[0]} - {movie.duration}{" "}
+                        minutes - {movie.release_date.substring(0, 4)}
+                      </p>
 
-                    <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">
-                      {movie.synopsis.fr}
-                    </blockquote>
+                      <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">
+                        {movie.synopsis.fr}
+                      </blockquote>
+                    </div>
                   </div>
-                </div>
-              </label>
-            </React.Fragment>
-          ))}
+                </label>
+              </React.Fragment>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="mt-16 z-10">
         <Footer />
