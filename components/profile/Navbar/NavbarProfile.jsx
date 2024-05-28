@@ -63,12 +63,6 @@ export default function NavbarProfile() {
             </div>
           </div>
         </div>
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={() => setShowModalSettings(!showModalSettings)} // Toggle settings modal
-        >
-          <Setting /> {/* Settings icon */}
-      </div>
     </>  
   );
 }
