@@ -5,8 +5,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+  
   const router = useRouter();
   function handleHome() {
     router.push(`/mood`);
@@ -37,7 +40,7 @@ export default function Navbar() {
             onClick={() => handleHome()}
           />
           <p className="text-slate-100 font-bold">
-            Find your favorite movie for tonight
+          {t('slogan')}
           </p>
         </div>
         <div

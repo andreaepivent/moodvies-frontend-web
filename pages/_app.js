@@ -15,7 +15,9 @@ import user from "../reducers/user";
 import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
 import recommendations from "../reducers/recommendations";
+import traduction from "../reducers/traduction";
 import { NextUIProvider } from "@nextui-org/system";
+import '../i18n'; 
 
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
@@ -24,11 +26,11 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-const reducers = combineReducers({ user, platforms, movies, recommendations });
+const reducers = combineReducers({ user, platforms, movies, recommendations, traduction });
 const persistConfig = {
   key: "applicationName",
   storage,
-  whitelist: ["user"],
+  whitelist: ["user", "recommendations", "traduction"],
 };
 
 const store = configureStore({
