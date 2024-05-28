@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
 import Notifications from "./Notifications";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
