@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import { login } from "@/reducers/user";
 import { useDispatch } from "react-redux";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/router";
@@ -70,8 +70,10 @@ export default function ModalLogin() {
           <Image
             src={"/home/logo-moodvie-letter.svg"}
             alt="logo-moodvie"
-            layout="fill"
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
+            width={50}
+            height={50}
+            fetchPriority="hight"
           />
         </div>
         <DialogHeader>
@@ -102,7 +104,7 @@ export default function ModalLogin() {
                 <Input
                   id="password"
                   placeholder="Password"
-                  type={isVisible ? "text" : "password"}
+                  type={isVisible ? "password" : "text"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pr-10"
@@ -112,7 +114,7 @@ export default function ModalLogin() {
                   className="absolute inset-y-0 right-0 flex items-center px-2"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  {isVisible ? (
+                  {!isVisible ? (
                     <FontAwesomeIcon
                       icon={faEye}
                       className="text-base text-default-400"
@@ -149,9 +151,10 @@ export default function ModalLogin() {
             <Image
               src="/logo/facebook.svg"
               alt="logo-facebook"
-              layout="fill"
-              objectFit="contain"
-              className=""
+              style={{ objectFit: "contain" }}
+              width={18}
+              height={18}
+              fetchPriority="hight"
             />
           </div>
           Continue with Facebook
@@ -161,9 +164,10 @@ export default function ModalLogin() {
             <Image
               src="/logo/google.svg"
               alt="logo-google"
-              layout="fill"
-              objectFit="contain"
-              className=""
+              style={{ objectFit: "contain" }}
+              width={30}
+              height={30}
+              fetchPriority="hight"
             />
           </div>
           Continue with Google

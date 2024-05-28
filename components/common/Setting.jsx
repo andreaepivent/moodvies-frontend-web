@@ -21,10 +21,11 @@ import {
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../reducers/user";
+import Image from "next/image";
 
 export function Setting() {
   const user = useSelector((state) => state.user.value);
-  //console.log(user);
+
   const router = useRouter();
 
   function handleHistory() {
@@ -50,15 +51,19 @@ export function Setting() {
         <>
           <DropdownMenu className="">
             <DropdownMenuTrigger asChild>
-              <Button variant="settingButton">
-                Hello {""}
-                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
-              </Button>
+              <Image
+                src={"/logo/logo-connection.png"}
+                alt="logo-moodvie"
+                style={{ objectFit: "contain" }}
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark w-56">
-              <DropdownMenuLabel>
+              <DropdownMenuLabel className="text-green-500">
+                Hello{" "}
                 {user.username.charAt(0).toUpperCase() + user.username.slice(1)}{" "}
-                account
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>

@@ -6,28 +6,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../components/ui/carousel";
+import socketIOClient from "socket.io-client";
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
+  const [mood, setMood] = useState("");
+
+  const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.value);
-  //console.log(user);
+  const socket = useRef(null);
 
-  const tokenTest = "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd";
+  useEffect(() => {
+    socket.current = socketIOClient("http://localhost:3000");
+
+    return () => {
+      socket.current.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mood) {
+      socket.current.emit("addMood", { userMood: mood });
+    }
+  }, [mood]);
 
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
-    console.log(moodSelected);
+    setMood(moodSelected);
+    console.log(moodSelected); // Utilisez moodSelected ici pour vérifier la valeur
+
     fetch("http://localhost:3000/recommendation", {
       method: "POST",
       headers: {
@@ -35,7 +52,7 @@ export default function MoodPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: tokenTest,
+        token: user.token,
         userMood: moodSelected.toLowerCase(),
         option: "similarity",
       }),
@@ -48,34 +65,9 @@ export default function MoodPage() {
       });
   };
 
-  const randomMovie = [
-    "avatar",
-    "gladiator",
-    "cercle-des-poetes",
-    "fight-club",
-    "intouchable",
-    "inception",
-    "interstellar",
-    "la-ligne-verte",
-    "la-vie-est-belle",
-    "le-parrain-2",
-    "le-voyage-de-chihiro",
-    "lebon-labrute",
-    "leon",
-    "les-evades",
-    "les-affranchis",
-    "lord-of-the-ring",
-    "pulp-fiction",
-    "retour-vers-le-futur",
-    "vol-au-dessus",
-    "the-dark-knight",
-  ];
-
-  const random = Math.floor(Math.random() * 21);
-
   return (
     <>
-      <div className=" relative w-screen h-screen flex flex-col bg-center overflow-hidden">
+      <div className="relative w-screen h-screen flex flex-col bg-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
           style={{
@@ -107,7 +99,7 @@ export default function MoodPage() {
                       onClick={() => handleMoodClick(mood)}
                     >
                       <CardContent className="flex items-center justify-center p-2 ">
-                        <span className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
+                        <span className="text-sm scroll-m-20 md:text-lg font-semibold tracking-tight p-1 px-2 text-slate-100">
                           {mood}
                         </span>
                       </CardContent>

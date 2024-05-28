@@ -11,6 +11,8 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import ModalSignup from "./ModalSignup";
 import ModalMovies from "./ModalMovies";
+import { useDispatch } from "react-redux";
+import { addPlatform } from "../../reducers/platforms";
 
 function IconPlatform({ nom, onSelect, selected }) {
   return (
@@ -30,12 +32,18 @@ function IconPlatform({ nom, onSelect, selected }) {
 export default function PlatformsModal({ open, onOpenChange }) {
   const [currentModal, setCurrentModal] = useState("platforms");
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
+  const dispatch = useDispatch();
+
+  const handleNavigation = (targetModal) => {
+    selectedPlatforms.forEach((el) => {
+      dispatch(addPlatform({ src: `${el}.png`, name: el }));
+    });
+    wait().then(() => setCurrentModal(targetModal));
+  };
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
-  function handleNavigation(targetModal) {
-    wait().then(() => setCurrentModal(targetModal));
-  }
+  console.log(selectedPlatforms)
 
   function handleSelectPlatform(platform) {
     setSelectedPlatforms((prev) =>
