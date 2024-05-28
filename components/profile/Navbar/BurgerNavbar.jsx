@@ -1,8 +1,8 @@
-import LanguageSelect from "../common/LanguageSelect";
+import LanguageSelect from "../../common/LanguageSelect";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Setting } from "../common/Setting";
-import NavLink from "../common/NavLink";
+import { Setting } from "../../common/Setting";
+import NavLink from "../../common/NavLink";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function BurgerNavbar() {

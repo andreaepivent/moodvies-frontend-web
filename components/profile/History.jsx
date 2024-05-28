@@ -1,9 +1,9 @@
 import React from "react";
 import MoodCarousel from "./MoodCarousel";
-import NavbarProfile from "./NavbarProfile";
+import NavbarProfile from "./Navbar/NavbarProfile";
 import CollectionCarousel from "./CollectionCarousel";
 import { useSelector }  from "react-redux";
-import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
+import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile";
 
 function History() {
   const user = useSelector((state) => state.user.value)

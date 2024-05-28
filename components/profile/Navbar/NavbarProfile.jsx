@@ -1,8 +1,8 @@
-import LanguageSelect from "../common/LanguageSelect";
+import LanguageSelect from "../../common/LanguageSelect";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Setting } from "../common/Setting";
-import NavLink from "../common/NavLink";
+import { Setting } from "../../common/Setting";
+import NavLink from "../../common/NavLink";
 
 
 export default function NavbarProfile() {
@@ -34,7 +34,7 @@ export default function NavbarProfile() {
               activeClassName="text-white p-4"
               nonActiveClassName="text-slate-500 p-4"
             >
-              Personal Informations
+              Informations
             </NavLink>
             <NavLink
               href="/profile/history"
@@ -48,7 +48,7 @@ export default function NavbarProfile() {
               activeClassName="text-white p-4"
               nonActiveClassName="text-slate-500 p-4"
             >
-              Preferred Platforms
+              Platforms
             </NavLink>
           </div>
           {/* Language selection and settings */}

@@ -1,23 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: [],
+  value: [{
+    src: "AppleTV.png",
+    name: "Apple"
+  },
+  {
+    src: "Disney+.png",
+    name: "Disney+"
+  }]
 };
 
 export const PlatformSlice = createSlice({
   name: "platforms",
   initialState,
   reducers: {
-    addPlaform: (state, action) => {
+    addPlatform: (state, action) => {
       state.value.push(action.payload);
     },
     deletePlatform: (state, action) => {
       state.value = state.value.filter(
-        (platform) => platform.id !== action.payload.id
+        (platform) => platform.src !== action.payload
       );
     },
   },
 });
 
-export const { addPlaform, deletePlatform } = PlatformSlice.actions;
+export const { addPlatform, deletePlatform } = PlatformSlice.actions;
 export default PlatformSlice.reducer;

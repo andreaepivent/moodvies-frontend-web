@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
-import NavbarProfile from "./NavbarProfile";
-import { platformsLogo } from "../data";
+import NavbarProfile from "./Navbar/NavbarProfile";
 import AddPlatform from "./AddPlatform";
-import { useSelector } from "react-redux";
-import ResponsiveNavbarProfile from "./ResponsiveNavbarProfile";
+import { useSelector, useDispatch } from "react-redux";
+import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile";
+import { deletePlatform } from "../../reducers/platforms";
 
 function Platforms() {
-  const user = useSelector((state) => state.user.value)
-
-  const [logos, setLogos] = useState(platformsLogo); // State to manage the logos
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  const platformsFromRedux = useSelector((state) => state.platforms.value);
   const [showModal, setShowModal] = useState(false); // State to manage the visibility of the modal
   const regex = /platform\/(.*)/; // Regular expression to extract platform names from the URL
-
+  
+  
   // Function to delete a logo
   const deleteLogos = (e) => {
-    const newLogos = logos.filter((logo) => logo.src !== e.target.previousSibling.src.match(regex)[1]);
-    setLogos(newLogos);
+    dispatch(deletePlatform(e.target.previousSibling.src.match(regex)[1]))
   };
 
   // Function to show the modal for adding a new platform
@@ -25,16 +25,19 @@ function Platforms() {
   };
 
   // Mapping over logos to create the platform elements
-  const platforms = logos.map((logo, index) => {
+  const userPlatforms = platformsFromRedux?.map((platform, index) => {
     return (
-      <div key={index} className="relative image-container overflow-hidden h-48 w-48 flex justify-center items-center ">
+      <div 
+        key={index} 
+        className="relative image-container overflow-hidden h-48 w-48 flex justify-center items-center group"
+      >
         <img
-          className="h-36 w-36 object-cover rounded-2xl"
-          src={`/logo-platform/${logo.src}`}
-          alt={`${logo.name} poster`}
+          className="h-36 w-36 object-cover rounded-2xl shake"
+          src={`/logo-platform/${platform.src}`}
+          alt={`${platform.name} poster`}
         />
         <div 
-          className='absolute top-4 right-5 w-6 h-6 font-extrabold text-xs text-white bg-transparent border rounded-full flex justify-center items-center group hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-30 hover:text-black'
+          className='absolute top-4 right-5 w-6 h-6 font-extrabold text-xs text-white bg-transparent border rounded-full flex justify-center items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-30 hover:text-black'
           onClick={(e) => deleteLogos(e)}
         >
           X
@@ -46,8 +49,8 @@ function Platforms() {
   // Function to handle the addition of new platforms (inverse data flow)
   const handleImageClicked = (imageClicked) => {
     imageClicked.forEach((platform) => {
-      if (!logos.some((logo) => logo.src === platform.src)) {
-        setLogos((prevLogos) => [...prevLogos, platform]);
+      if (!platforms?.some((logo) => logo.src === platform.src)) {
+        setPlatforms((prevPlatforms) => [...prevPlatforms, platform]);
         setShowModal(false); // Close the modal after adding the new platform
       }
     });
@@ -72,14 +75,12 @@ function Platforms() {
             handleImageClicked={handleImageClicked} 
             setShowModal={setShowModal} 
             showModal={showModal} 
-            logos={logos} 
-            setLogos={setLogos} 
             regex={regex}
           />
         ) : (
           <div className="mt-36 flex flex-col items-center">
             <div className="w-70% flex flex-wrap">
-              {platforms}
+              {userPlatforms}
             </div>
             <Button 
               variant="gradientPurple" 
