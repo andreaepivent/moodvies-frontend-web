@@ -1,10 +1,3 @@
-// if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
-//   localStorage.clear();
-// }
-/* if (typeof window != "undefined" && process.env.NODE_ENV === "development") {
-  localStorage.clear();
-} */
-
 import "@/styles/globals.css";
 import Head from "next/head";
 import { Lato } from "next/font/google";
@@ -23,6 +16,7 @@ import traduction from "../reducers/traduction";
 import moods from "../reducers/moods";
 import { NextUIProvider } from "@nextui-org/system";
 import "../i18n";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
@@ -55,18 +49,20 @@ const persistor = persistStore(store);
 
 export default function App({ Component, pageProps }) {
   return (
-    <NextUIProvider>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <Head>
-            <title>Moodvie</title>
-            <link rel="icon" href="/home/Logo-moodvie-letter.png" />
-          </Head>
-          <main className={lato.className}>
-            <Component {...pageProps} />
-          </main>
-        </PersistGate>
-      </Provider>
-    </NextUIProvider>
+    <GoogleOAuthProvider clientId="499145903418-f6i5sbqc4f1lola8cbmtqph91c49nc02.apps.googleusercontent.com" >
+      <NextUIProvider>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Head>
+              <title>Moodvie</title>
+              <link rel="icon" href="/home/Logo-moodvie-letter.png" />
+            </Head>
+            <main className={lato.className}>
+              <Component {...pageProps} />
+            </main>
+          </PersistGate>
+        </Provider>
+      </NextUIProvider>
+    </GoogleOAuthProvider>
   );
 }

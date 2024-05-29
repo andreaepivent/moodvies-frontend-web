@@ -17,6 +17,7 @@ import { login } from "@/reducers/user";
 import { useDispatch } from "react-redux";
 import { Spinner } from "@nextui-org/spinner";
 import { useRouter } from "next/router";
+import { useGoogleLogin } from '@react-oauth/google';
 
 export default function ModalLogin() {
   const [username, setUsername] = useState("");
@@ -27,6 +28,43 @@ export default function ModalLogin() {
 
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google login successful:", tokenResponse);
+      const { access_token } = tokenResponse;
+
+      try {
+        const response = await fetch("http://localhost:3000/users/google-login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_token: access_token
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data)
+
+        if (data.result) {
+          dispatch(login({
+            token: data.token,
+            username: data.username,
+          }));
+          router.push("/mood")
+        } else {
+          console.error("Google login failed on server:", data.message);
+        }
+      } catch (error) {
+        console.error("Google login error:", error);
+      }
+    },
+    onError: (error) => {
+      console.error("Google login error:", error);
+    },
+  });
 
   const submitSignIn = () => {
     setLoader(true);
@@ -159,7 +197,12 @@ export default function ModalLogin() {
           </div>
           Continue with Facebook
         </Button>
-        <Button type="submit" variant="" className="w-full text-black mb-2">
+        <Button 
+          type="submit" 
+          variant="" 
+          className="w-full text-black mb-2"
+          onClick={() => googleLogin()}
+          >
           <div className="relative h-6 w-6 -ml-4 mr-2 ">
             <Image
               src="/logo/google.svg"
