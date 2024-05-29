@@ -179,24 +179,6 @@ export default function ModalLogin() {
             Connexion
           </Button>
         </DialogFooter>
-
-        <Button
-          type="submit"
-          variant="facebook"
-          className="w-full flex items-center justify-center mb-1"
-        >
-          <div className="relative h-6 w-6 mr-2">
-            <Image
-              src="/logo/facebook.svg"
-              alt="logo-facebook"
-              style={{ objectFit: "contain" }}
-              width={18}
-              height={18}
-              fetchPriority="hight"
-            />
-          </div>
-          Continue with Facebook
-        </Button>
         <Button 
           type="submit" 
           variant="" 
