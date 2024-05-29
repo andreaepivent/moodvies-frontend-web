@@ -23,6 +23,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
+import { useGoogleLogin } from '@react-oauth/google';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
@@ -33,6 +36,76 @@ export default function ModalSignup() {
   const [gender, setGender] = useState("");
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
+
+  /* Connection Facebook en attente de décision
+  const responseFacebook = (response) => {
+    onslotchange.log(response)
+  }
+
+  <FacebookLogin
+    appId="1285288455605125"
+    autoLoad
+    callback={responseFacebook}
+    render={renderProps => (
+      <Button
+        type="submit"
+        variant="facebook"
+        className="w-full flex items-center justify-center mb-1"
+        onClick={renderProps.onClick}
+      >
+        <div className="relative h-6 w-6 mr-2">
+          <Image
+            src="/logo/facebook.svg"
+            alt="logo-facebook"
+            style={{ objectFit: "contain" }}
+            width={18}
+            height={18}
+            fetchPriority="hight"
+          />
+        </div>
+       Continue with Facebook
+      </Button>
+    )}
+  />
+  */
+ 
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google login successful:", tokenResponse);
+      const { access_token } = tokenResponse;
+
+      try {
+        const response = await fetch("http://localhost:3000/users/google-login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_token: access_token
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data)
+
+        if (data.result) {
+          dispatch(login({
+            token: data.token,
+            username: data.username,
+          }));
+          setOpen(false);
+          setNextModalOpen(true);
+        } else {
+          console.error("Google login failed on server:", data.message);
+        }
+      } catch (error) {
+        console.error("Google login error:", error);
+      }
+    },
+    onError: (error) => {
+      console.error("Google login error:", error);
+    },
+  });
 
   const dispatch = useDispatch();
 
@@ -181,26 +254,14 @@ export default function ModalSignup() {
             </Button>
           </DialogFooter>
 
-          <Button
+          <Button 
             type="submit"
-            variant="facebook"
-            className="w-full flex items-center justify-center mb-1"
-          >
-            <div className="relative h-6 w-6 mr-2">
-              <Image
-                src="/logo/facebook.svg"
-                alt="logo-facebook"
-                style={{ objectFit: "contain" }}
-                width={18}
-                height={18}
-                fetchPriority="hight"
-              />
-            </div>
-            Continue with Facebook
-          </Button>
-          <Button type="submit" variant="" className="w-full text-black mb-2">
+            variant="" 
+            className="w-full text-black mb-2"
+            onClick={() => googleLogin()}
+            >
             <div className="relative h-6 w-6 -ml-4 mr-2 ">
-              <Image
+            <Image
                 src="/logo/google.svg"
                 alt="logo-google"
                 style={{ objectFit: "contain" }}
@@ -211,6 +272,7 @@ export default function ModalSignup() {
             </div>
             Continue with Google
           </Button>
+          
         </DialogContent>
       </Dialog>
 
