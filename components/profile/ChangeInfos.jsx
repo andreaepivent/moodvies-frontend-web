@@ -93,7 +93,7 @@ function ChangeInfos(props) {
 
   return (
     // Main container with background and flex layout
-    <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+    <div className="w-screen min-h-screen bg-radial-gradient flex flex-col justify-around items-center">
       {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
         <NavbarProfile />
@@ -105,7 +105,7 @@ function ChangeInfos(props) {
       </div>
 
       {/* Tabs section for Account and Password */}
-      <div className="flex justify-center mt-60">
+      <div className="flex justify-center mt-60 mb-4">
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="account">Account</TabsTrigger>

@@ -13,6 +13,7 @@ import platforms from "../reducers/platforms";
 import recommendations from "../reducers/recommendations";
 import notifications from "../reducers/notifications";
 import traduction from "../reducers/traduction";
+import moods from "../reducers/moods";
 import { NextUIProvider } from "@nextui-org/system";
 import "../i18n";
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -31,6 +32,7 @@ const reducers = combineReducers({
   recommendations,
   notifications,
   traduction,
+  moods,
 });
 const persistConfig = {
   key: "Moodvies",

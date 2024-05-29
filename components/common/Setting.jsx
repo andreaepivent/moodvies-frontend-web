@@ -25,7 +25,7 @@ import Image from "next/image";
 
 export function Setting() {
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+
   const router = useRouter();
 
   function handleHistory() {
@@ -36,6 +36,10 @@ export function Setting() {
   }
   function handlePlatforms() {
     router.push(`/profile/platforms`);
+  }
+
+  function handleSupport() {
+    router.push(`/support`);
   }
 
   const dispatch = useDispatch();
@@ -89,7 +93,7 @@ export function Setting() {
                 <Cloud className="mr-2 h-4 w-4" />
                 <span>IA</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleSupport()}>
                 <LifeBuoy className="mr-2 h-4 w-4" />
                 <span>Support</span>
               </DropdownMenuItem>

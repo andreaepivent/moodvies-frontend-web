@@ -43,9 +43,7 @@ export default function Footer() {
               className="size-12"
             />
             <p className="text-slate-300 my-2 text-sm sm:text-md">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-              nostrum.
-            </p>
+            Explore, discover and enjoy every movie night! Your next favorite film, custom-recommended by our AI Maud.             </p>
           </div>
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
@@ -55,7 +53,7 @@ export default function Footer() {
               <li className="my-2">Moodvies</li>
               <li className="my-2">Paris, France</li>
               <li className="my-2 hover:underline cursor-pointer">
-                01 01 01 01 01
+                01 23 43 12 32
               </li>
               <li className="my-2 hover:underline cursor-pointer">
                 contact@moodvies.com
@@ -75,16 +73,6 @@ export default function Footer() {
               <li className="my-2">
                 <a href="#" className="hover:underline">
                   FAQ
-                </a>
-              </li>
-              <li className="my-2">
-                <a href="#" className="hover:underline">
-                  Sign-up
-                </a>
-              </li>
-              <li className="my-2">
-                <a href="#" className="hover:underline">
-                  Sign-in
                 </a>
               </li>
             </ul>
