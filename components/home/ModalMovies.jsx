@@ -12,7 +12,8 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import ModalPlatforms from "./ModalPlatforms";
 import { useRouter } from "next/router";
 import { addMovie } from "../../reducers/movies";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/reducers/user";
 
 function IconMovie({ nom, selected, onSelect }) {
   return (
@@ -35,11 +36,14 @@ function IconMovie({ nom, selected, onSelect }) {
   );
 }
 
-export default function ModalMovies({ open, onOpenChange }) {
+export default function ModalMovies({ open, onOpenChange, loginData }) {
   const [currentModal, setCurrentModal] = useState("movies");
   const [selectedMovies, setSelectedMovies] = useState([]);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const user = useSelector(state => state.user.value)
+  console.log(user)
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
@@ -49,6 +53,7 @@ export default function ModalMovies({ open, onOpenChange }) {
     selectedMovies.forEach((el) => {
       dispatch(addMovie(el));
     });
+    dispatch(login(loginData))
     if (targetModal === "mood") {
       router.push("/mood");
     } else {

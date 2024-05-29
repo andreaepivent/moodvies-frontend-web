@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { BorderBeam } from "../ui/border-beam";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRecommendation } from "@/reducers/recommendations";
+import { displayMood } from "../../reducers/moods";
 
 export default function IAPage() {
   const router = useRouter();
@@ -158,6 +159,7 @@ export default function IAPage() {
   };
 
   function handleClick() {
+    dispatch(displayMood("Sélectif"));
     router.push(`/movies`);
   }
 

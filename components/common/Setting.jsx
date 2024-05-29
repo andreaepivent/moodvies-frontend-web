@@ -85,17 +85,17 @@ export function Setting() {
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => handleInformations()}>
                   <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                  <span>Profil</span>
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleHistory()}>
                   <History className="mr-2 h-4 w-4" />
-                  <span>History</span>
+                  <span>Historique</span>
                   <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handlePlatforms()}>
                   <Laptop className="mr-2 h-4 w-4" />
-                  <span>Plateforms</span>
+                  <span>Plateformes</span>
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
