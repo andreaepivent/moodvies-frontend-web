@@ -50,8 +50,7 @@ export default function ModalLogin() {
             token: data.token,
             username: data.username,
           }));
-          setOpen(false);
-          setNextModalOpen(true);
+          router.push("/mood")
         } else {
           console.error("Google login failed on server:", data.message);
         }
