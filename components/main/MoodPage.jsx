@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
-import { addMood } from "../../reducers/moods";
+import { displayMood } from "../../reducers/moods";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
@@ -42,9 +42,9 @@ export default function MoodPage() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(updateRecommendation(data.recommendations));
+        dispatch(displayMood(moodSelected));
         router.push(`/movies`);
         setLoading(false);
-        dispatch(addMood([moodSelected]));
       });
   };
 
