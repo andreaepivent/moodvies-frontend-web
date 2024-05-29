@@ -21,10 +21,17 @@ export default function Footer() {
           body: JSON.stringify({ email }),
         }
       );
+
+      const data = await response.json();
+
       if (response.ok) {
-        setMessage("Subscription successful");
+        setMessage(data.message || "Subscription successful");
+      } else if (response.status === 409) {
+        setMessage(data.message || "Email already subscribed");
+      } else if (response.status === 400) {
+        setMessage(data.message || "Invalid email address");
       } else {
-        setMessage("Subscription failed");
+        setMessage(data.message || "Subscription failed");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -43,7 +50,9 @@ export default function Footer() {
               className="size-12"
             />
             <p className="text-slate-300 my-2 text-sm sm:text-md">
-            Explore, discover and enjoy every movie night! Your next favorite film, custom-recommended by our AI Maud.             </p>
+              Explore, discover and enjoy every movie night! Your next favorite
+              film, custom-recommended by our AI Maud.{" "}
+            </p>
           </div>
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
@@ -145,4 +154,3 @@ export default function Footer() {
     </Card>
   );
 }
-
