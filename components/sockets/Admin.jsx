@@ -1,22 +1,13 @@
 import { useState } from "react";
 import socketIOClient from "socket.io-client";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Calendar } from "@/components/ui/calendar";
+import Navbar from "../common/Navbar";
 
 export default function Admin() {
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState(new Date());
+
   const [message, setMessage] = useState("");
-  const [open, setOpen] = useState(false);
 
   const handleAddMovie = () => {
     const socket = socketIOClient("http://localhost:3000");
@@ -26,9 +17,7 @@ export default function Admin() {
 
     socket.emit("addMovie", movieData);
 
-    setMessage(
-      `Movie title: ${title} available: ${formatDate(date)} added successfully!`
-    );
+    setMessage(`Movie ID: ${title} added successfully!`);
 
     setTitle("");
     setTimeout(() => {
@@ -44,44 +33,38 @@ export default function Admin() {
 
   return (
     <>
-      <div className="h-screen w-screen flex justify-center items-center">
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button variant="default" className="w-32 border-2 text-slate-100 ">
-              Add Movie
+      <div className="h-screen w-screen flex flex-col items-center bg-black">
+        <div className="w-full">
+          <Navbar />
+        </div>
+        <div className="flex-grow flex flex-col items-center justify-center space-y-4">
+          <h1 className="text-slate-100 text-4xl mb-10">
+            Welcome Paul the boss
+          </h1>
+          <h3 className="text-center text-2xl mb-3 text-slate-100">
+            Add Movie by ID :
+          </h3>
+          <div className="flex flex-col space-y-1.5">
+            <Input
+              id="title"
+              placeholder="id"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-96"
+            />
+            <Button
+              type="submit"
+              variant="gradientPurple"
+              className="w-full mb-1"
+              onClick={handleAddMovie}
+            >
+              Submit
             </Button>
-          </DialogTrigger>
-          <DialogContent className="dark text-slate-100 sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle className="text-center text-2xl mb-3">
-                Add Movie by ID :
-              </DialogTitle>
-            </DialogHeader>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Input
-                  id="title"
-                  placeholder="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                type="submit"
-                variant="gradientPurple"
-                className="w-full mb-1"
-                onClick={handleAddMovie}
-              >
-                Submit
-              </Button>
-            </DialogFooter>
-            {message && (
-              <p className="text-center text-green-500 mt-2">{message}</p>
-            )}
-          </DialogContent>
-        </Dialog>
+          </div>
+          {message && (
+            <p className="text-center text-green-500 mt-2">{message}</p>
+          )}
+        </div>
       </div>
     </>
   );
