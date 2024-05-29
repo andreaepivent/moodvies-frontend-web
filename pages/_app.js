@@ -17,7 +17,6 @@ import { NextUIProvider } from "@nextui-org/system";
 import "../i18n";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
 console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
 const lato = Lato({

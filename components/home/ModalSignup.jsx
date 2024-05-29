@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 import { useGoogleLogin } from '@react-oauth/google';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 
 export default function ModalSignup() {
@@ -36,6 +37,37 @@ export default function ModalSignup() {
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
 
+  /* Connection Facebook en attente de décision
+  const responseFacebook = (response) => {
+    onslotchange.log(response)
+  }
+
+  <FacebookLogin
+    appId="1285288455605125"
+    autoLoad
+    callback={responseFacebook}
+    render={renderProps => (
+      <Button
+        type="submit"
+        variant="facebook"
+        className="w-full flex items-center justify-center mb-1"
+        onClick={renderProps.onClick}
+      >
+        <div className="relative h-6 w-6 mr-2">
+          <Image
+            src="/logo/facebook.svg"
+            alt="logo-facebook"
+            style={{ objectFit: "contain" }}
+            width={18}
+            height={18}
+            fetchPriority="hight"
+          />
+        </div>
+       Continue with Facebook
+      </Button>
+    )}
+  />
+  */
  
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -222,23 +254,6 @@ export default function ModalSignup() {
             </Button>
           </DialogFooter>
 
-          <Button
-            type="submit"
-            variant="facebook"
-            className="w-full flex items-center justify-center mb-1"
-          >
-            <div className="relative h-6 w-6 mr-2">
-              <Image
-                src="/logo/facebook.svg"
-                alt="logo-facebook"
-                style={{ objectFit: "contain" }}
-                width={18}
-                height={18}
-                fetchPriority="hight"
-              />
-            </div>
-            Continue with Facebook
-          </Button>
           <Button 
             type="submit"
             variant="" 

@@ -26,6 +26,9 @@ export default function ModalLogin() {
   const [isVisible, setIsVisible] = useState(true);
   const [open, setOpen] = useState(false);
 
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       console.log("Google login successful:", tokenResponse);
@@ -62,9 +65,6 @@ export default function ModalLogin() {
       console.error("Google login error:", error);
     },
   });
-
-  const dispatch = useDispatch();
-  const router = useRouter();
 
   const submitSignIn = () => {
     setLoader(true);
