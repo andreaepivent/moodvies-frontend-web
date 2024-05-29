@@ -2,16 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const moodSlice = createSlice({
   name: "moods",
-  initialState: [],
+  initialState: "",
   reducers: {
-    addMood: (state, action) => {
-      state.push(action.payload);
-    },
-    removeMood: (state) => {
-      return [];
+    displayMood: (state, action) => {
+      return action.payload; // Return the new state directly
     },
   },
 });
 
-export const { addMood, removeMood } = moodSlice.actions;
+export const { displayMood } = moodSlice.actions;
 export default moodSlice.reducer;

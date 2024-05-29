@@ -6,8 +6,11 @@ import {
   LogOut,
   History,
   User,
+  Flag,
+  Languages,
+  Earth,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,14 +20,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../reducers/user";
 import Image from "next/image";
+import { setLanguage } from "@/reducers/traduction";
 
 export function Setting() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
+  const currentLanguage = useSelector((state) => state.traduction.language);
 
   const router = useRouter();
 
@@ -42,7 +52,9 @@ export function Setting() {
     router.push(`/support`);
   }
 
-  const dispatch = useDispatch();
+  const handleChange = (language) => {
+    dispatch(setLanguage(language));
+  };
 
   function gotoHomePage() {
     dispatch(logout());
@@ -89,6 +101,29 @@ export function Setting() {
               </DropdownMenuGroup>
 
               <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Languages className="mr-2 h-4 w-4" />
+                  <span>Language</span>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent className="dark">
+                    <DropdownMenuItem onClick={() => handleChange("en")}>
+                      <Earth className="mr-2 h-4 w-4" />
+                      <span>English</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleChange("fr")}>
+                      <Earth className="mr-2 h-4 w-4" />
+                      <span>Français</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <Flag className="mr-2 h-4 w-4" />
+                      <span>More...</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
               <DropdownMenuItem>
                 <Cloud className="mr-2 h-4 w-4" />
                 <span>IA</span>

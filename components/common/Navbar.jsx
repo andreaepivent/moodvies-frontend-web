@@ -38,7 +38,7 @@ export default function Navbar() {
           <p className="text-slate-100 font-bold">{t("slogan")}</p>
         </div>
         <div
-          className="hidden flex-col justify-center items-center mt-4 lg:flex"
+          className="hidden flex-col mr-32  justify-center items-center mt-4 lg:flex"
           onClick={() => handleMaud()}
         >
           <FontAwesomeIcon
@@ -54,9 +54,9 @@ export default function Navbar() {
             showNotifications={showNotifications}
             setShowNotifications={setShowNotifications}
           />
-          <div className="hidden items-center md:flex">
+          {/* <div className="hidden items-center md:flex">
             <LanguageSelect />
-          </div>
+          </div> */}
           <div
             className="flex items-center cursor-pointer"
             onClick={() => setShowModalSettings(!showModalSettings)}

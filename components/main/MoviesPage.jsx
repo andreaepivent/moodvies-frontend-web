@@ -36,7 +36,6 @@ export default function MoviesPage() {
   };
 
   function handleMood() {
-    dispatch(removeMood());
     router.push(`/mood`);
   }
 
@@ -53,6 +52,7 @@ export default function MoviesPage() {
             fill
             style={{ objectFit: "cover" }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority="high"
           />
         </div>
 
@@ -68,7 +68,7 @@ export default function MoviesPage() {
             variant="ghost"
             className="w-80 border-2 text-slate-100 text-xl"
           >
-            Your mood : {moods[0]}
+            Your mood : {moods}
           </Button>
         </div>
 

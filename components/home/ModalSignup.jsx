@@ -45,15 +45,18 @@ export default function ModalSignup() {
       const { access_token } = tokenResponse;
 
       try {
-        const response = await fetch("http://localhost:3000/users/google-login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            access_token: access_token
-          }),
-        });
+        const response = await fetch(
+          "http://localhost:3000/users/google-login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              access_token: access_token,
+            }),
+          }
+        );
 
         const data = await response.json();
 
@@ -180,7 +183,7 @@ export default function ModalSignup() {
             <div className="flex flex-row gap-2">
               <Input
                 id="birthday"
-                placeholder="Date de naissance"
+                placeholder="  /  /   "
                 type="date"
                 className="w-40"
                 value={birthday}
@@ -219,14 +222,14 @@ export default function ModalSignup() {
             </Button>
           </DialogFooter>
 
-          <Button 
+          <Button
             type="submit"
-            variant="" 
+            variant=""
             className="w-full text-black mb-2"
             onClick={() => googleLogin()}
-            >
+          >
             <div className="relative h-6 w-6 -ml-4 mr-2 ">
-            <Image
+              <Image
                 src="/logo/google.svg"
                 alt="logo-google"
                 style={{ objectFit: "contain" }}
@@ -237,7 +240,6 @@ export default function ModalSignup() {
             </div>
             Continue with Google
           </Button>
-          
         </DialogContent>
       </Dialog>
 

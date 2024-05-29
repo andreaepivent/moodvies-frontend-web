@@ -22,7 +22,6 @@ export default function Admin() {
     const socket = socketIOClient("http://localhost:3000");
     const movieData = {
       title: title,
-      date: formatDate(date),
     };
 
     socket.emit("addMovie", movieData);
@@ -55,7 +54,7 @@ export default function Admin() {
           <DialogContent className="dark text-slate-100 sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle className="text-center text-2xl mb-3">
-                Add Movie
+                Add Movie by ID :
               </DialogTitle>
             </DialogHeader>
             <div className="grid w-full items-center gap-4">
@@ -65,15 +64,6 @@ export default function Admin() {
                   placeholder="Title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  className="rounded-md border"
-                  onChange={(e) => setAvailable(e.target.value)}
                 />
               </div>
             </div>
