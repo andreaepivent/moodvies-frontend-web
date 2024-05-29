@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({ text: "", color: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +25,31 @@ export default function Footer() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message || "Subscription successful");
+        setMessage({
+          text: data.message || "Abonnement à la newsletter réussi",
+          color: "green",
+        });
       } else if (response.status === 409) {
-        setMessage(data.message || "Email already subscribed");
+        setMessage({
+          text: data.message || " Utilisateur déjà abonné ",
+          color: "red",
+        });
       } else if (response.status === 400) {
-        setMessage(data.message || "Invalid email address");
+        setMessage({
+          text: data.message || " Adresse email invalide ",
+          color: "red",
+        });
       } else {
-        setMessage(data.message || "Subscription failed");
+        setMessage({
+          text: data.message || " Abonnement à la newsletter échoué ",
+          color: "red",
+        });
       }
+
+      // Définir un délai d'attente pour effacer le message après 2 secondes
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
     } catch (error) {
       console.error("Error:", error);
       setMessage("Subscription failed");
@@ -147,7 +164,7 @@ export default function Footer() {
                 Subscribe
               </Button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p style={{ color: message.color }}>{message.text}</p>}
           </div>
         </div>
       </footer>
