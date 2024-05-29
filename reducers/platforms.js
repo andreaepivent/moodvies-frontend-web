@@ -16,7 +16,9 @@ export const PlatformSlice = createSlice({
   initialState,
   reducers: {
     addPlatform: (state, action) => {
-      state.value.push(action.payload);
+      if (!state.value.some(movie => movie.src === action.payload.src)) {
+        state.value.push(action.payload);
+      }
     },
     deletePlatform: (state, action) => {
       state.value = state.value.filter(
