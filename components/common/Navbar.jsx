@@ -54,9 +54,9 @@ export default function Navbar() {
             showNotifications={showNotifications}
             setShowNotifications={setShowNotifications}
           />
-          <div className="hidden items-center md:flex">
+          {/* <div className="hidden items-center md:flex">
             <LanguageSelect />
-          </div>
+          </div> */}
           <div
             className="flex items-center cursor-pointer"
             onClick={() => setShowModalSettings(!showModalSettings)}
