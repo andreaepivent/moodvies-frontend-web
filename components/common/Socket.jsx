@@ -14,8 +14,8 @@ export default function Socket() {
     });
 
     socket.on("movieAdded", (movieData) => {
-      const { title, date } = movieData;
-      dispatch(addNotification({ title, date }));
+      console.log(movieData);
+      dispatch(addNotification(movieData));
     });
 
     socket.on("movieDeleted", (movieId) => {

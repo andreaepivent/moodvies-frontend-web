@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,6 +6,7 @@ import { removeNotification } from "@/reducers/notifications";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // Hook personnalisé pour obtenir la valeur précédente
 function usePrevious(value) {
@@ -15,12 +17,17 @@ function usePrevious(value) {
   return ref.current;
 }
 
-const Notifications = ({ showNotifications, setShowNotifications }) => {
+const Notifications = ({
+  showNotifications,
+  setShowNotifications,
+  currentLanguage = "en",
+}) => {
   const notifications = useSelector((state) => state.notifications);
   const [notificationsSeen, setNotificationsSeen] = useState(true);
 
   const dispatch = useDispatch();
 
+  console.log(notifications);
   const previousNotificationsLength = usePrevious(notifications.length);
 
   useEffect(() => {
@@ -58,41 +65,43 @@ const Notifications = ({ showNotifications, setShowNotifications }) => {
         </span>
       )}
       {showNotifications && (
-        <div className="bg-stone-950/75 absolute -right-0 mt-6 w-96 border rounded-lg shadow-lg ">
+        <div className="bg-stone-950/75 absolute -right-0 mt-6 w-96 border rounded-lg shadow-lg">
           <ScrollArea className="h-72 rounded-md border text-slate-100">
             <div className="p-4">
-              <h4 className="mb-4 text-2xl font-medium leading-none text-center">
+              {/* <h4 className="mb-4 text-2xl font-medium leading-none text-center">
                 Notifications
-              </h4>
-              {notifications.map((notification, index) => (
-                <>
-                  <div
-                    key={notification.id}
-                    className="text-md rounded-lg flex justify-between items-center hover:bg-stone-900 cursor-pointer"
-                  >
-                    <div>
-                      <p>
-                        {" "}
-                        New movie:
-                        <span className="font-bold text-purple-500 ml-2 mr-2">
-                          {notification.title}
-                        </span>
-                        available on
-                        <span className="text-green-500 ml-2">
-                          {" "}
-                          {notification.date}
-                        </span>
-                      </p>
+              </h4> */}
+              {notifications &&
+                notifications.map((notification, index) => (
+                  <React.Fragment key={index}>
+                    <div className="text-md rounded-lg flex justify-between items-center hover:bg-stone-900 cursor-pointer">
+                      <div className="flex">
+                        <Image
+                          src={`https://image.tmdb.org/t/p/original${
+                            notification.backdrop
+                              ? notification.backdrop
+                              : notification.poster
+                          }`}
+                          alt={notification.title.fr}
+                          width={80} // Set appropriate width and height
+                          height={80} // Set appropriate width and height
+                        />
+                        <p className="ml-4">
+                          <span className="font-bold text-purple-500 mr-2">
+                            {notification.title[currentLanguage]}
+                          </span>
+                          has been added !
+                        </p>
+                      </div>
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className="cursor-pointer ml-2 hover:bg-stone-900 size-5"
+                        onClick={() => handleRemoveNotification(index)}
+                      />
                     </div>
-                    <FontAwesomeIcon
-                      icon={faTimes}
-                      className=" cursor-pointer ml-2 hover:bg-stone-900 size-5"
-                      onClick={() => handleRemoveNotification(index)}
-                    />
-                  </div>
-                  <Separator className="my-2" />
-                </>
-              ))}
+                    <Separator className="my-2" />
+                  </React.Fragment>
+                ))}
             </div>
           </ScrollArea>
         </div>
