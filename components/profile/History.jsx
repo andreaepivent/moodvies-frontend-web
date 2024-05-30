@@ -40,7 +40,10 @@ function History() {
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
           <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900  text-2xl md:text-4xl mb-4 md:mb-0 md:pl-20">
             Salut{" "}
-            {user.username.charAt(0).toUpperCase() + user.username.slice(1)} !
+            {user &&
+              user.username.charAt(0).toUpperCase() +
+                user.username.slice(1)}{" "}
+            !
           </h1>
           <p className="text-white flex items-end pb-1 text-lg md:text-l md:pr-32 lg:text-xl">
             <span className="text-[#A759AD] mr-1">

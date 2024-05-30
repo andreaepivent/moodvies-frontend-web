@@ -84,6 +84,10 @@ export function Setting() {
     router.push(`/`);
   }
 
+  function gotoIA() {
+    router.push(`/maud`);
+  }
+
   return (
     <>
       {user.username ? (
@@ -152,14 +156,14 @@ export function Setting() {
                         <span>Français</span>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
+                      <DropdownMenuItem disabled>
                         <Flag className="mr-2 h-4 w-4" />
                         <span>More...</span>
                       </DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => gotoIA()}>
                   <Cloud className="mr-2 h-4 w-4" />
                   <span>IA</span>
                 </DropdownMenuItem>
@@ -167,10 +171,7 @@ export function Setting() {
                   <LifeBuoy className="mr-2 h-4 w-4" />
                   <span>Support</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                  <Github className="mr-2 h-4 w-4" />
-                  <span>GitHub</span>
-                </DropdownMenuItem>
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => gotoHomePage()}>
                   <LogOut className="mr-2 h-4 w-4" />

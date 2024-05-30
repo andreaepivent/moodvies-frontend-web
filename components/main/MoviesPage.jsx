@@ -10,6 +10,8 @@ import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
 import { BorderBeam } from "../ui/border-beam";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function MoviesPage() {
   const movies = useSelector(
@@ -20,6 +22,10 @@ export default function MoviesPage() {
 
   const [mainFilm, setMainFilm] = useState(movies[0]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [seenMovies, setSeenMovies] = useState(
+    Array(movies.length).fill(false)
+  );
+  const [lockFunction, setLockFunction] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,16 +33,53 @@ export default function MoviesPage() {
   }, []);
 
   const handleFilmClick = (clickedFilm) => {
-    setMainFilm(movies[clickedFilm]);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setLockFunction(true);
+
+    if (lockFunction) {
+      setMainFilm(movies[clickedFilm]);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  console.log(mainFilm);
+
+  const handleSeenMovie = async (event, index) => {
+    setLockFunction(false);
+    event.stopPropagation();
+    const updatedSeenMovies = [...seenMovies];
+    updatedSeenMovies[index] = !updatedSeenMovies[index];
+    setSeenMovies(updatedSeenMovies);
+
+    // try {
+    //   const response = await fetch('your-backend-url/api/history', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       movieId: movies[index].id,
+    //     }),
+    //   });
+
+    //   if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //   }
+    // } catch (error) {
+    //   console.error('There was a problem with the fetch operation:', error);
+    // }
   };
 
   function handleMood() {
     router.push(`/mood`);
   }
+
+  const cleanProviderName = (providerName) => {
+    // Utilise une regex pour retirer tout ce qui suit "basic"
+    return providerName.replace(/\bbasic\b.*/, "Basic");
+  };
 
   return (
     <div className="bg-black relative z-20">
@@ -83,6 +126,7 @@ export default function MoviesPage() {
             Retour
           </Button>
         </div>
+
         <div className="my-auto text-center text-slate-100 mx-auto mt-20 z-10">
           <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
             {mainFilm.title.fr}
@@ -91,7 +135,7 @@ export default function MoviesPage() {
             Réalisé par {mainFilm.directors}. {mainFilm.duration} minutes.{" "}
             {mainFilm.release_date.substring(0, 4)}
           </p>
-          <div className="max-w-2xl mx-auto flex items-center justify-center mt-6">
+          <div className="max-w-2xl mx-auto flex items-center justify-center mt-4">
             <blockquote className="mt-6 pl-6 italic pr-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
               {mainFilm.synopsis.fr}
             </blockquote>
@@ -117,6 +161,7 @@ export default function MoviesPage() {
             <div className="flex justify-center items-center flex-wrap gap-4">
               {mainFilm.providers.fr.length > 0 &&
                 mainFilm.providers.fr.map((platform, index) => {
+                  const cleanedPlatform = cleanProviderName(platform);
                   return (
                     <HoverBorderGradient
                       key={index}
@@ -125,7 +170,7 @@ export default function MoviesPage() {
                       className="bg-transparent text-slate-100 flex items-center space-x-2"
                     >
                       <AceternityLogo />
-                      <span>Disponible sur {platform}</span>
+                      <span>Disponible sur {cleanedPlatform}</span>
                     </HoverBorderGradient>
                   );
                 })}
@@ -154,6 +199,16 @@ export default function MoviesPage() {
                   htmlFor={index}
                   className="relative group w-[80px] h-full bg-cover bg-center cursor-pointer overflow-hidden rounded-2xl mx-2 flex items-end transition-all duration-300 ease-in-out shadow-lg hover:w-[150px] md:w-[120px] md:hover:w-[350px] lg:w-[150px] lg:hover:w-[550px]"
                 >
+                  <div className="absolute top-2 right-2 bg-white text-black rounded-full p-4 shadow-lg z-10 flex justify-center items-center">
+                    <FontAwesomeIcon
+                      key={0}
+                      icon={faBookmark}
+                      className={`size-4 ${
+                        seenMovies[index] ? "text-blue-500" : "text-gray-500"
+                      }`}
+                      onClick={(event) => handleSeenMovie(event, index)}
+                    />
+                  </div>
                   <Image
                     src={`https://image.tmdb.org/t/p/original${
                       movie.backdrop ? movie.backdrop : movie.poster

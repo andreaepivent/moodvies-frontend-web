@@ -79,7 +79,7 @@ export default function MoodPage() {
 
         <div className="relative flex justify-center items-center h-screen">
           {showTitle && (
-            <h1 className="absolute scroll-m-20 font-bold tracking-tight z-30 bottom-0 transform -translate-x-1/2 mx-32 overflow-hidden text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase  mb-20 xl:text-4xl md:text-3xl text-2xl">
+            <h1 className="absolute scroll-m-20 font-bold tracking-tight z-30 bottom-0 transform -translate-x-1/2 mx-32 overflow-hidden text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards]   mb-20 xl:text-4xl md:text-3xl text-2xl">
               Choisis ton mood, on s'occupe du film
             </h1>
           )}

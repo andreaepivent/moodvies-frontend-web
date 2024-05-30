@@ -116,11 +116,23 @@
 }
 
 .gradient-text {
-  background: linear-gradient(to bottom, #f1f5f9, #d946ef);
+  background: linear-gradient(to right, #f1f5f9, #d946ef);
   background-size: 200% 200%;
   animation: gradient-text 4s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .gradient-icon {
   background: linear-gradient(to right, #f1f5f9, #d946ef);

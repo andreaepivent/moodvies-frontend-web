@@ -63,7 +63,10 @@ function Platforms() {
           <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
             <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900  text-4xl md:text-5xl mb-4 md:mb-0 md:pl-20">
               Salut{" "}
-              {user.username.charAt(0).toUpperCase() + user.username.slice(1)} !
+              {user &&
+                user.username.charAt(0).toUpperCase() +
+                  user.username.slice(1)}{" "}
+              !
             </h1>
           </div>
         </div>

@@ -15,7 +15,12 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { IconRating12Plus } from "@tabler/icons-react";
 
-export default function MovieModal({ movie, isOpen, onClose, updateMovieNote }) {
+export default function MovieModal({
+  movie,
+  isOpen,
+  onClose,
+  updateMovieNote,
+}) {
   const user = useSelector((state) => state.user.value);
   const [rating, setRating] = useState(movie.note);
   const totalStars = 10;
@@ -37,7 +42,7 @@ export default function MovieModal({ movie, isOpen, onClose, updateMovieNote }) 
         <FontAwesomeIcon
           key={i}
           icon={faStar}
-          className={i <= rating ? "text-blue-500" : "text-white"}
+          className={i <= rating ? "text-yellow-500" : "text-white"}
           onClick={() => handleStarClick(i)}
         />
       );
@@ -45,12 +50,11 @@ export default function MovieModal({ movie, isOpen, onClose, updateMovieNote }) 
     return stars;
   };
 
-
   return (
     <Dialog className="dark" open={isOpen} onOpenChange={onClose}>
       <DialogContent className="dark text-slate-100">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl mb-3">
+          <DialogTitle className="text-center text-2xl mb-3 mt-10">
             {movie.movie.title.fr}
             <div className="flex text-sm font-normal justify-around w-1/2 mx-auto">
               <p>{movie.movie.directors}</p>
@@ -67,9 +71,13 @@ export default function MovieModal({ movie, isOpen, onClose, updateMovieNote }) 
             <p>{movie.movie.synopsis.fr}</p>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
-            {(rating>0 && rating) ? (<p className="text-right">Votre note :</p>) : (<p className="text-right">Notez ce film</p>)}
-          <div className="mt-2">{renderStars()}</div>
+        <DialogFooter className="-mt-10">
+          {rating > 0 && rating ? (
+            <p className="text-right">Votre note :</p>
+          ) : (
+            <p className="text-right mt-2">Notez ce film</p>
+          )}
+          <div className="mt-2 cursor-pointer">{renderStars()}</div>
         </DialogFooter>
       </DialogContent>
     </Dialog>

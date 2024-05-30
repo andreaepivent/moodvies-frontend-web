@@ -72,13 +72,21 @@ const Notifications = ({
           {notifications.length}
         </span>
       )}
-      {showNotifications && (
+
+      {notifications && notifications.length === 0 && !showNotifications && (
+        <div className="bg-stone-950/75 absolute -right-0 w-60 border rounded-lg shadow-lg z-20">
+          <ScrollArea className="h-22 rounded-md border text-slate-100">
+            <div className="p-4 text-center text-gray-400">
+              Aucune notification pour l'instant
+            </div>
+          </ScrollArea>
+        </div>
+      )}
+
+      {showNotifications && notifications.length > 0 && (
         <div className="bg-stone-950/75 absolute -right-0 w-96 border rounded-lg shadow-lg z-20">
           <ScrollArea className="h-60 rounded-md border text-slate-100">
             <div className="p-4">
-              {/* <h4 className="mb-4 text-2xl font-medium leading-none text-center">
-                Notifications
-              </h4> */}
               {notifications &&
                 notifications.map((notification, index) => (
                   <React.Fragment key={index}>
@@ -91,8 +99,8 @@ const Notifications = ({
                               : notification.poster
                           }`}
                           alt={notification.title ? notification.title.fr : ""}
-                          width={80} // Set appropriate width and height
-                          height={80} // Set appropriate width and height
+                          width={80}
+                          height={80}
                         />
                         <p className="ml-4">
                           <span className="font-bold text-purple-500 mr-2">

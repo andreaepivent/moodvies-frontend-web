@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,9 @@ function IconMovie({ nom, selected, onSelect }) {
         alt={nom + " Movie"}
         layout="fill"
         objectFit="cover"
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL={`/movie/${nom}-blur.jpg`} // Utiliser une image floutée en basse résolution pour le placeholder
       />
     </div>
   );
@@ -39,25 +42,32 @@ function IconMovie({ nom, selected, onSelect }) {
 export default function ModalMovies({ open, onOpenChange, loginData }) {
   const [currentModal, setCurrentModal] = useState("movies");
   const [selectedMovies, setSelectedMovies] = useState([]);
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const user = useSelector(state => state.user.value)
-  console.log(user)
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
-  console.log(selectedMovies)
-
   function handleNavigation(targetModal) {
-    selectedMovies.forEach((el) => {
-      dispatch(addMovie(el));
+    router.push("/mood");
+    setLoader(true);
+
+    selectedMovies.forEach((movie) => {
+      dispatch(addMovie(movie));
     });
-    dispatch(login(loginData))
+
+    dispatch(login(loginData));
+
     if (targetModal === "mood") {
       router.push("/mood");
     } else {
-      wait().then(() => setCurrentModal(targetModal));
+      wait().then(() => {
+        setCurrentModal(targetModal);
+        setLoader(false);
+      });
     }
   }
 
@@ -86,42 +96,56 @@ export default function ModalMovies({ open, onOpenChange, loginData }) {
                 height={10}
               />
             </div>
-            <DialogHeader>
-              <DialogTitle className="text-center text-2xl mb-3">
-                Pick at least 5 movies
-              </DialogTitle>
-            </DialogHeader>
-
-            <div className="grid grid-cols-4 lg:grid-cols-10 sm:grid-cols-5 items-center gap-2">
-              {[
-                "avatar",
-                "gladiator",
-                "cercle-des-poetes",
-                "fight-club",
-                "intouchable",
-                "inception",
-                "interstellar",
-                "la-ligne-verte",
-                "la-vie-est-belle",
-                "le-parrain-2",
-                "le-voyage-de-chihiro",
-                "lebon-labrute",
-                "leon",
-                "les-evades",
-                "les-affranchis",
-                "lord-of-the-ring",
-                "pulp-fiction",
-                "retour-vers-le-futur",
-                "vol-au-dessus",
-                "the-dark-knight",
-              ].map((movie) => (
-                <IconMovie
-                  key={movie}
-                  nom={movie}
-                  selected={selectedMovies.includes(movie)}
-                  onSelect={() => handleSelectMovie(movie)}
+            <div className="grid w-full items-center gap-4">
+              {loader ? (
+                <Spinner
+                  label="Loading..."
+                  color="primary"
+                  className="w-full gap-10 pb-20 pt-16"
+                  size="lg"
+                  labelColor="primary"
                 />
-              ))}
+              ) : (
+                <>
+                  <DialogHeader>
+                    <DialogTitle className="text-center text-2xl mb-3">
+                      Pick at least 5 movies
+                    </DialogTitle>
+                  </DialogHeader>
+
+                  <div className="grid grid-cols-4 lg:grid-cols-10 sm:grid-cols-5 items-center gap-2">
+                    {[
+                      "avatar",
+                      "gladiator",
+                      "cercle-des-poetes",
+                      "fight-club",
+                      "intouchable",
+                      "inception",
+                      "interstellar",
+                      "la-ligne-verte",
+                      "la-vie-est-belle",
+                      "le-parrain-2",
+                      "le-voyage-de-chihiro",
+                      "lebon-labrute",
+                      "leon",
+                      "les-evades",
+                      "les-affranchis",
+                      "lord-of-the-ring",
+                      "pulp-fiction",
+                      "retour-vers-le-futur",
+                      "vol-au-dessus",
+                      "the-dark-knight",
+                    ].map((movie) => (
+                      <IconMovie
+                        key={movie}
+                        nom={movie}
+                        selected={selectedMovies.includes(movie)}
+                        onSelect={() => handleSelectMovie(movie)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             <DialogFooter>

@@ -37,6 +37,8 @@ export default function ModalSignup() {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
 
+  const today = new Date().toISOString().split("T")[0];
+
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       console.log("Google login successful:", tokenResponse);
@@ -197,6 +199,7 @@ export default function ModalSignup() {
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 flex items-center px-2 pb-8"
+                tabIndex={-1}
                 onClick={() => setIsVisible(!isVisible)}
               >
                 {!isVisible ? (
@@ -212,10 +215,10 @@ export default function ModalSignup() {
             <div className="flex flex-row gap-2">
               <Input
                 id="birthday"
-                placeholder="  /  /   "
                 type="date"
-                className="w-40"
+                className="w-60"
                 value={birthday}
+                max={today}
                 onChange={(e) => setBirthday(e.target.value)}
               />
               <Select onValueChange={setGender} value={gender}>

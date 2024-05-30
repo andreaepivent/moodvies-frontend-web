@@ -48,7 +48,7 @@ export default function Navbar() {
           >
             <FontAwesomeIcon
               icon={faShieldCat}
-              className="gradient-icon text-slate-100 size-8 mb-6 animate-pulse animate-infinite cursor-pointer"
+              className="gradient-icon text-slate-100 size-8 mb-6 cursor-pointer"
             />
             <p className="gradient-text text-slate-100 font-bold">
               Laisse toi guider par notre IA
