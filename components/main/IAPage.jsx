@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { BorderBeam } from "../ui/border-beam";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRecommendation } from "@/reducers/recommendations";
-import { displayMood } from "../../reducers/moods";
+import { addMood } from "../../reducers/moods";
 
 export default function IAPage() {
   const user = useSelector((state) => state.user.value);
@@ -157,7 +157,7 @@ export default function IAPage() {
   };
 
   function handleClick() {
-    dispatch(displayMood("Sélectif"));
+    dispatch(addMood(["Sélectif"]));
     router.push(`/movies`);
   }
 
