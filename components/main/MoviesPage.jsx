@@ -66,7 +66,7 @@ export default function MoviesPage() {
             variant="ghost"
             className="w-80 border-2 text-slate-100 text-xl"
           >
-            Your mood : {moods[0]}
+            Ton mood : {moods[0]}
           </Button>
         </div>
 
@@ -76,7 +76,7 @@ export default function MoviesPage() {
             className="w-50 border-2 text-slate-100"
             onClick={() => handleMood()}
           >
-            Go back ?
+            Retour
           </Button>
         </div>
         <div className="my-auto text-center text-slate-100 mx-auto mt-20 z-10">
@@ -84,7 +84,7 @@ export default function MoviesPage() {
             {mainFilm.title.fr}
           </h2>
           <p className="scroll-m-20 text-xl font-semibold tracking-tight mt-2">
-            Directed by {mainFilm.directors[0]}. {mainFilm.duration} minutes.{" "}
+            Réalisé par {mainFilm.directors}. {mainFilm.duration} minutes.{" "}
             {mainFilm.release_date.substring(0, 4)}
           </p>
           <div className="max-w-2xl mx-auto flex items-center justify-center mt-6">
@@ -121,7 +121,7 @@ export default function MoviesPage() {
                       className="bg-transparent text-slate-100 flex items-center space-x-2"
                     >
                       <AceternityLogo />
-                      <span>Available on {platform}</span>
+                      <span>Disponible sur {platform}</span>
                     </HoverBorderGradient>
                   );
                 })}
@@ -131,7 +131,7 @@ export default function MoviesPage() {
       </div>
 
       <h2 className="w-screen pt-20 text-3xl font-extrabold text-center text-slate-100 bg-black -mb-16">
-        You can also checkout :
+        Tu peux aussi regarder :
       </h2>
 
       {isLoaded && (
@@ -167,7 +167,7 @@ export default function MoviesPage() {
                         {movie.title.fr}
                       </h4>
                       <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
-                        Directed by {movie.directors[0]} - {movie.duration}{" "}
+                        Réalisé par {movie.directors} - {movie.duration}{" "}
                         minutes - {movie.release_date.substring(0, 4)}
                       </p>
 
