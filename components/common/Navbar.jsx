@@ -40,7 +40,6 @@ export default function Navbar() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">{t("slogan")}</p>
         </div>
         <div className="hidden  flex-col justify-center items-center mt-4  lg:flex"></div>
         {showIAButton && (
