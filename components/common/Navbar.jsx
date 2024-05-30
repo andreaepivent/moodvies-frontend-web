@@ -33,18 +33,15 @@ export default function Navbar() {
   return (
     <>
       <div className="flex items-center justify-between pt-7 pb-20 z-1 px-8 absolute top-0 left-0 w-full bg-transparent z-20">
-        <div className="flex flex-col justify-center items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-        </div>
-        <div className="hidden  flex-col justify-center items-center mt-4  lg:flex"></div>
         {showIAButton && (
           <div
-            className="hidden flex-col mr-72  justify-center items-center mt-4 lg:flex"
+            className="hidden flex-col justify-center items-center mt-4 lg:flex"
             onClick={() => handleMaud()}
           >
             <FontAwesomeIcon
