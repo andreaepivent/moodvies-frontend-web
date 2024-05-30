@@ -22,13 +22,14 @@ function MoodCarousel() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json();
+        return response.json(); 
       })
       .then((data) => {
         const moodCounts = {};
 
         // On récupère les moods associés à chaque recommandation
         data.forEach((entry) => {
+          console.log(entry.userMood)
           const mood = entry.userMood.fr;
           if (moodCounts[mood]) {
             moodCounts[mood]++;
