@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import { useDispatch } from "react-redux";
-import { addNotification, removeNotification } from "@/reducers/notifications";
+import {
+  addNotification,
+  removeNotification,
+  deleteNotification,
+} from "@/reducers/notifications";
 
 export default function Socket() {
   const dispatch = useDispatch();
@@ -14,8 +18,8 @@ export default function Socket() {
     });
 
     socket.on("movieAdded", (movieData) => {
-      console.log(movieData);
       dispatch(addNotification(movieData));
+      dispatch(deleteNotification(true));
     });
 
     socket.on("movieDeleted", (movieId) => {

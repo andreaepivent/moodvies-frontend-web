@@ -2,7 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faBell, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeNotification } from "@/reducers/notifications";
+import {
+  removeNotification,
+  deleteNotification,
+} from "@/reducers/notifications";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect, useRef } from "react";
@@ -22,15 +25,20 @@ const Notifications = ({
   setShowNotifications,
   currentLanguage = "en",
 }) => {
-  const notifications = useSelector((state) => state.notifications);
+  const notifications = useSelector((state) => state.notifications.value);
+  const notificationsShow = useSelector((state) => state.notifications.boolean);
+
+  console.log(notificationsShow);
   const [notificationsSeen, setNotificationsSeen] = useState(true);
 
   const dispatch = useDispatch();
 
-  const previousNotificationsLength = usePrevious(notifications.length);
+  const previousNotificationsLength = usePrevious(
+    notifications ? notifications.length : 0
+  );
 
   useEffect(() => {
-    if (notifications.length > 0) {
+    if (notifications && notifications.length > 0) {
       setNotificationsSeen(false);
     }
   }, [notifications]);
@@ -38,6 +46,7 @@ const Notifications = ({
   function handleNotification() {
     setShowNotifications(!showNotifications);
     setNotificationsSeen(true);
+    dispatch(deleteNotification(false));
   }
 
   function handleRemoveNotification(index) {
@@ -58,14 +67,14 @@ const Notifications = ({
         onClick={() => handleNotification()}
       />
 
-      {!notificationsSeen && notifications.length > 0 && (
+      {notificationsShow && !notificationsSeen && notifications.length > 0 && (
         <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {notifications.length}
         </span>
       )}
       {showNotifications && (
         <div className="bg-stone-950/75 absolute -right-0 w-96 border rounded-lg shadow-lg z-20">
-          <ScrollArea className="h-64 rounded-md border text-slate-100">
+          <ScrollArea className="h-60 rounded-md border text-slate-100">
             <div className="p-4">
               {/* <h4 className="mb-4 text-2xl font-medium leading-none text-center">
                 Notifications
@@ -81,13 +90,15 @@ const Notifications = ({
                               ? notification.backdrop
                               : notification.poster
                           }`}
-                          alt={notification.title.fr}
+                          alt={notification.title ? notification.title.fr : ""}
                           width={80} // Set appropriate width and height
                           height={80} // Set appropriate width and height
                         />
                         <p className="ml-4">
                           <span className="font-bold text-purple-500 mr-2">
-                            {notification.title[currentLanguage]}
+                            {notification.title
+                              ? notification.title.fr
+                              : "Un nouveau film"}
                           </span>
                           a été ajouté !
                         </p>
