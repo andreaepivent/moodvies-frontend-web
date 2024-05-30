@@ -13,7 +13,7 @@ export default function Navbar() {
   const [showIAButton, setshowIAButton] = useState(false);
 
   function handleHome() {
-    router.push(`/mood`);
+    router.push(`/`);
   }
 
   function handleMaud() {

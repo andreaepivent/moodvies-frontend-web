@@ -79,13 +79,18 @@ export default function MoodPage() {
 
         <div className="relative flex justify-center items-center h-screen">
           {showTitle && (
-            <h1 className="absolute scroll-m-20 font-bold tracking-tight z-30 bottom-0 transform -translate-x-1/2 mx-32 overflow-hidden text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards]   mb-20 xl:text-4xl md:text-3xl text-2xl">
-              Choisis ton mood, on s'occupe du film
-            </h1>
+            <>
+              <h1 className="absolute scroll-m-20 font-bold tracking-tight z-30 bottom-0 transform -translate-x-1/2 mx-32 overflow-hidden text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] mb-20 xl:text-4xl md:text-3xl text-2xl">
+                Choisis ton mood, on s'occupe du film{" "}
+                {!user.username && (
+                  <p className="text-xl">... mais connecte toi avant</p>
+                )}
+              </h1>
+            </>
           )}
         </div>
 
-        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pb-20">
+        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10 pb-20">
           <Carousel className="w-full flex justify-center">
             <CarouselContent className="-ml-1">
               {moods.map((mood, index) => (
@@ -93,13 +98,17 @@ export default function MoodPage() {
                   key={index}
                   className="pl-1 md:basis-1/6 basis-1/3"
                 >
-                  <div className="p-1 w-full ">
+                  <div className="p-1 w-full">
                     <Card
-                      className="bg-transparent border-2 border-fuchsia-500 text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 cursor-pointer"
-                      onClick={() => handleMoodClick(mood)}
+                      className={`bg-transparent border-2 border-fuchsia-500 ${
+                        user.username
+                          ? "text-slate-100 hover:bg-gradient-to-r from-blue-900 to-fuchsia-500 cursor-pointer"
+                          : "text-gray-500 cursor-not-allowed"
+                      }`}
+                      onClick={() => user.username && handleMoodClick(mood)}
                     >
-                      <CardContent className="flex items-center justify-center p-2 ">
-                        <span className="animate-mood-reveal inline-block [animation-fill-mode:backwards] text-sm scroll-m-20 md:text-base font-semibold tracking-tight p-1 px-2 text-slate-100">
+                      <CardContent className="flex items-center justify-center p-2">
+                        <span className="animate-mood-reveal inline-block [animation-fill-mode:backwards] text-sm scroll-m-20 md:text-base font-semibold tracking-tight p-1 px-2">
                           {mood}
                         </span>
                       </CardContent>
