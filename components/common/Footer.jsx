@@ -45,6 +45,7 @@ export default function Footer() {
           color: "red",
         });
       }
+      setEmail("");
 
       // Définir un délai d'attente pour effacer le message après 2 secondes
       setTimeout(() => {
@@ -67,13 +68,13 @@ export default function Footer() {
               className="size-12"
             />
             <p className="text-slate-300 my-2 text-sm sm:text-md">
-              Explore, discover and enjoy every movie night! Your next favorite
-              film, custom-recommended by our AI Maud.{" "}
+              Explorez, découvrez et profitez de chaque soirée cinéma ! Votre
+              prochain film préféré, recommandé par notre IA Maud
             </p>
           </div>
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
-              Company
+              Société
             </h5>
             <ul className="text-slate-300 my-2 text-sm sm:text-md">
               <li className="my-2">Moodvies</li>
@@ -88,12 +89,12 @@ export default function Footer() {
           </div>
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
-              Quick Links
+              Quelques liens
             </h5>
             <ul className="my-2 text-slate-300 text-sm sm:text-md">
               <li className="my-2">
                 <a href="#" className="hover:underline">
-                  About us
+                  Contacts
                 </a>
               </li>
               <li className="my-2">
@@ -106,7 +107,7 @@ export default function Footer() {
 
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
-              Social Media
+              Nos réseaux 
             </h5>
             <ul>
               <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline">
@@ -144,14 +145,13 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
           <div className="col-span-2 mt-5 md:m-5">
             <h3 className="mb-5 font-semibold text-slate-100 tracking-wider text-sm sm:text-lg">
-              Subscribe to our newsletter
+              Souscrivez à notre newsletter
             </h3>
             <form className="flex items-center">
               <Input
-                placeholder="Enter your email"
+                placeholder="Entrez votre email"
                 className="dark text-slate-300 rounded-3xl focus-visible:ring-offset-none bg-black "
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
