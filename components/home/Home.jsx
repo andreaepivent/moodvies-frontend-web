@@ -83,7 +83,7 @@ export default function Home() {
 
             <div className="flex h-screen justify-center items-center bg-pink z-5">
               {showTitle && (
-                <h1 className="absolute mb-10 transform -translate-x-1/2 mx-auto overflow-hidden text-6xl font-bold text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase">
+                <h1 className="absolute mb-20 mx-20 text-3xl transform -translate-x-1/2  overflow-hidden xl:text-6xl font-bold text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase">
                   Trouve ton film préféré pour ce soir
                 </h1>
               )}
