@@ -176,6 +176,10 @@
   animation: text-reveal 1.5s ease-in-out forwards;
 }
 
+.animate-mood-reveal {
+  animation: text-reveal 0.8s ease-in-out forwards;
+}
+
 .shake:hover {
   animation: shake 0.4s;
 }

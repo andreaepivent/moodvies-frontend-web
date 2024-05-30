@@ -104,7 +104,7 @@ export function Setting() {
                   style={{ objectFit: "contain" }}
                   width={40}
                   height={40}
-                  className="rounded-lg"
+                  className="rounded-lg mb-1"
                 />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="dark w-56">
@@ -140,7 +140,10 @@ export function Setting() {
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent className="dark">
-                      <DropdownMenuItem disabled onClick={() => handleChange("en")}>
+                      <DropdownMenuItem
+                        disabled
+                        onClick={() => handleChange("en")}
+                      >
                         <Earth className="mr-2 h-4 w-4" />
                         <span>English</span>
                       </DropdownMenuItem>

@@ -64,8 +64,8 @@ const Notifications = ({
         </span>
       )}
       {showNotifications && (
-        <div className="bg-stone-950/75 absolute -right-0 mt-6 w-96 border rounded-lg shadow-lg">
-          <ScrollArea className="h-72 rounded-md border text-slate-100">
+        <div className="bg-stone-950/75 absolute -right-0 w-96 border rounded-lg shadow-lg z-20">
+          <ScrollArea className="h-64 rounded-md border text-slate-100">
             <div className="p-4">
               {/* <h4 className="mb-4 text-2xl font-medium leading-none text-center">
                 Notifications

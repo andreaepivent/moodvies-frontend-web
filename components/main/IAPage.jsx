@@ -1,7 +1,7 @@
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { BorderBeam } from "../ui/border-beam";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,35 @@ export default function IAPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [conversationHistory, setConversationHistory] = useState([]);
+
+  const conversationContainerRef = useRef(null);
+  const validateButtonRef = useRef(null);
+  const navbarRef = useRef(null);
+
+  useEffect(() => {
+    if (conversationContainerRef.current) {
+      conversationContainerRef.current.scrollTop =
+        conversationContainerRef.current.scrollHeight;
+    }
+  }, [conversationHistory]);
+
+  useEffect(() => {
+    if (validate && validateButtonRef.current) {
+      validateButtonRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+    }
+  }, [validate]);
+
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   const questions = [
     {
@@ -76,11 +105,6 @@ export default function IAPage() {
         "J'ai du temps (plus de 2h)",
         "Indifférent",
       ],
-    },
-    {
-      question:
-        "Pour finir, tu cherches un film populaire ou plutôt de niche ?",
-      options: ["Populaire", "Niche", "Indifférent"],
     },
   ];
 
@@ -164,33 +188,33 @@ export default function IAPage() {
   return (
     <>
       <div className="relative w-screen h-screen flex flex-col bg-center">
-{/*         <div
-          className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
-          style={{
-            backgroundImage: `url(/movie/le-parrain.jpeg)`,
-            zIndex: 1,
-          }}
-        ></div> */}
-        <div
-          className="absolute inset-0 bg-black"
-          style={{ zIndex: 2 }}
-        ></div>
+        <div className="absolute inset-0 bg-black" style={{ zIndex: 2 }}></div>
 
-        <Navbar />
+        <div ref={navbarRef}>
+          <Navbar />
+        </div>
 
         <div className="flex-grow flex flex-col items-center justify-center gap-5 my-auto mx-32 z-10 inset-0">
           <div>
-            <h3 className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-48">
+            <h3
+              id="scroll"
+              ref={scrollRef}
+              className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-48"
+            >
               Votre film sur mesure
             </h3>
             <p className="text-slate-100 text-center mb-6">
-              Notre IA Maud est là pour vous aider à trouver le film parfait qui correspond à votre humeur et vos envies du moment.
+              Notre IA Maud est là pour vous aider à trouver le film parfait qui
+              correspond à votre humeur et vos envies du moment.
             </p>
           </div>
 
           <div className="relative rounded-xl first-letter:mx-auto h-full text-slate-100 w-full md:w-3/4 lg:w-4/5">
             <BorderBeam />
-            <div className="rounded-xl m-10 bg-zinc-900 py-16 overflow-y-auto max-h-[70vh]">
+            <div
+              ref={conversationContainerRef}
+              className="rounded-xl m-10 bg-zinc-900 py-16 overflow-y-auto max-h-[70vh]"
+            >
               {conversationHistory.map((entry, index) => (
                 <div
                   className={`flex flex-col flex-wrap ${
@@ -201,8 +225,13 @@ export default function IAPage() {
                   key={index}
                 >
                   <p className="mb-4">
-                    {entry.type === "question" ? "Maud" : `${user.username}`} -{" "}
-                    {entry.time}
+                    {entry.type === "question"
+                      ? "Maud"
+                      : `${
+                          user.username.charAt(0).toUpperCase() +
+                          user.username.slice(1)
+                        }`}{" "}
+                    - {entry.time}
                   </p>
                   <p
                     className={`rounded-lg bg-gray-800 px-10 py-2 ${
@@ -244,11 +273,14 @@ export default function IAPage() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center mt-6">
+          <div
+            className="flex justify-center items-center mt-6"
+            ref={validateButtonRef}
+          >
             {validate && (
               <Button
                 variant="gradientPurple"
-                className="w-96"
+                className="w-96 text-slate-100"
                 onClick={handleClick}
               >
                 Valider

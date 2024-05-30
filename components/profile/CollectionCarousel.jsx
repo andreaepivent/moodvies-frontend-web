@@ -100,7 +100,7 @@ function CollectionCarousel() {
                     <FontAwesomeIcon
                       key={0}
                       icon={faBookmark}
-                      className="text-black"
+                      className="text-black size-3"
                     />
                   )}
                 </div>
@@ -113,11 +113,11 @@ function CollectionCarousel() {
       </Carousel>
       {selectedMovie && (
         <MovieModal
-        movie={selectedMovie}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        updateMovieNote={updateMovieNote}
-      />
+          movie={selectedMovie}
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          updateMovieNote={updateMovieNote}
+        />
       )}
     </>
   );

@@ -66,17 +66,17 @@ function AddPlatform(props) {
     // N'afficher que les plateformes que nous n'avons pas
     if (!isAlreadyInList) {
       return (
-      <img
-        key={index}
-        src={`/logo-platform/${platform.src}`}
-        className={`size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer ${
-          isClicked && !isAlreadyInList ? "border-white border-2" : ""
-        }`}
-        alt={platform.name}
-        onClick={(e) => handleClick(e)}
-      />
-    );
-  }
+        <img
+          key={index}
+          src={`/logo-platform/${platform.src}`}
+          className={`size-20 m-4 rounded transition duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer ${
+            isClicked && !isAlreadyInList ? "border-white border-2" : ""
+          }`}
+          alt={platform.name}
+          onClick={(e) => handleClick(e)}
+        />
+      );
+    }
   });
 
   return (
@@ -97,7 +97,7 @@ function AddPlatform(props) {
           <CardHeader>
             <CardTitle className="text-center -mt-10">Ajouter</CardTitle>
             <CardTitle className="text-center text-sm">
-            Quelle(s) plateforme(s) souhaitez-vous ajouter ?
+              Quelle(s) plateforme(s) souhaitez-vous ajouter ?
             </CardTitle>
           </CardHeader>
 
@@ -108,6 +108,7 @@ function AddPlatform(props) {
           <CardFooter className="flex justify-center">
             <Button
               variant="gradientPurple"
+              className="w-40"
               onClick={addNewPlatforms} // Add new platforms on button click
             >
               Ajouter

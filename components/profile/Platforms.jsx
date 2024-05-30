@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
-import NavbarProfile from "./Navbar/NavbarProfile";
 import AddPlatform from "./AddPlatform";
 import { useSelector, useDispatch } from "react-redux";
 import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile";
@@ -28,10 +27,10 @@ function Platforms() {
     return (
       <div
         key={index}
-        className="relative image-container overflow-hidden flex justify-between items-center group"
+        className="relative image-container flex justify-between items-center group"
       >
         <img
-          className="lg:size-36 md:size-30 size-24 object-cover rounded-2xl shake"
+          className="xl:size-36 md:size-30 size-24 object-cover rounded-2xl shake"
           src={`/logo-platform/${platform.src}`}
           alt={`${platform.name} poster`}
         />
@@ -63,7 +62,8 @@ function Platforms() {
           <ResponsiveNavbarProfile />
           <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
             <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900  text-4xl md:text-5xl mb-4 md:mb-0 md:pl-20">
-              Salut {user.username} !
+              Salut{" "}
+              {user.username.charAt(0).toUpperCase() + user.username.slice(1)} !
             </h1>
           </div>
         </div>

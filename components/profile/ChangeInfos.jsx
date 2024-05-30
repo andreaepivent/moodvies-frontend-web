@@ -52,7 +52,8 @@ function ChangeInfos(props) {
         })
       });
       const updatedProfile = await response.json();
-      if (updatedProfile.ok) {
+
+      if (updatedProfile) {
         dispatch(update({ username: usernameValue })); // Dispatching update action to Redux store
         props.setIsEditClicked(false); // Closing the edit form
         setShowModal(true); // Showing success modal
@@ -81,7 +82,7 @@ function ChangeInfos(props) {
       });
       const data = await response.json();
       if (data.result) {
-        setPasswordMessage('Password updated successfully.');
+        setPasswordMessage('Le mot de passe a bien été mis à jour');
       } else {
         setPasswordMessage(data.error); // Setting error message
       }
