@@ -20,9 +20,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
-import { login } from "@/reducers/user";
 import { useGoogleLogin } from '@react-oauth/google';
 
 
@@ -36,8 +34,6 @@ export default function ModalSignup() {
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
   const [loginData, setLoginData] = useState(null)
-
-  const dispatch = useDispatch();
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -79,7 +75,7 @@ export default function ModalSignup() {
     },
   });
 
-  const submitSignUp = () => {
+  const submitSignUp = async () => {
     const connectionData = {
       username: username,
       password: password,
@@ -88,31 +84,27 @@ export default function ModalSignup() {
       gender: gender,
     };
 
-    fetch("http://localhost:3000/users/signup", {
+    const response = await fetch("http://localhost:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(connectionData),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result) {
-          wait().then(() => {
-            setOpen(false);
-            setNextModalOpen(true);
-          });
-          setUsername("");
-          setPassword("");
-          setEmail("");
-          setBirthday("");
-          setGender("");
-          dispatch(
-            login({
-              token: data.token,
-              username: data.username,
-            })
-          );
-        }
-      });
+
+    const data = await response.json()
+
+    if (data.result) {
+      setOpen(false);
+      setNextModalOpen(true);
+      setLoginData({
+        token: data.token,
+        username: data.username,
+      })
+      setUsername("");
+      setPassword("");
+      setEmail("");
+      setBirthday("");
+      setGender("");
+    }
   };
 
   return (
