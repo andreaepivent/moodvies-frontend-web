@@ -29,7 +29,7 @@ function IconPlatform({ nom, onSelect, selected }) {
   );
 }
 
-export default function PlatformsModal({ open, onOpenChange }) {
+export default function PlatformsModal({ open, onOpenChange, loginData }) {
   const [currentModal, setCurrentModal] = useState("platforms");
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const dispatch = useDispatch();
@@ -121,6 +121,7 @@ export default function PlatformsModal({ open, onOpenChange }) {
 
       {currentModal === "movies" && (
         <ModalMovies
+          loginData={loginData}
           open={open}
           onOpenChange={(isOpen) => {
             if (!isOpen) setCurrentModal("platforms");

@@ -9,7 +9,6 @@ import Image from "next/image";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
 import { BorderBeam } from "../ui/border-beam";
-import { removeMood } from "@/reducers/moods";
 import { useRouter } from "next/router";
 
 export default function MoviesPage() {
@@ -21,7 +20,6 @@ export default function MoviesPage() {
   const [mainFilm, setMainFilm] = useState(movies[0]);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoaded(true); // Mettre à jour l'état après le chargement initial de la page
@@ -63,12 +61,12 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="relative ml-10 mt-20 flex justify-center items-center z-10">
+        <div className="relative ml-10 mt-52 flex justify-center items-center z-10">
           <Button
             variant="ghost"
             className="w-80 border-2 text-slate-100 text-xl"
           >
-            Your mood : {moods}
+            Your mood : {moods[0]}
           </Button>
         </div>
 

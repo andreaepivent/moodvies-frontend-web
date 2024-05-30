@@ -1,13 +1,14 @@
 import Footer from "@/components/common/Footer";
 import HomePageBottom from "./HomePageBottom";
 import HomePageMiddle from "./HomePageMiddle";
-import NavbarHome from "./NavbarHome";
 import ModalSignup from "./ModalSignup";
 import ModalLogin from "./ModalLogin";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
+import Navbar from "../common/Navbar";
+import NavbarHome from "./NavbarHome";
 
 export default function Home() {
   const user = useSelector((state) => state.user.value);
@@ -23,18 +24,19 @@ export default function Home() {
         <div className="relative w-screen">
           <div className="">
             <video
-              className="absolute inset-0 w-full h-full object-cover z-10"
+              className="absolute inset-0 w-full h-full object-cover"
               autoPlay
               loop
               muted
             >
               <source src="/video/MATRIX4.mp4" />
             </video>
-            <NavbarHome />
+            {/* <NavbarHome /> */}
+            <Navbar />
 
-            <div className="flex h-screen justify-center items-center bg-pink z-10">
+            <div className="flex h-screen justify-center items-center bg-pink z-5 ">
               <div className="flex flex-col z-10">
-                <div className="flex flex-col content-start">
+                <div className="flex flex-col content-start mt-20">
                   <h1 className="flex text-center text-6xl font-bold text-white my-8">
                     TROUVE TON FILM PRÉFÉRÉ <br /> POUR CE SOIR
                   </h1>
