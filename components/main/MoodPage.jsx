@@ -12,14 +12,14 @@ import Navbar from "../common/Navbar";
 import { useRouter } from "next/router";
 import { moods } from "../data";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
 import { addMood } from "../../reducers/moods";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
-
+  const [showTitle, setShowTitle] = useState(false);
   const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -48,6 +48,18 @@ export default function MoodPage() {
       });
   };
 
+  useEffect(() => {
+    // Afficher le titre 2 secondes après le chargement de la page
+    const showTimeout = setTimeout(() => {
+      setShowTitle(true);
+    }, 2000);
+
+    // Nettoyage des timeouts
+    return () => {
+      clearTimeout(showTimeout);
+    };
+  }, []);
+
   return (
     <>
       <div className="relative w-screen h-screen flex flex-col bg-center overflow-hidden">
@@ -65,10 +77,15 @@ export default function MoodPage() {
 
         <Navbar />
 
-        <h1 className="uppercase text-center mt-80 text-slate-100 font-bold text-2xl z-10 ">
-          Choisis ton mood, on s'occupe du film
-        </h1>
-        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pt-20">
+        <div className="relative flex justify-center items-center h-screen">
+          {showTitle && (
+            <h1 className="absolute scroll-m-20 font-extrabold tracking-tight z-30 bottom-16 transform -translate-x-1/2 mx-32 overflow-hidden text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase text-2xl md:text-3xl xl:text-4xl lg:text-5xl ">
+              Choisis ton mood, on s'occupe du film
+            </h1>
+          )}
+        </div>
+
+        <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pb-20">
           <Carousel className="w-full flex justify-center">
             <CarouselContent className="-ml-1">
               {moods.map((mood, index) => (

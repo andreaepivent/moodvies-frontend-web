@@ -82,12 +82,12 @@ export default function Home() {
             <Navbar />
 
             <div className="flex h-screen justify-center items-center bg-pink z-5">
-              <div className="flex flex-col z-10 mt-20">
-                {showTitle && (
-                  <h1 className="absolute top-1/3 right-32 overflow-hidden text-6xl font-bold text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase">
-                    Trouve ton film préféré pour ce soir
-                  </h1>
-                )}
+              {showTitle && (
+                <h1 className="absolute mb-20 mx-20 text-3xl transform -translate-x-1/2  overflow-hidden xl:text-6xl font-bold text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase">
+                  Trouve ton film préféré pour ce soir
+                </h1>
+              )}
+              <div className="relative flex flex-col z-10 mt-20 w-screen">
                 <div className="flex flex-col content-start mt-20"></div>
                 <div className="flex justify-center gap-10">
                   {user.username ? (

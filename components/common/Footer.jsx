@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
+import Image from "next/image";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -60,12 +61,13 @@ export default function Footer() {
   return (
     <Card className="w-screen bg-black text-slate-300 rounded-none">
       <footer className="mt-auto">
-        <div className="max-w-xl mx-auto p-4 grid grid-cols-2 lg:max-w-7xl lg:grid-cols-6 md:py-10">
-          <div className="m-2 mr-4">
-            <img
+        <div className="max-w-xl mx-auto p-4 grid grid-cols-2 lg:max-w-7xl lg:grid-cols-6 md:py-10 md:text-left text-center">
+          <div className="m-2 mr-4 flex flex-col items-center md:block">
+            <Image
               src="/home/Logo-moodvie-letter.svg"
               alt="logo-moodvies"
-              className="size-12"
+              height={40}
+              width={40}
             />
             <p className="text-slate-300 my-2 text-sm sm:text-md">
               Explorez, découvrez et profitez de chaque soirée cinéma ! Votre
@@ -87,6 +89,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
               Quelques liens
@@ -107,10 +110,10 @@ export default function Footer() {
 
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
-              Nos réseaux 
+              Nos réseaux
             </h5>
-            <ul>
-              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline">
+            <ul className="flex flex-col items-center md:block">
+              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline ">
                 <img
                   src="/logo/facebook.svg"
                   className="size-3"
@@ -119,7 +122,7 @@ export default function Footer() {
                 <a href="#">Facebook</a>
               </li>
 
-              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline">
+              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline ">
                 <img
                   src="/logo/twitter.svg"
                   className="size-3"
@@ -127,7 +130,7 @@ export default function Footer() {
                 />
                 <a href="#">Twitter</a>
               </li>
-              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline">
+              <li className="flex items-baseline gap-1 my-2 text-slate-300 text-sm sm:text-md hover:underline ">
                 <img
                   src="/logo/youtube.svg"
                   className="size-3"
@@ -145,7 +148,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col-span-2 mt-5 md:m-5">
+          <div className="col-span-2 m-3 md:m-3">
             <h3 className="mb-5 font-semibold text-slate-100 tracking-wider text-sm sm:text-lg">
               Souscrivez à notre newsletter
             </h3>
@@ -161,7 +164,7 @@ export default function Footer() {
                 className="text-slate-100 rounded-3xl h-11 w-40 -ml-24"
                 onClick={handleSubmit}
               >
-                Subscribe
+                Souscrire
               </Button>
             </form>
             {message && <p style={{ color: message.color }}>{message.text}</p>}

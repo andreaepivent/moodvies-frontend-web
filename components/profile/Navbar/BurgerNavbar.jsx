@@ -1,9 +1,9 @@
-
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Setting } from "../../common/Setting";
+
 import NavLink from "../../common/NavLink";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
 export default function BurgerNavbar() {
   const router = useRouter(); // Using Next.js useRouter hook for navigation
@@ -21,32 +21,38 @@ export default function BurgerNavbar() {
       <div className="flex items-center justify-between z-10 px-6 w-full">
         {/* Logo and home navigation */}
         <div className="flex flex-col justify-between items-center">
-          <img
+          <Image
             src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
-            className="size-20 cursor-pointer ml-10"
+            className="cursor-pointer ml-10"
+            width={80}
+            height={80}
             onClick={() => handleHome()} // Navigate to home on click
           />
         </div>
 
         {/* Burger menu icon */}
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <FaTimes className="text-white" /> : <FaBars className="text-white" />}
+            {isMenuOpen ? (
+              <FaTimes className="text-white size-10" />
+            ) : (
+              <FaBars className="text-white size-10" />
+            )}
           </button>
         </div>
       </div>
 
       {/* Burger menu dropdown */}
       {isMenuOpen && (
-        <div className="flex flex-col items-center bg-gray-800 text-white w-full py-2">
+        <div className="absolute flex flex-col items-center bg-gray-800 text-white w-full py-2">
           <NavLink
             href="/profile/informations"
             activeClassName="text-white p-2"
             nonActiveClassName="text-slate-500 p-2"
             onClick={() => setIsMenuOpen(false)} // Close menu on link click
           >
-            Personal Informations
+            Informations personnelles
           </NavLink>
           <NavLink
             href="/profile/history"
@@ -54,7 +60,7 @@ export default function BurgerNavbar() {
             nonActiveClassName="text-slate-500 p-2"
             onClick={() => setIsMenuOpen(false)} // Close menu on link click
           >
-            History
+            Historique
           </NavLink>
           <NavLink
             href="/profile/platforms"
@@ -62,11 +68,9 @@ export default function BurgerNavbar() {
             nonActiveClassName="text-slate-500 p-2"
             onClick={() => setIsMenuOpen(false)} // Close menu on link click
           >
-            Preferred Platforms
+            Plateformes préférées
           </NavLink>
-          <div className="flex justify-center mt-4">
-            <LanguageSelect /> {/* Language selection dropdown */}
-          </div>
+          <div className="flex justify-center mt-4"></div>
         </div>
       )}
     </>
