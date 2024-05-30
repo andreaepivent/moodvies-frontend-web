@@ -94,6 +94,7 @@ export default function ModalSignup() {
       });
 
     const data = await response.json()
+    console.log(data)
 
     if (data.result) {
       setOpen(false);
