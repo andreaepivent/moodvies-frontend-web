@@ -95,9 +95,9 @@ function AddPlatform(props) {
             alt="Logo"
           />
           <CardHeader>
-            <CardTitle className="text-center -mt-10">Add platform</CardTitle>
+            <CardTitle className="text-center -mt-10">Ajouter</CardTitle>
             <CardTitle className="text-center text-sm">
-              Which platform(s) would you like to add?
+            Quelle(s) plateforme(s) souhaitez-vous ajouter ?
             </CardTitle>
           </CardHeader>
 
@@ -110,7 +110,7 @@ function AddPlatform(props) {
               variant="gradientPurple"
               onClick={addNewPlatforms} // Add new platforms on button click
             >
-              Add
+              Ajouter
             </Button>
           </CardFooter>
         </Card>
