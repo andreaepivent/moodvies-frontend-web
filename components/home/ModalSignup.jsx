@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import ModalPlatforms from "./ModalPlatforms";
-import { useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
@@ -77,6 +77,7 @@ export default function ModalSignup() {
     },
   });
 
+  // Fonction pour gérer la soumission du formulaire d'inscription
   const submitSignUp = async () => {
     const connectionData = {
       username: username,
@@ -93,44 +94,46 @@ export default function ModalSignup() {
         body: JSON.stringify(connectionData),
       });
 
-    const data = await response.json()
+      const data = await response.json();
 
-    if (data.result) {
-      setOpen(false);
-      setNextModalOpen(true);
-      setLoginData({
-        token: data.token,
-        username: data.username,
-      });
-      setUsername("");
-      setPassword("");
-      setEmail("");
-      setBirthday("");
-      setGender("");
-      setUsernameError(null);
-      setEmailError(null);
-      setPasswordError(null);
-    } else {
-      if (data.error.includes("pseudo")) {
-        setUsernameError(data.error);
-      } else {
+      if (data.result) {
+        setOpen(false);
+        setNextModalOpen(true);
+        setLoginData({
+          token: data.token,
+          username: data.username,
+        });
+        // Réinitialise les champs du formulaire et les messages d'erreur
+        setUsername("");
+        setPassword("");
+        setEmail("");
+        setBirthday("");
+        setGender("");
         setUsernameError(null);
-      }
-      if (data.error.includes("email")) {
-        setEmailError(data.error);
-      } else {
         setEmailError(null);
-      }
-      if (data.error.includes("mot de passe")) {
-        setPasswordError(data.error);
-      } else {
         setPasswordError(null);
+      } else {
+        // Affiche les messages d'erreur spécifiques
+        if (data.error.includes("pseudo")) {
+          setUsernameError(data.error);
+        } else {
+          setUsernameError(null);
+        }
+        if (data.error.includes("email")) {
+          setEmailError(data.error);
+        } else {
+          setEmailError(null);
+        }
+        if (data.error.includes("mot de passe")) {
+          setPasswordError(data.error);
+        } else {
+          setPasswordError(null);
+        }
       }
+    } catch (error) {
+      console.error("Signup error:", error);
     }
-  } catch (error) {
-    console.error("Signup error:", error);
-  }
-};
+  };
 
   return (
     <>
@@ -217,10 +220,7 @@ export default function ModalSignup() {
               />
               <Select onValueChange={setGender} value={gender}>
                 <SelectTrigger id="gender" value={gender}>
-                  <SelectValue
-                    placeholder="Genre"
-                    className="text-slate-100"
-                  />
+                  <SelectValue placeholder="Genre" className="text-slate-100" />
                 </SelectTrigger>
                 <SelectContent position="popper" className="dark">
                   <SelectItem value="homme" className="cursor-pointer">
