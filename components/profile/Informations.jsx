@@ -55,16 +55,16 @@ function Informations() {
         <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
           <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
-            Hello {user.username}
+            Salut {user.username} !
           </h1>
         </div>
       </div>
       
       <div className="mx-auto w-1/2 h-1/4 flex justify-center mt-56">
         <div className="w-1/2 flex flex-col items-center justify-around">
-          <span className="text-white">Username :</span>
+          <span className="text-white">Pseudo :</span>
           <span className="text-white">Email :</span>
-          <span className="text-white">Password :</span>
+          <span className="text-white">Mot de passe :</span>
           <span className="text-white">Newsletter :</span>
         </div>
         <div className="w-1/2 flex flex-col items-center justify-around">
@@ -72,7 +72,7 @@ function Informations() {
           <span className="text-white">{userEmail}</span>
           <span className="text-white">********</span>
           <span className="text-white">
-            {newsletter ? "Subscribed" : "Not Subscribed"}
+            {newsletter ? "Abonné" : "Non abonné"}
           </span>
         </div>
       </div>
@@ -83,7 +83,7 @@ function Informations() {
         className="mx-auto mt-10 block text-white"
         onClick={() => setIsEditClicked(true)}
       >
-        Edit informations
+        Modifier
       </Button>
     </div>
   );

@@ -109,7 +109,7 @@ export function Setting() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="dark w-56">
                 <DropdownMenuLabel className="text-green-500">
-                  Hello{" "}
+                  Salut{" "}
                   {user.username.charAt(0).toUpperCase() +
                     user.username.slice(1)}{" "}
                 </DropdownMenuLabel>
@@ -136,11 +136,11 @@ export function Setting() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>
                     <Languages className="mr-2 h-4 w-4" />
-                    <span>Language</span>
+                    <span>Langage</span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent className="dark">
-                      <DropdownMenuItem onClick={() => handleChange("en")}>
+                      <DropdownMenuItem disabled onClick={() => handleChange("en")}>
                         <Earth className="mr-2 h-4 w-4" />
                         <span>English</span>
                       </DropdownMenuItem>
@@ -171,7 +171,7 @@ export function Setting() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => gotoHomePage()}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>Déconnexion</span>
                   <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuContent>
