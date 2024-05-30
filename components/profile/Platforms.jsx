@@ -65,7 +65,7 @@ function Platforms() {
           <ResponsiveNavbarProfile />
           <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
             <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
-              Hello {user.username}
+              Salut {user.username} !
             </h1>
           </div>
         </div>
@@ -88,7 +88,7 @@ function Platforms() {
               className="text-white mt-20 p-3"
               onClick={addNewPlatform}
             >
-              Add a new platform
+              Ajouter une nouvelle plateforme
             </Button>
           </div>
         )}

@@ -1,4 +1,4 @@
-import LanguageSelect from "../../common/LanguageSelect";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "../../common/Setting";
@@ -40,14 +40,14 @@ export default function NavbarProfile() {
             activeClassName="text-white p-4"
             nonActiveClassName="text-slate-500 p-4"
           >
-            History
+            Historique
           </NavLink>
           <NavLink
             href="/profile/platforms"
             activeClassName="text-white p-4"
             nonActiveClassName="text-slate-500 p-4"
           >
-            Platforms
+            Plateformes
           </NavLink>
         </div>
         {/* Language selection and settings */}

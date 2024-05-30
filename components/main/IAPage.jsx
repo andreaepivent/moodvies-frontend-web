@@ -6,19 +6,17 @@ import { Button } from "../ui/button";
 import { BorderBeam } from "../ui/border-beam";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRecommendation } from "@/reducers/recommendations";
-import { displayMood } from "../../reducers/moods";
+import { addMood } from "../../reducers/moods";
 
 export default function IAPage() {
+  const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [rec, setRec] = useState(false);
   const [validate, setValidate] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [conversationHistory, setConversationHistory] = useState([]);
-  const tokenTest = "7uxE57OsyHo8DvMgl3TSAqD5HHNlktvd";
 
   const questions = [
     {
@@ -109,7 +107,7 @@ export default function IAPage() {
         time: answers[3],
         popularity: answer,
       };
-      fetchRecommendation(tokenTest, preferences);
+      fetchRecommendation(user.token, preferences);
     }
   };
 
@@ -159,35 +157,34 @@ export default function IAPage() {
   };
 
   function handleClick() {
-    dispatch(displayMood("Sélectif"));
+    dispatch(addMood(["Sélectif"]));
     router.push(`/movies`);
   }
 
   return (
     <>
       <div className="relative w-screen h-screen flex flex-col bg-center">
-        <div
+{/*         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-fixed"
           style={{
             backgroundImage: `url(/movie/le-parrain.jpeg)`,
             zIndex: 1,
           }}
-        ></div>
+        ></div> */}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-transparent to-black"
+          className="absolute inset-0 bg-black"
           style={{ zIndex: 2 }}
         ></div>
 
         <Navbar />
 
-        <div className="flex-grow flex flex-col items-center justify-center gap-5 my-auto mx-32 z-10 pt-20 inset-0">
+        <div className="flex-grow flex flex-col items-center justify-center gap-5 my-auto mx-32 z-10 inset-0">
           <div>
-            <h3 className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-36">
-              Tell us about your mood
+            <h3 className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-48">
+              Votre film sur mesure
             </h3>
             <p className="text-slate-100 text-center mb-6">
-              Our AI Maud is here to help you find the perfect movie that
-              matches your current mood
+              Notre IA Maud est là pour vous aider à trouver le film parfait qui correspond à votre humeur et vos envies du moment.
             </p>
           </div>
 
@@ -204,7 +201,8 @@ export default function IAPage() {
                   key={index}
                 >
                   <p className="mb-4">
-                    {entry.type === "question" ? "Maud" : "Paul"} - {entry.time}
+                    {entry.type === "question" ? "Maud" : `${user.username}`} -{" "}
+                    {entry.time}
                   </p>
                   <p
                     className={`rounded-lg bg-gray-800 px-10 py-2 ${
@@ -253,7 +251,7 @@ export default function IAPage() {
                 className="w-96"
                 onClick={handleClick}
               >
-                Submit
+                Valider
               </Button>
             )}
           </div>

@@ -23,7 +23,6 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import ModalPlatforms from "./ModalPlatforms";
 import { useGoogleLogin } from '@react-oauth/google';
 
-
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");
@@ -33,7 +32,10 @@ export default function ModalSignup() {
   const [gender, setGender] = useState("");
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
-  const [loginData, setLoginData] = useState(null)
+  const [loginData, setLoginData] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -61,7 +63,7 @@ export default function ModalSignup() {
           setNextModalOpen(true);
           setLoginData({
             token: data.token,
-            username: data.username
+            username: data.username,
           });
         } else {
           console.error("Google login failed on server:", data.message);
@@ -128,10 +130,10 @@ export default function ModalSignup() {
           </div>
           <DialogHeader>
             <DialogTitle className="text-center text-2xl mb-3">
-              Create an account
+              Création d'un compte
             </DialogTitle>
             <DialogDescription>
-              Please enter all this information
+              Merci de renseigner toutes les informations
             </DialogDescription>
           </DialogHeader>
           <div className="grid w-full items-center gap-4">
@@ -141,7 +143,11 @@ export default function ModalSignup() {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className={usernameError ? "border-red-500" : ""}
               />
+              {usernameError && (
+                <p className="text-red-500 text-xs">{usernameError}</p>
+              )}
             </div>
 
             <Input
@@ -149,20 +155,22 @@ export default function ModalSignup() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={emailError ? "border-red-500" : ""}
             />
+            {emailError && <p className="text-red-500 text-xs">{emailError}</p>}
 
-            <div className="relative">
+            <div className="relative flex flex-col space-y-1.5">
               <Input
                 id="password"
                 placeholder="Password"
                 type={isVisible ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pr-10"
+                className={`pr-10 ${passwordError ? "border-red-500" : ""}`}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-2"
+                className="absolute inset-y-0 right-0 flex items-center px-2 pb-8"
                 onClick={() => setIsVisible(!isVisible)}
               >
                 {!isVisible ? (
@@ -171,6 +179,9 @@ export default function ModalSignup() {
                   <FontAwesomeIcon icon={faEyeSlash} className="" />
                 )}
               </button>
+              <p className="text-sm text-slate-600 mt-1 ml-2">
+                Au moins 8 caractères dont un chiffre et une majuscule
+              </p>
             </div>
             <div className="flex flex-row gap-2">
               <Input
@@ -234,8 +245,11 @@ export default function ModalSignup() {
           </Button>
         </DialogContent>
       </Dialog>
-
-      <ModalPlatforms loginData={loginData} open={nextModalOpen} onOpenChange={setNextModalOpen} />
+      <ModalPlatforms
+        loginData={loginData}
+        open={nextModalOpen}
+        onOpenChange={setNextModalOpen}
+      />
     </>
   );
 }
