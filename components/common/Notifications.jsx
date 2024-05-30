@@ -89,7 +89,7 @@ const Notifications = ({
                           <span className="font-bold text-purple-500 mr-2">
                             {notification.title[currentLanguage]}
                           </span>
-                          has been added !
+                          a été ajouté !
                         </p>
                       </div>
                       <FontAwesomeIcon
