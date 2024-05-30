@@ -28,7 +28,7 @@ function Platforms() {
     return (
       <div
         key={index}
-        className="relative image-container overflow-hidden flex justify-between items-center group"
+        className="relative image-container flex justify-between items-center group"
       >
         <img
           className="lg:size-36 md:size-30 size-24 object-cover rounded-2xl shake"

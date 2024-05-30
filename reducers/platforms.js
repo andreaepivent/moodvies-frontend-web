@@ -1,14 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: [{
-    src: "AppleTV.png",
-    name: "Apple"
-  },
-  {
-    src: "Disney+.png",
-    name: "Disney+"
-  }]
+  value: []
 };
 
 export const PlatformSlice = createSlice({
