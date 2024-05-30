@@ -180,7 +180,7 @@ export default function IAPage() {
 
         <div className="flex-grow flex flex-col items-center justify-center gap-5 my-auto mx-32 z-10 inset-0">
           <div>
-            <h3 className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-24">
+            <h3 className="text-slate-100 font-extrabold text-3xl text-center mb-6 mt-48">
               Votre film sur mesure
             </h3>
             <p className="text-slate-100 text-center mb-6">
