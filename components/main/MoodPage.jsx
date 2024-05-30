@@ -65,8 +65,8 @@ export default function MoodPage() {
 
         <Navbar />
 
-        <h1 className="uppercase text-center mt-80 text-slate-100 font-bold text-4xl z-10 ">
-          Select a mood, we’ll pick your movie
+        <h1 className="uppercase text-center mt-80 text-slate-100 font-bold text-2xl z-10 ">
+          Choisis ton mood, on s'occupe du film
         </h1>
         <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pt-20">
           <Carousel className="w-full flex justify-center">
