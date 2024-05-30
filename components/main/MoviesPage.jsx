@@ -15,8 +15,9 @@ export default function MoviesPage() {
   const movies = useSelector(
     (state) => state.recommendations.value.recommendations
   );
+
   const moods = useSelector((state) => state.moods);
-  console.log(moods);
+
   const [mainFilm, setMainFilm] = useState(movies[0]);
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
@@ -43,10 +44,13 @@ export default function MoviesPage() {
       <div className="relative w-screen flex flex-col bg-top overflow-hidden z-10">
         <div className="absolute inset-0 bg-cover bg-no-repeat bg-fixed">
           <Image
-            src={`https://image.tmdb.org/t/p/original${
-              mainFilm.backdrop ? mainFilm.backdrop : mainFilm.poster
-            }`}
-            alt={mainFilm.title.fr}
+            src={
+              mainFilm &&
+              `https://image.tmdb.org/t/p/original${
+                mainFilm.backdrop ? mainFilm.backdrop : mainFilm.poster
+              }`
+            }
+            alt={mainFilm && mainFilm.title.fr}
             fill
             style={{ objectFit: "cover" }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -167,8 +171,8 @@ export default function MoviesPage() {
                         {movie.title.fr}
                       </h4>
                       <p className="scroll-m-20 text-lg font-semibold tracking-tight pt-1 text-slate-100">
-                        Réalisé par {movie.directors} - {movie.duration}{" "}
-                        minutes - {movie.release_date.substring(0, 4)}
+                        Réalisé par {movie.directors} - {movie.duration} minutes
+                        - {movie.release_date.substring(0, 4)}
                       </p>
 
                       <blockquote className=" text-slate-100 pt-1 line-clamp-3 mt-2 italic pr-4 text-justify w-full h-full text-center overflow-hidden">

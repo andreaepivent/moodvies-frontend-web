@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
+import Image from "next/image";
 
 export default function Navbar() {
   const router = useRouter();
@@ -31,10 +32,12 @@ export default function Navbar() {
     <>
       <div className="flex items-center justify-between pt-7 pb-20 z-1 px-8 absolute top-0 left-0 w-full bg-transparent z-20">
         <div className="flex items-center">
-          <img
+          <Image
             src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
-            className="size-20 cursor-pointer"
+            className="cursor-pointer"
+            width={80}
+            height={80}
             onClick={() => handleHome()}
           />
         </div>
