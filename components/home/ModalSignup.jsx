@@ -94,6 +94,7 @@ export default function ModalSignup() {
       });
 
     const data = await response.json()
+    console.log(data)
 
     if (data.result) {
       setOpen(false);
@@ -110,27 +111,27 @@ export default function ModalSignup() {
       setUsernameError(null);
       setEmailError(null);
       setPasswordError(null);
+    } else {
+      if (data.error.includes("pseudo")) {
+        setUsernameError(data.error);
       } else {
-        if (data.error.includes("username")) {
-          setUsernameError(data.error);
-        } else {
-          setUsernameError(null);
-        }
-        if (data.error.includes("email")) {
-          setEmailError(data.error);
-        } else {
-          setEmailError(null);
-        }
-        if (data.error.includes("Password")) {
-          setPasswordError(data.error);
-        } else {
-          setPasswordError(null);
-        }
+        setUsernameError(null);
       }
-    } catch (error) {
-      console.error("Signup error:", error);
+      if (data.error.includes("email")) {
+        setEmailError(data.error);
+      } else {
+        setEmailError(null);
+      }
+      if (data.error.includes("mot de passe")) {
+        setPasswordError(data.error);
+      } else {
+        setPasswordError(null);
+      }
     }
-  };
+  } catch (error) {
+    console.error("Signup error:", error);
+  }
+};
 
   return (
     <>
@@ -163,7 +164,7 @@ export default function ModalSignup() {
             <div className="flex flex-col space-y-1.5">
               <Input
                 id="username"
-                placeholder="Username"
+                placeholder="Pseudo"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className={usernameError ? "border-red-500" : ""}
@@ -185,7 +186,7 @@ export default function ModalSignup() {
             <div className="relative flex flex-col space-y-1.5">
               <Input
                 id="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 type={isVisible ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -218,7 +219,7 @@ export default function ModalSignup() {
               <Select onValueChange={setGender} value={gender}>
                 <SelectTrigger id="gender" value={gender}>
                   <SelectValue
-                    placeholder="Gender"
+                    placeholder="Genre"
                     className="text-slate-100"
                   />
                 </SelectTrigger>
