@@ -82,7 +82,6 @@ function MoodCarousel() {
                     stroke: "#A759AE",
                     strokeLinecap: "butt",
                     transition: "stroke-dashoffset 0.5s ease 0s",
-                    transform: "rotate(0.25turn)",
                     transformOrigin: "center center",
                   },
                   trail: {

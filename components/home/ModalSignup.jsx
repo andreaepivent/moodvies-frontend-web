@@ -20,10 +20,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
-import { login } from "@/reducers/user";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from '@react-oauth/google';
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
@@ -38,9 +36,6 @@ export default function ModalSignup() {
   const [usernameError, setUsernameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
-
-  const dispatch = useDispatch();
-  const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -91,49 +86,26 @@ export default function ModalSignup() {
       gender: gender,
     };
 
-    try {
-      const response = await fetch("http://localhost:3000/users/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(connectionData),
-      });
+    const response = await fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(connectionData),
+    })
 
-      const data = await response.json();
+    const data = await response.json()
 
-      if (data.result) {
-        setOpen(false);
-        setNextModalOpen(true);
-        setLoginData({
-          token: data.token,
-          username: data.username,
-        });
-        setUsername("");
-        setPassword("");
-        setEmail("");
-        setBirthday("");
-        setGender("");
-        setUsernameError(null);
-        setEmailError(null);
-        setPasswordError(null);
-      } else {
-        if (data.error.includes("username")) {
-          setUsernameError(data.error);
-        } else {
-          setUsernameError(null);
-        }
-        if (data.error.includes("email")) {
-          setEmailError(data.error);
-        } else {
-          setEmailError(null);
-        }
-        if (data.error.includes("Password")) {
-          setPasswordError(data.error);
-        } else {
-          setPasswordError(null);
-        }
-      }
-    } catch (error) {
-      console.error("Signup error:", error);
+    if (data.result) {
+      setOpen(false);
+      setNextModalOpen(true);
+      setLoginData({
+        token: data.token,
+        username: data.username,
+      })
+      setUsername("");
+      setPassword("");
+      setEmail("");
+      setBirthday("");
+      setGender("");
     }
   };
 
