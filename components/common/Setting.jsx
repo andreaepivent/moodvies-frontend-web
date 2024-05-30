@@ -29,7 +29,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../reducers/user";
 import Image from "next/image";
-import { setLanguage } from "@/reducers/traduction";
+
 import Notifications from "../common/Notifications";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -37,7 +37,7 @@ import { Button } from "../ui/button";
 export function Setting() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
-  const currentLanguage = useSelector((state) => state.traduction.language);
+
   const [showNotifications, setShowNotifications] = useState(false);
   const [showGoHomeButton, setShowGoHomeButton] = useState(true);
   const [showUserButton, setshowUserButton] = useState(true);
@@ -76,7 +76,7 @@ export function Setting() {
     router.push(`/`);
   }
   const handleChange = (language) => {
-    dispatch(setLanguage(language));
+    // dispatch(setLanguage(language));
   };
 
   function gotoHomePage() {

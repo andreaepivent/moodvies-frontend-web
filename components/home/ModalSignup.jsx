@@ -23,8 +23,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
-import { useGoogleLogin } from '@react-oauth/google';
-
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
@@ -35,9 +34,10 @@ export default function ModalSignup() {
   const [gender, setGender] = useState("");
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
-  const [loginData, setLoginData] = useState(null)
+  const [loginData, setLoginData] = useState(null);
 
   const dispatch = useDispatch();
+  const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -65,7 +65,7 @@ export default function ModalSignup() {
           setNextModalOpen(true);
           setLoginData({
             token: data.token,
-            username: data.username
+            username: data.username,
           });
         } else {
           console.error("Google login failed on server:", data.message);
@@ -95,6 +95,7 @@ export default function ModalSignup() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data.result) {
           wait().then(() => {
             setOpen(false);
@@ -105,6 +106,7 @@ export default function ModalSignup() {
           setEmail("");
           setBirthday("");
           setGender("");
+          console.log(open);
           dispatch(
             login({
               token: data.token,
@@ -243,7 +245,11 @@ export default function ModalSignup() {
         </DialogContent>
       </Dialog>
 
-      <ModalPlatforms loginData={loginData} open={nextModalOpen} onOpenChange={setNextModalOpen} />
+      <ModalPlatforms
+        loginData={loginData}
+        open={nextModalOpen}
+        onOpenChange={setNextModalOpen}
+      />
     </>
   );
 }

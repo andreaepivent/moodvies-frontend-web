@@ -2,11 +2,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "../common/Setting";
 import Socket from "../common/Socket";
-import { useTranslation } from "react-i18next";
 
 export default function NavbarAdmin() {
-  const { t, i18n } = useTranslation();
-
   const router = useRouter();
 
   const [showModalSettings, setShowModalSettings] = useState(false);
@@ -29,7 +26,7 @@ export default function NavbarAdmin() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">{t("slogan")}</p>
+          <p className="text-slate-100 font-bold">{"slogan"}</p>
         </div>
 
         <div className="flex gap-4">

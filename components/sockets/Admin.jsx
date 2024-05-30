@@ -6,7 +6,6 @@ import Navbar from "../common/Navbar";
 
 export default function Admin() {
   const [title, setTitle] = useState("");
-
   const [message, setMessage] = useState("");
 
   const handleAddMovie = () => {

@@ -43,8 +43,6 @@ export default function PlatformsModal({ open, onOpenChange, loginData }) {
 
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
-  console.log(selectedPlatforms)
-
   function handleSelectPlatform(platform) {
     setSelectedPlatforms((prev) =>
       prev.includes(platform)

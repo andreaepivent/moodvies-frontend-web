@@ -4,11 +4,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
-import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
-
   const router = useRouter();
 
   const [showModalSettings, setShowModalSettings] = useState(false);
@@ -40,7 +37,7 @@ export default function Navbar() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">{t("slogan")}</p>
+          <p className="text-slate-100 font-bold">{"slogan"}</p>
         </div>
         <div className="hidden  flex-col justify-center items-center mt-4  lg:flex"></div>
         {showIAButton && (

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import AceternityLogo from "../logo/AceternityLogo";
 import Navbar from "../common/Navbar";
-import NavbarHome from "./NavbarHome";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const user = useSelector((state) => state.user.value);
@@ -18,20 +18,54 @@ export default function Home() {
     router.push("/mood");
   }
 
+  const [movie, setMovie] = useState("");
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const url = `/api/trailers`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Fetched data:", data);
+        if (
+          data.trailers &&
+          data.trailers.high &&
+          data.trailers.high.length > 0
+        ) {
+          const movie = data.trailers.high[0].film_trailer;
+          console.log("Movie trailer:", movie);
+          setMovie(movie);
+        } else {
+          throw new Error("No movie data found");
+        }
+      } catch (err) {
+        console.log("Fetch error:", err);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
   return (
     <>
       <div className="bg-black">
         <div className="relative w-screen">
           <div className="">
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-            >
-              <source src="/video/MATRIX4.mp4" />
-            </video>
-            {/* <NavbarHome /> */}
+            {movie && (
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+              >
+                <source src={movie} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
             <Navbar />
 
             <div className="flex h-screen justify-center items-center bg-pink z-5 ">
