@@ -30,8 +30,8 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between pt-7 pb-20 z-1 px-8 absolute top-0 left-0 w-full bg-transparent z-20">
-        <div className="flex items-center">
+      <div className="flex justify-between pt-7 pb-20 px-10 absolute top-0 left-0 w-full bg-transparent z-20">
+        <div className="flex justify-start w-1/3">
           <Image
             src="/home/Logo-moodvie-letter.svg"
             alt="logo-moodvie"
@@ -43,7 +43,7 @@ export default function Navbar() {
         </div>
         {showIAButton && (
           <div
-            className="hidden flex-col justify-center items-center mt-4 lg:flex "
+            className="hidden flex-col justify-center items-center lg:flex w-1/3"
             onClick={() => handleMaud()}
           >
             <FontAwesomeIcon
@@ -55,7 +55,7 @@ export default function Navbar() {
             </p>
           </div>
         )}
-        <div className="flex gap-4">
+        <div className="flex justify-end gap-4 w-1/3">
           <div
             className="flex items-center cursor-pointer"
             onClick={() => setShowModalSettings(!showModalSettings)}

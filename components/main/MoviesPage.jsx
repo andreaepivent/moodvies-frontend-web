@@ -65,7 +65,7 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="relative ml-10 mt-52 flex justify-center items-center z-10">
+        <div className="relative mt-52 flex justify-center items-center z-10">
           <Button
             variant="ghost"
             className="w-80 border-2 text-slate-100 text-xl"
@@ -74,7 +74,7 @@ export default function MoviesPage() {
           </Button>
         </div>
 
-        <div className="ml-10 mt-4 flex justify-center items-center z-10">
+        <div className="mt-4 flex justify-center items-center z-10">
           <Button
             variant="ghost"
             className="w-50 border-2 text-slate-100"
