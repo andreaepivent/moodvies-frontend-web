@@ -86,11 +86,12 @@ export default function ModalSignup() {
       gender: gender,
     };
 
-    const response = await fetch("http://localhost:3000/users/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(connectionData),
-    })
+    try {
+      const response = await fetch("http://localhost:3000/users/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(connectionData),
+      });
 
     const data = await response.json()
 
@@ -100,12 +101,34 @@ export default function ModalSignup() {
       setLoginData({
         token: data.token,
         username: data.username,
-      })
+      });
       setUsername("");
       setPassword("");
       setEmail("");
       setBirthday("");
       setGender("");
+      setUsernameError(null);
+      setEmailError(null);
+      setPasswordError(null);
+      } else {
+        if (data.error.includes("username")) {
+          setUsernameError(data.error);
+        } else {
+          setUsernameError(null);
+        }
+        if (data.error.includes("email")) {
+          setEmailError(data.error);
+        } else {
+          setEmailError(null);
+        }
+        if (data.error.includes("Password")) {
+          setPasswordError(data.error);
+        } else {
+          setPasswordError(null);
+        }
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
     }
   };
 
