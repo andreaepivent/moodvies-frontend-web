@@ -27,7 +27,6 @@ const Notifications = ({
 
   const dispatch = useDispatch();
 
-  console.log(notifications);
   const previousNotificationsLength = usePrevious(notifications.length);
 
   useEffect(() => {

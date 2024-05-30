@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { updateRecommendation } from "@/reducers/recommendations";
 import { Spinner } from "@nextui-org/spinner";
-import { displayMood } from "../../reducers/moods";
+import { addMood } from "../../reducers/moods";
 
 export default function MoodPage() {
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ export default function MoodPage() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(updateRecommendation(data.recommendations));
-        dispatch(displayMood(moodSelected));
+        dispatch(addMood(moodSelected));
         router.push(`/movies`);
         setLoading(false);
       });
@@ -65,8 +65,8 @@ export default function MoodPage() {
 
         <Navbar />
 
-        <h1 className="uppercase text-center mt-60 text-slate-100 font-bold text-4xl">
-          Select a mood, we’ll pick your movie
+        <h1 className="uppercase text-center mt-80 text-slate-100 font-bold text-2xl z-10 ">
+          Choisis ton mood, on s'occupe du film
         </h1>
         <div className="flex max-w-full items-center justify-center gap-5 my-auto mx-32 z-10  pt-20">
           <Carousel className="w-full flex justify-center">

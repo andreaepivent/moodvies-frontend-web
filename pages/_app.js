@@ -12,13 +12,9 @@ import movies from "../reducers/movies";
 import platforms from "../reducers/platforms";
 import recommendations from "../reducers/recommendations";
 import notifications from "../reducers/notifications";
-import traduction from "../reducers/traduction";
 import moods from "../reducers/moods";
 import { NextUIProvider } from "@nextui-org/system";
-import "../i18n";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-
-console.log("Current NODE_ENV:", process.env.NODE_ENV);
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const lato = Lato({
   weight: "400",
@@ -31,7 +27,6 @@ const reducers = combineReducers({
   movies,
   recommendations,
   notifications,
-  traduction,
   moods,
 });
 const persistConfig = {
@@ -49,7 +44,7 @@ const persistor = persistStore(store);
 
 export default function App({ Component, pageProps }) {
   return (
-    <GoogleOAuthProvider clientId="499145903418-f6i5sbqc4f1lola8cbmtqph91c49nc02.apps.googleusercontent.com" >
+    <GoogleOAuthProvider clientId="499145903418-f6i5sbqc4f1lola8cbmtqph91c49nc02.apps.googleusercontent.com">
       <NextUIProvider>
         <Provider store={store}>
           <PersistGate persistor={persistor}>

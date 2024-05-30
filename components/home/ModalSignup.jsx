@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
@@ -40,6 +41,7 @@ export default function ModalSignup() {
   const [passwordError, setPasswordError] = useState(null);
 
   const dispatch = useDispatch();
+  const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
