@@ -1,4 +1,4 @@
-import LanguageSelect from "../../common/LanguageSelect";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "../../common/Setting";

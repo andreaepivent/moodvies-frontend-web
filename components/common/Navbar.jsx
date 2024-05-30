@@ -37,7 +37,6 @@ export default function Navbar() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-          <p className="text-slate-100 font-bold">{"slogan"}</p>
         </div>
         {showIAButton && (
           <div
