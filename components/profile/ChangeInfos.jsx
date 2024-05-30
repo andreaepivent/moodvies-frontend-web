@@ -53,7 +53,7 @@ function ChangeInfos(props) {
       });
       const updatedProfile = await response.json();
 
-      if (updatedProfile) {
+      if (updatedProfile.result) {
         dispatch(update({ username: usernameValue })); // Dispatching update action to Redux store
         props.setIsEditClicked(false); // Closing the edit form
         setShowModal(true); // Showing success modal
