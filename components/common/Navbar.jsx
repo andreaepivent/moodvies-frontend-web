@@ -7,10 +7,10 @@ import { useState } from "react";
 import { Setting } from "./Setting";
 import Socket from "./Socket";
 import Notifications from "./Notifications";
-import { useTranslation } from "react-i18next";
+//import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
+  //const { t, i18n } = useTranslation();
 
   const router = useRouter();
 
@@ -28,17 +28,14 @@ export default function Navbar() {
   return (
     <>
       <div className="flex items-center justify-between pt-4 z-10 px-8">
-        <div className="flex flex-col justify-center items-center">
-          <img
-            src="/home/Logo-moodvie-letter.svg"
-            alt="logo-moodvie"
-            className="size-20 cursor-pointer"
-            onClick={() => handleHome()}
-          />
-          <p className="text-slate-100 font-bold">{t("slogan")}</p>
-        </div>
+        <img
+          src="/home/Logo-moodvie-letter.svg"
+          alt="logo-moodvie"
+          className="size-20 cursor-pointer"
+          onClick={() => handleHome()}
+        />
         <div
-          className="hidden flex-col mr-32  justify-center items-center mt-4 lg:flex"
+          className="hidden flex-col justify-center items-center mt-4 lg:flex"
           onClick={() => handleMaud()}
         >
           <FontAwesomeIcon
@@ -46,7 +43,7 @@ export default function Navbar() {
             className="gradient-icon text-slate-100 size-8 mb-6 animate-pulse animate-infinite cursor-pointer"
           />
           <p className="gradient-text text-slate-100 font-bold">
-            Choose to be guided by our AI
+            Laisse toi guider par notre IA
           </p>
         </div>
         <div className="flex gap-4">

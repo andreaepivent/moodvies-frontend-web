@@ -36,7 +36,7 @@ export default function Home() {
               <div className="flex flex-col z-10">
                 <div className="flex flex-col content-start">
                   <h1 className="flex text-center text-6xl font-bold text-white my-8">
-                    FIND YOUR FAVORITE MOVIE <br /> FOR TONIGHT
+                    TROUVE TON FILM PRÉFÉRÉ <br /> POUR CE SOIR
                   </h1>
                 </div>
                 <div className="flex justify-center gap-10">
@@ -49,7 +49,7 @@ export default function Home() {
                         onClick={() => handleMood()}
                       >
                         <AceternityLogo />
-                        <span>Go to your mood</span>
+                        <span>Renseigne ton humeur</span>
                       </HoverBorderGradient>
                     </>
                   ) : (
