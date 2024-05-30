@@ -24,7 +24,6 @@ import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
 import { login } from "@/reducers/user";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
   const [isVisible, setIsVisible] = useState(true);
