@@ -87,6 +87,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          
           <div className="m-3 md:m-3">
             <h5 className="mb-3 text-slate-100 text-md font-semibold sm:text-lg">
               Quelques liens
@@ -145,7 +146,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col-span-2 mt-5 md:m-5">
+          <div className="col-span-2 m-3 md:m-3">
             <h3 className="mb-5 font-semibold text-slate-100 tracking-wider text-sm sm:text-lg">
               Souscrivez à notre newsletter
             </h3>
@@ -161,7 +162,7 @@ export default function Footer() {
                 className="text-slate-100 rounded-3xl h-11 w-40 -ml-24"
                 onClick={handleSubmit}
               >
-                Subscribe
+                Souscrire
               </Button>
             </form>
             {message && <p style={{ color: message.color }}>{message.text}</p>}
