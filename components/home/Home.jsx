@@ -19,6 +19,7 @@ export default function Home() {
   }
 
   const [movie, setMovie] = useState("");
+  const [showTitle, setShowTitle] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -50,6 +51,18 @@ export default function Home() {
     fetchMovies();
   }, []);
 
+  useEffect(() => {
+    // Afficher le titre 2 secondes après le chargement de la page
+    const showTimeout = setTimeout(() => {
+      setShowTitle(true);
+    }, 3200);
+
+    // Nettoyage des timeouts
+    return () => {
+      clearTimeout(showTimeout);
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-black">
@@ -68,13 +81,14 @@ export default function Home() {
             )}
             <Navbar />
 
-            <div className="flex h-screen justify-center items-center bg-pink z-5 ">
-              <div className="flex flex-col z-10">
-                <div className="flex flex-col content-start mt-20">
-                  <h1 className="flex text-center text-6xl font-bold text-white my-8">
-                    TROUVE TON FILM PRÉFÉRÉ <br /> POUR CE SOIR
+            <div className="flex h-screen justify-center items-center bg-pink z-5">
+              <div className="flex flex-col z-10 mt-20">
+                {showTitle && (
+                  <h1 className="absolute top-1/3 right-32 overflow-hidden text-6xl font-bold text-white my-8 animate-text-reveal inline-block [animation-fill-mode:backwards] uppercase">
+                    Trouve ton film préféré pour ce soir
                   </h1>
-                </div>
+                )}
+                <div className="flex flex-col content-start mt-20"></div>
                 <div className="flex justify-center gap-10">
                   {user.username ? (
                     <>
