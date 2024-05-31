@@ -42,7 +42,7 @@ export default function MovieModal({
         <FontAwesomeIcon
           key={i}
           icon={faStar}
-          className={i <= rating ? "text-yellow-500" : "text-white"}
+          className={i <= rating ? "text-[#A759AD]" : "text-white"}
           onClick={() => handleStarClick(i)}
         />
       );

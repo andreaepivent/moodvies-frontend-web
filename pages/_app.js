@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }) {
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <Head>
-              <title>Moodvie</title>
+              <title>MOODVIES - Trouve ton film préféré pour ce soir</title>
               <link rel="icon" href="/home/Logo-moodvie-letter.png" />
             </Head>
             <main className={lato.className}>

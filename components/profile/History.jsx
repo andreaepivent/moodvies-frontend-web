@@ -55,7 +55,7 @@ function History() {
       </div>
 
       {/* Mood Carousel section */}
-      <div className="w-full flex justify-center mt-64">
+      <div className="w-full flex justify-center mt-52">
         <MoodCarousel />
       </div>
 
