@@ -73,11 +73,15 @@ export default function MovieModal({
         </DialogHeader>
         <DialogFooter className="-mt-10">
           {rating > 0 && rating ? (
-            <p className="text-right">Votre note :</p>
+            <>
+            <p className="text-right mt-2">Votre note :</p>
+            <div className="mt-2 cursor-pointer">{renderStars()}</div>
+            </>
           ) : (
-            <p className="text-right mt-2">Notez ce film</p>
+            <><p className="text-right mt-2">Notez ce film</p>
+            <div className="mt-2 cursor-pointer">{renderStars()}</div></>
           )}
-          <div className="mt-2 cursor-pointer">{renderStars()}</div>
+          
         </DialogFooter>
       </DialogContent>
     </Dialog>
