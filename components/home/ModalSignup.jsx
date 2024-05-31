@@ -37,6 +37,7 @@ export default function ModalSignup() {
   const [usernameError, setUsernameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [formError, setFormError] = useState(null);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -88,6 +89,10 @@ export default function ModalSignup() {
 
   // Fonction pour gérer la soumission du formulaire d'inscription
   const submitSignUp = async () => {
+    if (!username || !email || !password || !birthday || !gender) {
+      setFormError("Tous les champs sont obligatoires.");
+      return;
+    }
     const connectionData = {
       username: username,
       password: password,
@@ -122,6 +127,7 @@ export default function ModalSignup() {
         setUsernameError(null);
         setEmailError(null);
         setPasswordError(null);
+        setFormError(null);
       } else {
         // Affichage des messages d'erreur spécifiques
         if (data.error.includes("pseudo")) {
@@ -168,10 +174,13 @@ export default function ModalSignup() {
             <DialogTitle className="text-center text-2xl mb-3">
               Création d'un compte
             </DialogTitle>
-            <DialogDescription>
-              Merci de renseigner toutes les informations
-            </DialogDescription>
+            {!formError && (
+              <DialogDescription>
+                Merci de renseigner toutes les informations
+              </DialogDescription>
+            )}
           </DialogHeader>
+          {formError && <p className="text-red-500 text-center">{formError}</p>}
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Input
