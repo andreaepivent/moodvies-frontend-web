@@ -53,7 +53,7 @@ function Informations() {
       <div className="fixed top-7 h-[25%] w-full">
         <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
-          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-3xl  mb-4 md:mb-0 md:pl-20 md:text-5xl">
+          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-2xl  mb-4 md:mb-0 md:pl-20 md:text-4xl">
             Salut{" "}
             {user &&
               user.username.charAt(0).toUpperCase() +
