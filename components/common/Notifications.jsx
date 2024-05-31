@@ -79,23 +79,12 @@ export default function Notifications({
         </span>
       )}
 
-      {/* Affiche un message lorsque il n'y a pas de notifications */}
-      {notifications && notifications.length === 0 && !showNotifications && (
-        <div className="bg-stone-950/95 absolute -right-0 w-60 border rounded-lg shadow-lg z-20">
-          <ScrollArea className="h-22 rounded-md border text-slate-100">
-            <div className="p-4 text-center text-gray-400">
-              Aucune notification pour l'instant
-            </div>
-          </ScrollArea>
-        </div>
-      )}
-
-      {/* Affiche la liste des notifications */}
-      {showNotifications && notifications.length > 0 && (
+      {/* Affiche la liste des notifications ou un message lorsqu'il n'y a pas de notifications */}
+      {showNotifications && (
         <div className="bg-stone-950/95 absolute -right-0 w-96 border rounded-lg shadow-lg z-20">
           <ScrollArea className="h-60 rounded-md border text-slate-100">
             <div className="p-4">
-              {notifications &&
+              {notifications && notifications.length > 0 ? (
                 notifications.map((notification, index) => (
                   <React.Fragment key={index}>
                     <div className="text-md rounded-lg flex justify-between items-center hover:bg-stone-900 cursor-pointer">
@@ -127,7 +116,12 @@ export default function Notifications({
                     </div>
                     <Separator className="my-2" />
                   </React.Fragment>
-                ))}
+                ))
+              ) : (
+                <div className="text-center text-gray-400">
+                  Aucune notification pour l'instant
+                </div>
+              )}
             </div>
           </ScrollArea>
         </div>
