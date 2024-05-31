@@ -18,7 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import NavbarProfile from "./Navbar/NavbarProfile"; 
+import ResponsiveNavbarProfile from "./Navbar/ResponsiveNavbarProfile"; 
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "@/reducers/user";
 
@@ -53,7 +53,7 @@ function ChangeInfos(props) {
       });
       const updatedProfile = await response.json();
 
-      if (updatedProfile) {
+      if (updatedProfile.result) {
         dispatch(update({ username: usernameValue })); // Dispatching update action to Redux store
         props.setIsEditClicked(false); // Closing the edit form
         setShowModal(true); // Showing success modal
@@ -97,9 +97,9 @@ function ChangeInfos(props) {
     <div className="w-screen min-h-screen bg-radial-gradient flex flex-col justify-around items-center">
       {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
-        <NavbarProfile />
+        <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
-          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
+          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-4xl mb-4 md:mb-0 md:pl-20">
             Salut {user.username} !
           </h1>
         </div>

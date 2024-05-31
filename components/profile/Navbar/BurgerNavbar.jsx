@@ -18,7 +18,7 @@ export default function BurgerNavbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between z-10 px-6 w-full">
+      <div className="flex items-center justify-between z-50 px-6 w-full">
         {/* Logo and home navigation */}
         <div className="flex flex-col justify-between items-center">
           <Image
