@@ -66,7 +66,7 @@ function CollectionCarousel() {
         }
         return response.json();
       })
-      .then((data) => setMovies(data))
+      .then((data) => setMovies(data.reverse()))
       .catch((error) => console.error("Fetch error:", error));
   }, [modalOpen]);
 

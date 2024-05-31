@@ -42,7 +42,7 @@ export default function MovieModal({
         <FontAwesomeIcon
           key={i}
           icon={faStar}
-          className={i <= rating ? "text-yellow-500" : "text-white"}
+          className={i <= rating ? "text-[#A759AD]" : "text-white"}
           onClick={() => handleStarClick(i)}
         />
       );
@@ -73,11 +73,15 @@ export default function MovieModal({
         </DialogHeader>
         <DialogFooter className="-mt-10">
           {rating > 0 && rating ? (
-            <p className="text-right">Votre note :</p>
+            <>
+            <p className="text-right mt-2">Votre note :</p>
+            <div className="mt-2 cursor-pointer">{renderStars()}</div>
+            </>
           ) : (
-            <p className="text-right mt-2">Notez ce film</p>
+            <><p className="text-right mt-2">Notez ce film</p>
+            <div className="mt-2 cursor-pointer">{renderStars()}</div></>
           )}
-          <div className="mt-2 cursor-pointer">{renderStars()}</div>
+          
         </DialogFooter>
       </DialogContent>
     </Dialog>

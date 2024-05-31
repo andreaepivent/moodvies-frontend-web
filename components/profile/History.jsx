@@ -37,7 +37,7 @@ function History() {
       {/* Navbar and header section */}
       <div className="fixed top-7 h-[25%] w-full">
         <ResponsiveNavbarProfile />
-        <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
+        <div className="w-full flex flex-col items-center -mt-4 md:mt-10 lg:mt-10 md:flex-row md:justify-between md:items-end">
           <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900  text-2xl md:text-4xl mb-4 md:mb-0 md:pl-20">
             Salut{" "}
             {user &&
@@ -55,7 +55,7 @@ function History() {
       </div>
 
       {/* Mood Carousel section */}
-      <div className="w-full flex justify-center mt-64">
+      <div className="w-full flex justify-center mt-60">
         <MoodCarousel />
       </div>
 
