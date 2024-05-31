@@ -142,7 +142,7 @@ export default function ModalSignup() {
       <Dialog className="dark" open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="ghost" className="w-32 border-2 text-slate-100">
-            Signup
+            Inscription
           </Button>
         </DialogTrigger>
         <DialogContent className="dark text-slate-100 sm:max-w-[425px]">
