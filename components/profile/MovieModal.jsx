@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,13 +6,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { IconRating12Plus } from "@tabler/icons-react";
 
 export default function MovieModal({
   movie,
@@ -74,14 +71,15 @@ export default function MovieModal({
         <DialogFooter className="-mt-10">
           {rating > 0 && rating ? (
             <>
-            <p className="text-right mt-2">Votre note :</p>
-            <div className="mt-2 cursor-pointer">{renderStars()}</div>
+              <p className="text-right mt-2">Votre note :</p>
+              <div className="mt-2 cursor-pointer">{renderStars()}</div>
             </>
           ) : (
-            <><p className="text-right mt-2">Notez ce film</p>
-            <div className="mt-2 cursor-pointer">{renderStars()}</div></>
+            <>
+              <p className="text-right mt-2">Notez ce film</p>
+              <div className="mt-2 cursor-pointer">{renderStars()}</div>
+            </>
           )}
-          
         </DialogFooter>
       </DialogContent>
     </Dialog>

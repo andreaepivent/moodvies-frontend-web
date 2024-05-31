@@ -32,9 +32,11 @@ export default function MoviesPage() {
     setIsLoaded(true); // Mettre à jour l'état après le chargement initial de la page
   }, []);
 
+  // permet d'afficher en haut le film sur lequel on click
   const handleFilmClick = (clickedFilm) => {
     setLockFunction(true);
 
+    // Scroll to top smooth
     if (lockFunction) {
       setMainFilm(movies[clickedFilm]);
       window.scrollTo({
@@ -44,40 +46,20 @@ export default function MoviesPage() {
     }
   };
 
-  console.log(mainFilm);
-
+  // Permet de mettre en favori le film tout en empechant de lancer la fonction handlefilmclick
   const handleSeenMovie = async (event, index) => {
     setLockFunction(false);
     event.stopPropagation();
     const updatedSeenMovies = [...seenMovies];
     updatedSeenMovies[index] = !updatedSeenMovies[index];
     setSeenMovies(updatedSeenMovies);
-
-    // try {
-    //   const response = await fetch('your-backend-url/api/history', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       movieId: movies[index].id,
-    //     }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok');
-    //   }
-    // } catch (error) {
-    //   console.error('There was a problem with the fetch operation:', error);
-    // }
   };
 
   function handleMood() {
     router.push(`/mood`);
   }
-
+  // Utilise une regex pour retirer tout ce qui suit "basic"
   const cleanProviderName = (providerName) => {
-    // Utilise une regex pour retirer tout ce qui suit "basic"
     return providerName.replace(/\bbasic\b.*/, "Basic");
   };
 

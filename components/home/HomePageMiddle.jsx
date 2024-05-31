@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShieldCat } from "@fortawesome/free-solid-svg-icons";
 
 function HomePageMiddle() {
   return (
@@ -9,7 +7,12 @@ function HomePageMiddle() {
       <h1 className="text-center text-6xl font-bold text-white mt-20">
         Moodvies, en quelques mots
       </h1>
-      <p className="text-white text-center w-3/4 mx-auto mt-4">Chez Moodvies, nous comprenons que vos émotions jouent un rôle crucial dans votre choix de film. Que vous soyez joyeux, mélancolique, aventureux ou simplement détendu, notre plateforme est conçue pour vous proposer des films qui résonnent avec votre état d'esprit actuel.</p>
+      <p className="text-white text-center w-3/4 mx-auto mt-4">
+        Chez Moodvies, nous comprenons que vos émotions jouent un rôle crucial
+        dans votre choix de film. Que vous soyez joyeux, mélancolique,
+        aventureux ou simplement détendu, notre plateforme est conçue pour vous
+        proposer des films qui résonnent avec votre état d'esprit actuel.
+      </p>
       <div>
         <div className="w-full h-full absolute left-1/3">
           <Image
@@ -41,10 +44,15 @@ function HomePageMiddle() {
           />
           <div className="content-center w-4/12 mt-20 z-10">
             <h2 className="text-left text-fuchsia-500 font-bold mb-3">
-            Découvrez des films en fonction de votre humeur
+              Découvrez des films en fonction de votre humeur
             </h2>
             <p className="text-left text-white">
-Sélectionnez votre humeur parmi une variété d'options et laissez notre algorithme intelligent filtrer et recommander des films qui correspondent parfaitement à votre ressenti du moment. Vous découvrirez ainsi des perles cinématographiques qui sauront sublimer votre expérience de visionnage, en phase avec vos émotions.
+              Sélectionnez votre humeur parmi une variété d'options et laissez
+              notre algorithme intelligent filtrer et recommander des films qui
+              correspondent parfaitement à votre ressenti du moment. Vous
+              découvrirez ainsi des perles cinématographiques qui sauront
+              sublimer votre expérience de visionnage, en phase avec vos
+              émotions.
             </p>
           </div>
         </div>
@@ -53,10 +61,15 @@ Sélectionnez votre humeur parmi une variété d'options et laissez notre algori
       <div className="flex justify-center items-center basis-1/4 grow z-10">
         <div className="content-center w-4/12 mt-16">
           <h2 className="text-right text-fuchsia-500 font-bold mb-3">
-          Assistance intelligente
+            Assistance intelligente
           </h2>
           <p className="text-right text-white">
-          Vous avez une idée précise en tête pour votre prochaine soirée film ? Ne cherchez plus. Notre assistante intelligente, Maud, est là pour vous aider à trouver le film parfait. Grâce à une technologie de pointe et une compréhension approfondie de vos préférences, Maud est capable de vous guider à travers notre vaste bibliothèque de films.</p>
+            Vous avez une idée précise en tête pour votre prochaine soirée film
+            ? Ne cherchez plus. Notre assistante intelligente, Maud, est là pour
+            vous aider à trouver le film parfait. Grâce à une technologie de
+            pointe et une compréhension approfondie de vos préférences, Maud est
+            capable de vous guider à travers notre vaste bibliothèque de films.
+          </p>
         </div>
         <Image
           className="mt-20 ml-4 w-19 h-20"
@@ -77,10 +90,14 @@ Sélectionnez votre humeur parmi une variété d'options et laissez notre algori
         />
         <div className="content-center w-4/12 mt-16">
           <h2 className="text-left text-fuchsia-500 font-bold mb-3">
-          Visionnage collaboratif en temps réel <br />(en cours de développement)
+            Visionnage collaboratif en temps réel <br />
+            (en cours de développement)
           </h2>
           <p className="text-left text-white">
-          Moodvies vous permet de créer des expériences de visionnage collaboratif en temps réel. Synchronisez-vous avec vos amis pour regarder le même film en même temps et partagez vos réactions en direct !
+            Moodvies vous permet de créer des expériences de visionnage
+            collaboratif en temps réel. Synchronisez-vous avec vos amis pour
+            regarder le même film en même temps et partagez vos réactions en
+            direct !
           </p>
         </div>
       </div>
@@ -88,10 +105,13 @@ Sélectionnez votre humeur parmi une variété d'options et laissez notre algori
       <div className="flex justify-center items-center basis-1/4 grow z-10">
         <div className="content-center w-4/12 mt-16">
           <h2 className="text-right text-fuchsia-500 font-bold mb-3">
-          Intégrations transparentes avec les services cloud <br /> (en cours de développement)
+            Intégrations transparentes avec les services cloud <br /> (en cours
+            de développement)
           </h2>
           <p className="text-right text-white">
-          Notre plateforme utilise des intégrations API puissantes pour améliorer votre expérience. Connectez-vous facilement à vos services de streaming préférés et découvrez de nouveaux contenus sans effort.
+            Notre plateforme utilise des intégrations API puissantes pour
+            améliorer votre expérience. Connectez-vous facilement à vos services
+            de streaming préférés et découvrez de nouveaux contenus sans effort.
           </p>
         </div>
         <Image

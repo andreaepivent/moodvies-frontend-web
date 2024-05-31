@@ -40,30 +40,40 @@ function IconMovie({ nom, selected, onSelect }) {
 }
 
 export default function ModalMovies({ open, onOpenChange, loginData }) {
+  // État pour contrôler quel modal est affiché
   const [currentModal, setCurrentModal] = useState("movies");
+  // État pour stocker les films sélectionnés
   const [selectedMovies, setSelectedMovies] = useState([]);
+  // État pour afficher un loader pendant les actions asynchrones
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // Sélecteur pour obtenir les informations de l'utilisateur depuis le store Redux
   const user = useSelector((state) => state.user.value);
   console.log(user);
 
+  // Fonction pour simuler une attente (par exemple, pour les animations de chargement)
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
+  // Fonction pour gérer la navigation entre les modals et les pages
   function handleNavigation(targetModal) {
     router.push("/mood");
     setLoader(true);
 
+    // Ajout des films sélectionnés au store Redux
     selectedMovies.forEach((movie) => {
       dispatch(addMovie(movie));
     });
 
+    // Connexion de l'utilisateur avec les données de connexion fournies
     dispatch(login(loginData));
 
     if (targetModal === "mood") {
+      // Navigation vers la page "mood"
       router.push("/mood");
     } else {
+      // Attente avant de changer le modal affiché
       wait().then(() => {
         setCurrentModal(targetModal);
         setLoader(false);
@@ -71,13 +81,17 @@ export default function ModalMovies({ open, onOpenChange, loginData }) {
     }
   }
 
+  // Fonction pour gérer la sélection et la désélection des films
   function handleSelectMovie(movie) {
     setSelectedMovies((prev) => {
       if (prev.includes(movie)) {
+        // Si le film est déjà sélectionné, le retirer de la sélection
         return prev.filter((m) => m !== movie);
       } else if (prev.length < 5) {
+        // Ajouter le film à la sélection s'il y a moins de 5 films sélectionnés
         return [...prev, movie];
       }
+      // Si 5 films sont déjà sélectionnés, ne rien faire
       return prev;
     });
   }

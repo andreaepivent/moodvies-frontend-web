@@ -18,15 +18,18 @@ import { Spinner } from "@nextui-org/spinner";
 import { addMood } from "../../reducers/moods";
 
 export default function MoodPage() {
+  // État pour gérer le chargement et l'affichage du titre
   const [loading, setLoading] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
+  // Fonction pour gérer le clic sur une humeur
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
 
+    // Envoi de la requête pour obtenir des recommandations basées sur l'humeur sélectionnée
     fetch("http://localhost:3000/recommendation", {
       method: "POST",
       headers: {
@@ -41,8 +44,10 @@ export default function MoodPage() {
     })
       .then((response) => response.json())
       .then((data) => {
+        // Mise à jour des recommandations et de l'humeur dans le store Redux
         dispatch(updateRecommendation(data.recommendations));
         dispatch(addMood(moodSelected));
+        // Redirection vers la page des films
         router.push(`/movies`);
         setLoading(false);
       });

@@ -1,6 +1,5 @@
 import React from "react";
 import MoodCarousel from "./MoodCarousel";
-import NavbarProfile from "./Navbar/NavbarProfile";
 import CollectionCarousel from "./CollectionCarousel";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";

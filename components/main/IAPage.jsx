@@ -9,19 +9,23 @@ import { updateRecommendation } from "@/reducers/recommendations";
 import { addMood } from "../../reducers/moods";
 
 export default function IAPage() {
+  // Sélecteur pour obtenir les informations de l'utilisateur depuis le store Redux
   const user = useSelector((state) => state.user.value);
   const router = useRouter();
   const dispatch = useDispatch();
 
+  // États pour gérer la validation, l'étape actuelle, les réponses et l'historique de la conversation
   const [validate, setValidate] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [conversationHistory, setConversationHistory] = useState([]);
 
+  // Références pour le conteneur de la conversation, le bouton de validation et la barre de navigation
   const conversationContainerRef = useRef(null);
   const validateButtonRef = useRef(null);
   const navbarRef = useRef(null);
 
+  // Effet pour faire défiler la conversation vers le bas lorsque l'historique change
   useEffect(() => {
     if (conversationContainerRef.current) {
       conversationContainerRef.current.scrollTop =
@@ -29,6 +33,7 @@ export default function IAPage() {
     }
   }, [conversationHistory]);
 
+  // Effet pour faire défiler vers le bouton de validation lorsque la validation est activée
   useEffect(() => {
     if (validate && validateButtonRef.current) {
       validateButtonRef.current.scrollIntoView({
@@ -39,6 +44,7 @@ export default function IAPage() {
     }
   }, [validate]);
 
+  // Référence et effet pour le défilement initial
   const scrollRef = useRef(null);
   useEffect(() => {
     const element = scrollRef.current;
@@ -47,6 +53,7 @@ export default function IAPage() {
     }
   }, []);
 
+  // Questions pour l'utilisateur
   const questions = [
     {
       question:
@@ -108,6 +115,7 @@ export default function IAPage() {
     },
   ];
 
+  // Fonction pour gérer les réponses de l'utilisateur
   const handleAnswer = (answer) => {
     const currentTime = new Date().toLocaleTimeString([], {
       hour: "2-digit",
@@ -123,7 +131,7 @@ export default function IAPage() {
       ]);
     }
     if (step === questions.length - 1) {
-      // On récupère les préférences
+      // On récupère les préférences de l'utilisateur
       const preferences = {
         genre: answers[0],
         country: answers[1],
@@ -135,6 +143,7 @@ export default function IAPage() {
     }
   };
 
+  // Fonction pour récupérer les recommandations de films
   const fetchRecommendation = (token, preferences) => {
     fetch("http://localhost:3000/recommendation/customRec", {
       method: "POST",
@@ -149,7 +158,7 @@ export default function IAPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Si on réussit à trouver un film, on le signale et on l'envoie au reducer
+        // Si des recommandations sont trouvées, les ajouter à l'état global
         if (data.recommendations && data.recommendations.length > 0) {
           dispatch(updateRecommendation(data.recommendations));
           setValidate(true);
@@ -180,6 +189,7 @@ export default function IAPage() {
       });
   };
 
+  // Fonction pour gérer le clic sur le bouton "Valider"
   function handleClick() {
     dispatch(addMood(["Sélectif"]));
     router.push(`/movies`);

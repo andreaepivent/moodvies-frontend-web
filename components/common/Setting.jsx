@@ -44,6 +44,7 @@ export function Setting() {
 
   const router = useRouter();
 
+  // Gestion de l'affichage des settings en fonction de la page sur laquelle on est
   useEffect(() => {
     if (router.pathname === "/") {
       setShowGoHomeButton(false);
@@ -90,6 +91,7 @@ export function Setting() {
 
   return (
     <>
+      {/* Affichage des notifications que si on est connecté */}
       {user.username ? (
         <>
           <div className="flex mr-5">

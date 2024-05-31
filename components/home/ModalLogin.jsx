@@ -30,12 +30,14 @@ export default function ModalLogin() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // Configuration de la connexion Google
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Google login successful:", tokenResponse);
+      console.log("Connexion Google réussie :", tokenResponse);
       const { access_token } = tokenResponse;
 
       try {
+        // Envoi du jeton Google au serveur pour authentification
         const response = await fetch(
           "http://localhost:3000/users/google-login",
           {
@@ -53,25 +55,31 @@ export default function ModalLogin() {
         console.log(data);
 
         if (data.result) {
+          // Connexion réussie, mise à jour de l'état global avec les informations de l'utilisateur
           dispatch(
             login({
               token: data.token,
               username: data.username,
             })
           );
+          // Redirection vers la page "mood"
           router.push("/mood");
         } else {
-          console.error("Google login failed on server:", data.message);
+          console.error(
+            "Échec de la connexion Google sur le serveur :",
+            data.message
+          );
         }
       } catch (error) {
-        console.error("Google login error:", error);
+        console.error("Erreur de connexion Google :", error);
       }
     },
     onError: (error) => {
-      console.error("Google login error:", error);
+      console.error("Erreur de connexion Google :", error);
     },
   });
 
+  // Fonction pour soumettre les informations de connexion
   const submitSignIn = () => {
     setLoader(true);
     const connectionData = {
@@ -87,6 +95,7 @@ export default function ModalLogin() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
+          // Connexion réussie, réinitialisation des champs de saisie
           setUsername("");
           setPassword("");
           dispatch(
@@ -95,6 +104,7 @@ export default function ModalLogin() {
               username: data.username,
             })
           );
+          // Redirection vers la page "mood"
           router.push("/mood");
         } else {
           setLoader(false);

@@ -17,13 +17,14 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import ModalPlatforms from "./ModalPlatforms";
 import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
+  // États pour les champs du formulaire
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +40,14 @@ export default function ModalSignup() {
 
   const today = new Date().toISOString().split("T")[0];
 
+  // Configuration de la connexion Google
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       console.log("Google login successful:", tokenResponse);
       const { access_token } = tokenResponse;
 
       try {
+        // Envoi du jeton Google au serveur pour authentification
         const response = await fetch(
           "http://localhost:3000/users/google-login",
           {
@@ -61,6 +64,7 @@ export default function ModalSignup() {
         const data = await response.json();
 
         if (data.result) {
+          // Connexion réussie, ouverture du modal suivant
           setOpen(false);
           setNextModalOpen(true);
           setLoginData({
@@ -68,14 +72,17 @@ export default function ModalSignup() {
             username: data.username,
           });
         } else {
-          console.error("Google login failed on server:", data.message);
+          console.error(
+            "Échec de la connexion Google sur le serveur :",
+            data.message
+          );
         }
       } catch (error) {
-        console.error("Google login error:", error);
+        console.error("Erreur de connexion Google :", error);
       }
     },
     onError: (error) => {
-      console.error("Google login error:", error);
+      console.error("Erreur de connexion Google :", error);
     },
   });
 
@@ -99,13 +106,14 @@ export default function ModalSignup() {
       const data = await response.json();
 
       if (data.result) {
+        // Inscription réussie, ouverture du modal suivant
         setOpen(false);
         setNextModalOpen(true);
         setLoginData({
           token: data.token,
           username: data.username,
         });
-        // Réinitialise les champs du formulaire et les messages d'erreur
+        // Réinitialisation des champs du formulaire et des messages d'erreur
         setUsername("");
         setPassword("");
         setEmail("");
@@ -115,7 +123,7 @@ export default function ModalSignup() {
         setEmailError(null);
         setPasswordError(null);
       } else {
-        // Affiche les messages d'erreur spécifiques
+        // Affichage des messages d'erreur spécifiques
         if (data.error.includes("pseudo")) {
           setUsernameError(data.error);
         } else {
@@ -133,7 +141,7 @@ export default function ModalSignup() {
         }
       }
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Erreur d'inscription :", error);
     }
   };
 
@@ -153,7 +161,7 @@ export default function ModalSignup() {
               style={{ objectFit: "contain" }}
               width={50}
               height={50}
-              fetchPriority="hight"
+              fetchPriority="high"
             />
           </div>
           <DialogHeader>
@@ -257,14 +265,14 @@ export default function ModalSignup() {
             className="w-full text-black mb-2"
             onClick={() => googleLogin()}
           >
-            <div className="relative h-6 w-6 -ml-4 mr-2 ">
+            <div className="relative h-6 w-6 -ml-4 mr-2">
               <Image
                 src="/logo/google.svg"
                 alt="logo-google"
                 style={{ objectFit: "contain" }}
                 width={30}
                 height={30}
-                fetchPriority="hight"
+                fetchPriority="high"
               />
             </div>
             Continue with Google
