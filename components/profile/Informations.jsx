@@ -15,7 +15,7 @@ function Informations() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/users/getUserData",
+          "https://site--moodvies--5xx8wnrqybfd.code.run/users/getUserData",
           {
             method: "POST",
             headers: {

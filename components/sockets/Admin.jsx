@@ -12,7 +12,7 @@ export default function Admin() {
   // Fonction pour gérer l'ajout d'un film
   const handleAddMovie = () => {
     // Initialisation du socket pour la communication en temps réel
-    const socket = socketIOClient("http://localhost:3000");
+    const socket = socketIOClient("https://site--moodvies--5xx8wnrqybfd.code.run");
     const movieData = {
       title: title,
     };

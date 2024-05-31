@@ -40,7 +40,7 @@ function ChangeInfos(props) {
   // Function to save new username and email
   const saveNewUsernameAndEmail = async () => {
     try {
-      const response = await fetch('http://localhost:3000/users/editProfile', {
+      const response = await fetch('https://site--moodvies--5xx8wnrqybfd.code.run/users/editProfile', {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -69,7 +69,7 @@ function ChangeInfos(props) {
   // Function to save new password
   const saveNewPassword = async () => {
     try {
-      const response = await fetch('http://localhost:3000/users/editPassword', {
+      const response = await fetch('https://site--moodvies--5xx8wnrqybfd.code.run/users/editPassword', {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

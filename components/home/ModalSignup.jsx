@@ -50,7 +50,7 @@ export default function ModalSignup() {
       try {
         // Envoi du jeton Google au serveur pour authentification
         const response = await fetch(
-          "http://localhost:3000/users/google-login",
+          "https://site--moodvies--5xx8wnrqybfd.code.run/users/google-login",
           {
             method: "POST",
             headers: {
@@ -102,7 +102,7 @@ export default function ModalSignup() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/users/signup", {
+      const response = await fetch("https://site--moodvies--5xx8wnrqybfd.code.run/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(connectionData),

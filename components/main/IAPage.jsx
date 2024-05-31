@@ -145,7 +145,7 @@ export default function IAPage() {
 
   // Fonction pour récupérer les recommandations de films
   const fetchRecommendation = (token, preferences) => {
-    fetch("http://localhost:3000/recommendation/customRec", {
+    fetch("https://site--moodvies--5xx8wnrqybfd.code.run/recommendation/customRec", {
       method: "POST",
       headers: {
         Accept: "application/json",

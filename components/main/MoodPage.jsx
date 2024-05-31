@@ -30,7 +30,7 @@ export default function MoodPage() {
     setLoading(true);
 
     // Envoi de la requête pour obtenir des recommandations basées sur l'humeur sélectionnée
-    fetch("http://localhost:3000/recommendation", {
+    fetch("https://site--moodvies--5xx8wnrqybfd.code.run/recommendation", {
       method: "POST",
       headers: {
         Accept: "application/json",
