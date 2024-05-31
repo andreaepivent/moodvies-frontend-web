@@ -13,13 +13,14 @@ export default function Navbar() {
   const [showIAButton, setshowIAButton] = useState(false);
 
   function handleHome() {
-    router.push(`/`);
+    router.push(`/mood`);
   }
 
   function handleMaud() {
     router.push(`/maud`);
   }
 
+  // Affichage IA en fonction de la page sur laquelle on est
   useEffect(() => {
     if (router.pathname === "/" || router.pathname === "/admin") {
       setshowIAButton(false);

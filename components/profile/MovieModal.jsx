@@ -65,7 +65,7 @@ export default function MovieModal({
               alt={`${movie.movie.title.fr} poster`}
               className="w-full h-1/2 object-cover mb-4"
             />
-            <p>{movie.movie.synopsis.fr}</p>
+            <p className="line-clamp-6">{movie.movie.synopsis.fr}</p>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="-mt-10">

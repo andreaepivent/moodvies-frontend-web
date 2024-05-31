@@ -55,6 +55,8 @@ export default function MoviesPage() {
     setSeenMovies(updatedSeenMovies);
   };
 
+  console.log(mainFilm);
+
   function handleMood() {
     router.push(`/mood`);
   }
@@ -90,7 +92,7 @@ export default function MoviesPage() {
 
         <Navbar />
 
-        <div className="relative mt-52 flex justify-center items-center z-10">
+        <div className="relative mt-56 flex justify-center items-center z-10">
           <Button
             variant="ghost"
             className="w-80 border-2 text-slate-100 text-xl"
@@ -116,6 +118,10 @@ export default function MoviesPage() {
           <p className="scroll-m-20 text-xl font-semibold tracking-tight mt-2">
             Réalisé par {mainFilm.directors}. {mainFilm.duration} minutes.{" "}
             {mainFilm.release_date.substring(0, 4)}
+          </p>
+          <p className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
+            Acteur principaux : {mainFilm.cast[0]}, {mainFilm.cast[1]},{" "}
+            {mainFilm.cast[2]}
           </p>
           <div className="max-w-2xl mx-auto flex items-center justify-center mt-4">
             <blockquote className="mt-6 pl-6 italic pr-4 text-justify w-full h-full text-center overflow-hidden line-clamp-6">
