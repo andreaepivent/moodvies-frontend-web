@@ -13,7 +13,7 @@ export default function Footer() {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/newsletters/send-email",
+        "https://site--moodvies--5xx8wnrqybfd.code.run/newsletters/send-email",
         {
           method: "POST",
           headers: {

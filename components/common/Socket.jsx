@@ -11,7 +11,7 @@ export default function Socket() {
   const dispatch = useDispatch(); // Initialise le hook useDispatch pour dispatcher des actions Redux
 
   useEffect(() => {
-    const socket = socketIOClient("http://localhost:3000"); // Établit une connexion WebSocket avec le serveur
+    const socket = socketIOClient("https://site--moodvies--5xx8wnrqybfd.code.run"); // Établit une connexion WebSocket avec le serveur
 
     // Événement déclenché lorsque la connexion est établie
     socket.on("connect", () => {

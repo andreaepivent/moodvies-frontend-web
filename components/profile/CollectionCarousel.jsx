@@ -32,7 +32,7 @@ function CollectionCarousel() {
       )
     );
 
-    fetch(`http://localhost:3000/users/addFeedback`, {
+    fetch(`https://site--moodvies--5xx8wnrqybfd.code.run/users/addFeedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function CollectionCarousel() {
 
   /* const movies = useSelector((state) => state.movies.value) */
   useEffect(() => {
-    fetch(`http://localhost:3000/users/getRecommendations/${user.token}`)
+    fetch(`https://site--moodvies--5xx8wnrqybfd.code.run/users/getRecommendations/${user.token}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
