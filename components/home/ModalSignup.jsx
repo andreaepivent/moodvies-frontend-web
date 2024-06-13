@@ -162,7 +162,7 @@ export default function ModalSignup() {
         <DialogContent className="dark text-slate-100 sm:max-w-[425px]">
           <div className="relative w-10 h-10">
             <Image
-              src={"/home/logo-moodvie-letter.svg"}
+              src={"/home/Logo-moodvie-letter.svg"}
               alt="logo-moodvie"
               style={{ objectFit: "contain" }}
               width={50}
