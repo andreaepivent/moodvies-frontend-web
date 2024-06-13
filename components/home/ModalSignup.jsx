@@ -20,11 +20,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
 import ModalPlatforms from "./ModalPlatforms";
-import { login } from "@/reducers/user";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function ModalSignup() {
+  // États pour les champs du formulaire
   const [isVisible, setIsVisible] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,12 +33,66 @@ export default function ModalSignup() {
   const [gender, setGender] = useState("");
   const [open, setOpen] = useState(false);
   const [nextModalOpen, setNextModalOpen] = useState(false);
+  const [loginData, setLoginData] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [formError, setFormError] = useState(null);
 
-  const dispatch = useDispatch();
+  const today = new Date().toISOString().split("T")[0];
 
-  const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
+  // Configuration de la connexion Google
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google login successful:", tokenResponse);
+      const { access_token } = tokenResponse;
 
-  const submitSignUp = () => {
+      try {
+        // Envoi du jeton Google au serveur pour authentification
+        const response = await fetch(
+          "https://site--moodvies--5xx8wnrqybfd.code.run/users/google-login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              access_token: access_token,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.result) {
+          // Connexion réussie, ouverture du modal suivant
+          setOpen(false);
+          setNextModalOpen(true);
+          setLoginData({
+            token: data.token,
+            username: data.username,
+          });
+        } else {
+          console.error(
+            "Échec de la connexion Google sur le serveur :",
+            data.message
+          );
+        }
+      } catch (error) {
+        console.error("Erreur de connexion Google :", error);
+      }
+    },
+    onError: (error) => {
+      console.error("Erreur de connexion Google :", error);
+    },
+  });
+
+  // Fonction pour gérer la soumission du formulaire d'inscription
+  const submitSignUp = async () => {
+    if (!username || !email || !password || !birthday || !gender) {
+      setFormError("Tous les champs sont obligatoires.");
+      return;
+    }
     const connectionData = {
       username: username,
       password: password,
@@ -47,31 +101,54 @@ export default function ModalSignup() {
       gender: gender,
     };
 
-    fetch("http://localhost:3000/users/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(connectionData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result) {
-          wait().then(() => {
-            setOpen(false);
-            setNextModalOpen(true);
-          });
-          setUsername("");
-          setPassword("");
-          setEmail("");
-          setBirthday("");
-          setGender("");
-          dispatch(
-            login({
-              token: data.token,
-              username: data.username,
-            })
-          );
-        }
+    try {
+      const response = await fetch("https://site--moodvies--5xx8wnrqybfd.code.run/users/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(connectionData),
       });
+
+      const data = await response.json();
+
+      if (data.result) {
+        // Inscription réussie, ouverture du modal suivant
+        setOpen(false);
+        setNextModalOpen(true);
+        setLoginData({
+          token: data.token,
+          username: data.username,
+        });
+        // Réinitialisation des champs du formulaire et des messages d'erreur
+        setUsername("");
+        setPassword("");
+        setEmail("");
+        setBirthday("");
+        setGender("");
+        setUsernameError(null);
+        setEmailError(null);
+        setPasswordError(null);
+        setFormError(null);
+      } else {
+        // Affichage des messages d'erreur spécifiques
+        if (data.error.includes("pseudo")) {
+          setUsernameError(data.error);
+        } else {
+          setUsernameError(null);
+        }
+        if (data.error.includes("email")) {
+          setEmailError(data.error);
+        } else {
+          setEmailError(null);
+        }
+        if (data.error.includes("mot de passe")) {
+          setPasswordError(data.error);
+        } else {
+          setPasswordError(null);
+        }
+      }
+    } catch (error) {
+      console.error("Erreur d'inscription :", error);
+    }
   };
 
   return (
@@ -79,36 +156,43 @@ export default function ModalSignup() {
       <Dialog className="dark" open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="ghost" className="w-32 border-2 text-slate-100">
-            Signup
+            Inscription
           </Button>
         </DialogTrigger>
         <DialogContent className="dark text-slate-100 sm:max-w-[425px]">
           <div className="relative w-10 h-10">
             <Image
-              src={"/home/logo-moodvie-letter.svg"}
+              src={"/home/Logo-moodvie-letter.svg"}
               alt="logo-moodvie"
               style={{ objectFit: "contain" }}
               width={50}
               height={50}
-              fetchPriority="hight"
+              fetchPriority="high"
             />
           </div>
           <DialogHeader>
             <DialogTitle className="text-center text-2xl mb-3">
-              Create an account
+              Création d'un compte
             </DialogTitle>
-            <DialogDescription>
-              Please enter all this information
-            </DialogDescription>
+            {!formError && (
+              <DialogDescription>
+                Merci de renseigner toutes les informations
+              </DialogDescription>
+            )}
           </DialogHeader>
+          {formError && <p className="text-red-500 text-center">{formError}</p>}
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Input
                 id="username"
-                placeholder="Username"
+                placeholder="Pseudo"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className={usernameError ? "border-red-500" : ""}
               />
+              {usernameError && (
+                <p className="text-red-500 text-xs">{usernameError}</p>
+              )}
             </div>
 
             <Input
@@ -116,20 +200,23 @@ export default function ModalSignup() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={emailError ? "border-red-500" : ""}
             />
+            {emailError && <p className="text-red-500 text-xs">{emailError}</p>}
 
-            <div className="relative">
+            <div className="relative flex flex-col space-y-1.5">
               <Input
                 id="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 type={isVisible ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pr-10"
+                className={`pr-10 ${passwordError ? "border-red-500" : ""}`}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-2"
+                className="absolute inset-y-0 right-0 flex items-center px-2 pb-8"
+                tabIndex={-1}
                 onClick={() => setIsVisible(!isVisible)}
               >
                 {!isVisible ? (
@@ -138,22 +225,22 @@ export default function ModalSignup() {
                   <FontAwesomeIcon icon={faEyeSlash} className="" />
                 )}
               </button>
+              <p className="text-sm text-slate-600 mt-1 ml-2">
+                Au moins 8 caractères dont un chiffre et une majuscule
+              </p>
             </div>
             <div className="flex flex-row gap-2">
               <Input
                 id="birthday"
-                placeholder="Date de naissance"
                 type="date"
-                className="w-40"
+                className="w-60"
                 value={birthday}
+                max={today}
                 onChange={(e) => setBirthday(e.target.value)}
               />
               <Select onValueChange={setGender} value={gender}>
                 <SelectTrigger id="gender" value={gender}>
-                  <SelectValue
-                    placeholder="Gender"
-                    className="text-slate-100"
-                  />
+                  <SelectValue placeholder="Genre" className="text-slate-100" />
                 </SelectTrigger>
                 <SelectContent position="popper" className="dark">
                   <SelectItem value="homme" className="cursor-pointer">
@@ -183,38 +270,29 @@ export default function ModalSignup() {
 
           <Button
             type="submit"
-            variant="facebook"
-            className="w-full flex items-center justify-center mb-1"
+            variant=""
+            className="w-full text-black mb-2"
+            onClick={() => googleLogin()}
           >
-            <div className="relative h-6 w-6 mr-2">
-              <Image
-                src="/logo/facebook.svg"
-                alt="logo-facebook"
-                style={{ objectFit: "contain" }}
-                width={18}
-                height={18}
-                fetchPriority="hight"
-              />
-            </div>
-            Continue with Facebook
-          </Button>
-          <Button type="submit" variant="" className="w-full text-black mb-2">
-            <div className="relative h-6 w-6 -ml-4 mr-2 ">
+            <div className="relative h-6 w-6 -ml-4 mr-2">
               <Image
                 src="/logo/google.svg"
                 alt="logo-google"
                 style={{ objectFit: "contain" }}
                 width={30}
                 height={30}
-                fetchPriority="hight"
+                fetchPriority="high"
               />
             </div>
             Continue with Google
           </Button>
         </DialogContent>
       </Dialog>
-
-      <ModalPlatforms open={nextModalOpen} onOpenChange={setNextModalOpen} />
+      <ModalPlatforms
+        loginData={loginData}
+        open={nextModalOpen}
+        onOpenChange={setNextModalOpen}
+      />
     </>
   );
 }

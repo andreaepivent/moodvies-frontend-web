@@ -14,6 +14,7 @@ import ModalMovies from "./ModalMovies";
 import { useDispatch } from "react-redux";
 import { addPlatform } from "@/reducers/platforms";
 
+// Composant pour afficher l'icône d'une plateforme de streaming
 function IconPlatform({ nom, onSelect, selected }) {
   return (
     <img
@@ -29,22 +30,25 @@ function IconPlatform({ nom, onSelect, selected }) {
   );
 }
 
-export default function PlatformsModal({ open, onOpenChange }) {
+// Composant pour afficher le modal de sélection des plateformes de streaming
+export default function PlatformsModal({ open, onOpenChange, loginData }) {
   const [currentModal, setCurrentModal] = useState("platforms");
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const dispatch = useDispatch();
 
+  // Fonction pour gérer la navigation entre les différents modals
   const handleNavigation = (targetModal) => {
+    // Ajouter les plateformes sélectionnées au store Redux
     selectedPlatforms.forEach((el) => {
       dispatch(addPlatform({ src: `${el}.png`, name: el }));
     });
     wait().then(() => setCurrentModal(targetModal));
   };
 
+  // Fonction pour simuler une attente (par exemple, pour les animations de chargement)
   const wait = () => new Promise((resolve) => setTimeout(resolve, 200));
 
-  console.log(selectedPlatforms)
-
+  // Fonction pour gérer la sélection et la désélection des plateformes
   function handleSelectPlatform(platform) {
     setSelectedPlatforms((prev) =>
       prev.includes(platform)
@@ -57,7 +61,7 @@ export default function PlatformsModal({ open, onOpenChange }) {
     <>
       {currentModal === "platforms" && (
         <Dialog open={open}>
-          {/* onOpenChange={onOpenChange} */}
+          {/* Contenu du modal de sélection des plateformes */}
           <DialogContent className="dark text-slate-100 sm:max-w-[525px]">
             <div className="relative w-10 h-10">
               <Image
@@ -121,6 +125,7 @@ export default function PlatformsModal({ open, onOpenChange }) {
 
       {currentModal === "movies" && (
         <ModalMovies
+          loginData={loginData}
           open={open}
           onOpenChange={(isOpen) => {
             if (!isOpen) setCurrentModal("platforms");

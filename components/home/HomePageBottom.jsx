@@ -3,35 +3,44 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Marquee from "../ui/marquee";
 
+// Liste des avis des utilisateurs
 const reviews = [
   {
-    name: "Gladiator",
-    year: "2004",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "/movie/avatar.jpg",
+    name: "Marie L.",
+    year: "⭐⭐⭐⭐⭐",
+    body: "Moodvies a transformé mes soirées cinéma ! J'adore comment ils peuvent recommander des films en fonction de mon humeur du moment. C'est comme si l'application me comprenait parfaitement.",
+    img: "/profile-pic/profile1.jpeg",
   },
   {
-    name: "Spider-man",
-    username: "2010",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "/movie/spider-man.jpg",
+    name: "Julien D.",
+    year: "⭐⭐⭐⭐⭐",
+    body: "Incroyable ! Moodvies est devenu mon compagnon de visionnage préféré. J'ai découvert des films fantastiques que je n'aurais jamais trouvés autrement.",
+    img: "/profile-pic/profile2.jpeg",
   },
   {
-    name: "Gladiator",
-    username: "2002",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/movie/gladiator.jpg",
+    name: "Claire V.",
+    year: "⭐⭐⭐⭐⭐",
+    body: "Je suis absolument ravie de Moodvies ! Le concept de choisir des films en fonction de son humeur est génial. J'ai découvert tant de films fantastiques et variés grâce à eux.",
+    img: "/profile-pic/profile3.jpeg",
+  },
+  {
+    name: "Paul D.",
+    year: "⭐⭐⭐⭐⭐",
+    body: "Une application fantastique pour les amateurs de cinéma ! Moodvies propose toujours des films qui correspondent parfaitement à mon humeur.",
+    img: "/profile-pic/profile2.avif",
   },
 ];
 
-const firstRow = reviews.slice(reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+// Séparer les avis en deux lignes pour l'affichage
+const firstRow = reviews.slice(0, 2);
+const secondRow = reviews.slice(2);
 
-const ReviewCard = ({ img, name, username, body }) => {
+// Composant pour afficher une carte d'avis
+const ReviewCard = ({ img, name, year, body }) => {
   return (
     <figure
       className={cn(
-        "relative h-40 w-36 cursor-pointer overflow-hidden rounded-xl border p",
+        "relative h-50 w-36 cursor-pointer overflow-hidden rounded-xl border p",
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
@@ -42,7 +51,7 @@ const ReviewCard = ({ img, name, username, body }) => {
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+          <p className="text-xs font-medium dark:text-white/40">{year}</p>
         </div>
       </div>
       <blockquote className="mt-2 text-sm">{body}</blockquote>
@@ -50,27 +59,30 @@ const ReviewCard = ({ img, name, username, body }) => {
   );
 };
 
+// Composant pour la section inférieure de la page d'accueil
 const HomePageBottom = () => {
   return (
     <>
       <h1 className="mt-40 text-5xl font-bold text-slate-100 text-center">
-        Moodvies is also coming soon to your phone!
+        Moodvies sera bientôt disponible <br /> sur votre téléphone !
       </h1>
       <div className="flex justify-around mt-20 mb-40">
+        {/* Marquee pour la première ligne d'avis */}
         <div className="hidden px-8 relative max-w-60 h-96 flex-row items-center justify-center overflow-hidden rounded-lg  bg-transparent md:shadow-xl lg:flex">
           <div className="flex-1 text-slate-100">
             <Marquee pauseOnHover className="[--duration:20s]">
               {firstRow.map((review) => (
-                <ReviewCard key={review.username} {...review} />
+                <ReviewCard key={review.name} {...review} />
               ))}
             </Marquee>
           </div>
         </div>
 
+        {/* Section centrale avec les informations sur l'application mobile */}
         <div className="max-w-2xl flex flex-col items-center justify-center text-center">
           <p className="mt-10 text-xl text-white">
-            Our mobile app is currently in development and will be available
-            soon on both Google Play and the App Store.
+            Notre application mobile est en cours de développement et sera
+            bientôt disponible sur Google Play et l'App Store.
           </p>
           <div className="flex justify-center mt-10">
             <Image
@@ -90,6 +102,7 @@ const HomePageBottom = () => {
           </div>
         </div>
 
+        {/* Marquee pour la deuxième ligne d'avis */}
         <div className="hidden px-8 relative max-w-60 h-96 flex-row items-center justify-center overflow-hidden rounded-lg  bg-transparent md:shadow-xl lg:flex">
           <Marquee
             reverse
@@ -97,7 +110,7 @@ const HomePageBottom = () => {
             className="[--duration:20s] text-slate-100"
           >
             {secondRow.map((review) => (
-              <ReviewCard key={review.username} {...review} />
+              <ReviewCard key={review.name} {...review} />
             ))}
           </Marquee>
         </div>

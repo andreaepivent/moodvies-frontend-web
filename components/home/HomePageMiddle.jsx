@@ -5,8 +5,14 @@ function HomePageMiddle() {
   return (
     <div className="flex flex-col content-start">
       <h1 className="text-center text-6xl font-bold text-white mt-20">
-        What is Moodvies?
+        Moodvies, en quelques mots
       </h1>
+      <p className="text-white text-center w-3/4 mx-auto mt-4">
+        Chez Moodvies, nous comprenons que vos émotions jouent un rôle crucial
+        dans votre choix de film. Que vous soyez joyeux, mélancolique,
+        aventureux ou simplement détendu, notre plateforme est conçue pour vous
+        proposer des films qui résonnent avec votre état d'esprit actuel.
+      </p>
       <div>
         <div className="w-full h-full absolute left-1/3">
           <Image
@@ -28,7 +34,7 @@ function HomePageMiddle() {
           />
         </div>
 
-        <div className="flex justify-center basis-1/4 grow z-10">
+        <div className="flex justify-center items-center basis-1/4 grow z-10">
           <Image
             className="mt-20 mr-4 w-19 h-20"
             src="/home/icon_1.png"
@@ -37,42 +43,44 @@ function HomePageMiddle() {
             height={80}
           />
           <div className="content-center w-4/12 mt-20 z-10">
-            <h2 className="text-left text-white font-bold mb-3">
-              Discover Movies Based on Your Mood
+            <h2 className="text-left text-fuchsia-500 font-bold mb-3">
+              Découvrez des films en fonction de votre humeur
             </h2>
             <p className="text-left text-white">
-              Navigate to the Your mood panel in the left sidebar. <br />
-              Select your current mood to get personalized movie
-              recommendations. <br />
-              Select the movie icon in the upper right to see detailed
-              information about the recommended films.
+              Sélectionnez votre humeur parmi une variété d'options et laissez
+              notre algorithme intelligent filtrer et recommander des films qui
+              correspondent parfaitement à votre ressenti du moment. Vous
+              découvrirez ainsi des perles cinématographiques qui sauront
+              sublimer votre expérience de visionnage, en phase avec vos
+              émotions.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center basis-1/4 grow z-10">
+      <div className="flex justify-center items-center basis-1/4 grow z-10">
+        <div className="content-center w-4/12 mt-16">
+          <h2 className="text-right text-fuchsia-500 font-bold mb-3">
+            Assistance intelligente
+          </h2>
+          <p className="text-right text-white">
+            Vous avez une idée précise en tête pour votre prochaine soirée film
+            ? Ne cherchez plus. Notre assistante intelligente, Maud, est là pour
+            vous aider à trouver le film parfait. Grâce à une technologie de
+            pointe et une compréhension approfondie de vos préférences, Maud est
+            capable de vous guider à travers notre vaste bibliothèque de films.
+          </p>
+        </div>
         <Image
-          className="mt-20 mr-4 w-19 h-20"
+          className="mt-20 ml-4 w-19 h-20"
           src="/home/icon_2.png"
           alt="icon-robot"
           width={80} // Ajoutez les dimensions appropriées
           height={80}
         />
-        <div className="content-center w-4/12 mt-16">
-          <h2 className="text-left text-white font-bold mb-3">
-            AI-Powered Recommendations
-          </h2>
-          <p className="text-left text-white">
-            Our intelligent assistant, Maud IA, makes it easy for you to
-            discover movies that match your mood. Whether you're happy, sad, or
-            excited, our AI provides curated lists to enhance your viewing
-            experience.
-          </p>
-        </div>
       </div>
 
-      <div className="flex justify-center basis-1/4 grow z-10">
+      <div className="flex justify-center items-center basis-1/4 grow z-10">
         <Image
           className="mt-20 mr-4 w-19 h-20"
           src="/home/icon_3.png"
@@ -81,35 +89,38 @@ function HomePageMiddle() {
           height={80}
         />
         <div className="content-center w-4/12 mt-16">
-          <h2 className="text-left text-white font-bold mb-3">
-            Real-time Collaborative Viewing
+          <h2 className="text-left text-fuchsia-500 font-bold mb-3">
+            Visionnage collaboratif en temps réel <br />
+            (en cours de développement)
           </h2>
           <p className="text-left text-white">
-            Moodvie lets you build real-time collaborative viewing experiences.
-            Sync with friends to watch the same movie at the same time and share
-            your reactions live!
+            Moodvies vous permet de créer des expériences de visionnage
+            collaboratif en temps réel. Synchronisez-vous avec vos amis pour
+            regarder le même film en même temps et partagez vos réactions en
+            direct !
           </p>
         </div>
       </div>
 
-      <div className="flex justify-center basis-1/4 grow z-10">
+      <div className="flex justify-center items-center basis-1/4 grow z-10">
+        <div className="content-center w-4/12 mt-16">
+          <h2 className="text-right text-fuchsia-500 font-bold mb-3">
+            Intégrations transparentes avec les services cloud <br /> (en cours
+            de développement)
+          </h2>
+          <p className="text-right text-white">
+            Notre plateforme utilise des intégrations API puissantes pour
+            améliorer votre expérience. Connectez-vous facilement à vos services
+            de streaming préférés et découvrez de nouveaux contenus sans effort.
+          </p>
+        </div>
         <Image
-          className="mt-20 mr-4 w-19 h-20"
+          className="mt-20 ml-4 w-19 h-20"
           src="/home/icon_4.png"
           alt="icon-box"
           width={80} // Ajoutez les dimensions appropriées
           height={80}
         />
-        <div className="content-center w-4/12 mt-16">
-          <h2 className="text-left text-white font-bold mb-3">
-            Seamless Integrations with Cloud Services
-          </h2>
-          <p className="text-left text-white">
-            Our platform leverages powerful API integrations to enhance your
-            experience. Easily connect with your favorite streaming services and
-            discover new content effortlessly.
-          </p>
-        </div>
       </div>
     </div>
   );

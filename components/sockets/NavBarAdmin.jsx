@@ -1,19 +1,24 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Setting } from "../common/Setting";
-import LanguageSelect from "../common/LanguageSelect";
+import Socket from "../common/Socket";
 
-export default function NavbarHome() {
+export default function NavbarAdmin() {
   const router = useRouter();
+
+  const [showModalSettings, setShowModalSettings] = useState(false);
+
   function handleHome() {
     router.push(`/mood`);
   }
 
-  const [showModalSettings, setShowModalSettings] = useState(false);
+  function handleMaud() {
+    router.push(`/maud`);
+  }
 
   return (
     <>
-      <div className="flex items-center justify-between pt-4 z-1 px-8 absolute top-0 left-0 w-full bg-transparent z-20">
+      <div className="flex items-center justify-between pt-4 z-10 px-8">
         <div className="flex flex-col justify-center items-center">
           <img
             src="/home/Logo-moodvie-letter.svg"
@@ -21,20 +26,18 @@ export default function NavbarHome() {
             className="size-20 cursor-pointer"
             onClick={() => handleHome()}
           />
-         
+          <p className="text-slate-100 font-bold">{"slogan"}</p>
         </div>
-        <div className="hidden  flex-col justify-center items-center mt-4  lg:flex"></div>
+
         <div className="flex gap-4">
-          <div className="hidden items-center md:flex">
-            <LanguageSelect />
-          </div>
           <div
-            className=" flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer"
             onClick={() => setShowModalSettings(!showModalSettings)}
           >
-            <Setting></Setting>
+            <Setting />
           </div>
         </div>
+        <Socket />
       </div>
     </>
   );

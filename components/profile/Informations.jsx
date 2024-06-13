@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import NavbarProfile from "./Navbar/NavbarProfile";
 import { Button } from "../ui/button";
 import ChangeInfos from "./ChangeInfos";
 import { useSelector } from "react-redux";
@@ -16,7 +15,7 @@ function Informations() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/users/getUserData",
+          "https://site--moodvies--5xx8wnrqybfd.code.run/users/getUserData",
           {
             method: "POST",
             headers: {
@@ -50,40 +49,44 @@ function Informations() {
       setIsEditClicked={setIsEditClicked}
     />
   ) : (
-    <div className="w-screen h-screen bg-radial-gradient flex flex-col justify-around items-center">
+    <div className="w-screen min-h-screen bg-radial-gradient flex flex-col justify-around items-center">
       <div className="fixed top-7 h-[25%] w-full">
         <ResponsiveNavbarProfile />
         <div className="w-full flex flex-col items-center mt-10 md:flex-row md:justify-between md:items-end">
-          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-5xl mb-4 md:mb-0 md:pl-20">
-            Hello {user.username}
+          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-300 to-fuchsia-900 text-2xl  mb-4 md:mb-0 md:pl-20 md:text-4xl">
+            Salut{" "}
+            {user &&
+              user.username.charAt(0).toUpperCase() +
+                user.username.slice(1)}{" "}
+            !
           </h1>
         </div>
       </div>
-      
-      <div className="mx-auto w-1/2 h-1/4 flex justify-center mt-56">
-        <div className="w-1/2 flex flex-col items-center justify-around">
-          <span className="text-white">Username :</span>
-          <span className="text-white">Email :</span>
-          <span className="text-white">Password :</span>
-          <span className="text-white">Newsletter :</span>
+
+      <div className="mx-auto w-1/2 h-1/4 flex justify-center mt-64">
+        <div className="w-1/2 flex flex-col items-start justify-around">
+          <span className="text-slate-100 mb-10">Pseudo :</span>
+          <span className="text-slate-100 mb-10">Email :</span>
+          <span className="text-slate-100 mb-10">Mot de passe :</span>
+          <span className="text-slate-100">Newsletter :</span>
         </div>
         <div className="w-1/2 flex flex-col items-center justify-around">
-          <span className="text-white">{username}</span>
-          <span className="text-white">{userEmail}</span>
-          <span className="text-white">********</span>
-          <span className="text-white">
-            {newsletter ? "Subscribed" : "Not Subscribed"}
+          <span className="text-gray-400 mb-10">{username}</span>
+          <span className="text-gray-400 mb-10">{userEmail}</span>
+          <span className="text-gray-400 mb-10">********</span>
+          <span className="text-gray-400">
+            {newsletter ? "Abonné" : "Non abonné"}
           </span>
         </div>
       </div>
-      
+
       <Button
         variant="gradientPurple"
         size="lg"
-        className="mx-auto mt-10 block text-white"
+        className="mx-auto block text-white w-40"
         onClick={() => setIsEditClicked(true)}
       >
-        Edit informations
+        Modifier
       </Button>
     </div>
   );

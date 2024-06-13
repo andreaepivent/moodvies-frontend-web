@@ -5,13 +5,10 @@ const moodSlice = createSlice({
   initialState: [],
   reducers: {
     addMood: (state, action) => {
-      state.push(action.payload);
-    },
-    removeMood: (state) => {
-      return [];
+      return [action.payload];
     },
   },
 });
 
-export const { addMood, removeMood } = moodSlice.actions;
+export const { addMood } = moodSlice.actions;
 export default moodSlice.reducer;

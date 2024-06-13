@@ -116,11 +116,23 @@
 }
 
 .gradient-text {
-  background: linear-gradient(to bottom, #f1f5f9, #d946ef);
+  background: linear-gradient(to right, #f1f5f9, #d946ef);
   background-size: 200% 200%;
   animation: gradient-text 4s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .gradient-icon {
   background: linear-gradient(to right, #f1f5f9, #d946ef);
@@ -148,11 +160,55 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-text-reveal {
+  animation: text-reveal 1.5s ease-in-out forwards;
+}
+
+.animate-mood-reveal {
+  animation: text-reveal 0.8s ease-in-out forwards;
 }
 
 .shake:hover {
   animation: shake 0.4s;
+}
+
+html,
+body {
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Pour Firefox */
+html {
+  scrollbar-width: none; /* "auto" ou "thin" pour des options différentes */
+}
+body {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }

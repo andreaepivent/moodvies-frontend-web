@@ -17,20 +17,19 @@ function MoodCarousel() {
   const [maxValue, setMaxValue] = useState(null);
 
   useEffect(() => {
-    fetch(
-      `http://localhost:3000/users/getRecommendations/${user.token}`
-    )
+    fetch(`https://site--moodvies--5xx8wnrqybfd.code.run/users/getRecommendations/${user.token}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json();
+        return response.json(); 
       })
       .then((data) => {
         const moodCounts = {};
 
         // On récupère les moods associés à chaque recommandation
         data.forEach((entry) => {
+          console.log(entry.userMood)
           const mood = entry.userMood.fr;
           if (moodCounts[mood]) {
             moodCounts[mood]++;
@@ -68,7 +67,7 @@ function MoodCarousel() {
       .map((mood) => {
         if (mood.count >= 1) {
           return (
-            <div key={mood.mood} style={{ width: 130, height: 130 }}>
+            <div key={mood.mood} style={{ width: 130, height: 130}}>
               <CircularProgressbarWithChildren
                 value={mood.count}
                 minValue={0}
@@ -77,12 +76,13 @@ function MoodCarousel() {
                   root: {
                     display: "flex",
                     justifyContent: "center",
+                    width: "100%", // Ensure the root takes the full width of the container
+                    height: "100%", // Ensure the root takes the full height of the container
                   },
                   path: {
                     stroke: "#A759AE",
                     strokeLinecap: "butt",
                     transition: "stroke-dashoffset 0.5s ease 0s",
-                    transform: "rotate(0.25turn)",
                     transformOrigin: "center center",
                   },
                   trail: {
@@ -122,7 +122,11 @@ function MoodCarousel() {
         {bars.map((bar, index) => (
           <CarouselItem
             key={index}
-            className="basis-1/2 flex justify-center pl-4 md:basis-1/3 lg:basis-1/5"
+            className={`basis-1/2 flex justify-center pl-4 ${
+              bars.length < 3 ? "md:basis-auto" : "md:basis-1/3"
+            } ${
+              bars.length < 5 ? "lg:basis-auto" : "lg:basis-1/5"
+            }`}
           >
             {bar}
           </CarouselItem>
