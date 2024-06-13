@@ -29,6 +29,8 @@ export default function MoodPage() {
   const handleMoodClick = (moodSelected) => {
     setLoading(true);
 
+    console.log(moodSelected);
+    console.log(user.token);
     // Envoi de la requête pour obtenir des recommandations basées sur l'humeur sélectionnée
     fetch("https://site--moodvies--5xx8wnrqybfd.code.run/recommendation", {
       method: "POST",
